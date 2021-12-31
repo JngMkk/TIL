@@ -84,7 +84,7 @@
   ```
 
 
-## GIT IGNORE
+### GIT IGNORE
 
 > 깃의 추적을 피하고 싶을 때 작성
 
@@ -93,7 +93,7 @@
   - 필요한 gitignore 확인
     - https://www.toptal.com/developers/gitignore
 
-## GIT CLONE
+### GIT CLONE
 
 - git clone 'address'
   - 최초 한번만
