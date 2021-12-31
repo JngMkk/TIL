@@ -1,9 +1,6 @@
 # TIL
 
 > "Today I Learned" (2021.12.20 ~ )
-
-## 과목
-
 - Git & Github(2021.12.30 ~ 2021.12.31)
   - [Git & Github](https://github.com/JngMkk/TIL/blob/master/Git%20%26%20Github/Git%26Github.md)
 
@@ -18,5 +15,3 @@
 - 빅분기(2021.12.31 ~ )
   - 빅데이터의 이해
     - [1장 빅데이터 개요 및 활용](https://github.com/JngMkk/TIL/blob/master/%EB%B9%85%EB%B6%84%EA%B8%B0/%EB%B9%85%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%9D%98%20%EC%9D%B4%ED%95%B4/1%EC%9E%A5%20%EB%B9%85%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%9D%98%20%EA%B0%9C%EC%9A%94%20%EB%B0%8F%20%ED%99%9C%EC%9A%A9.md)
-
-
