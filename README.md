@@ -27,7 +27,7 @@
   - 중앙 집중식 버전 관리
   - 분산 버전
 
-![img](TIL/Git.PNG)
+![Git](https://user-images.githubusercontent.com/87686562/147811756-13e74e46-220c-436e-8a5f-b8e1152a9375.PNG)
 
 
 - Github
