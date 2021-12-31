@@ -27,7 +27,7 @@
   - 중앙 집중식 버전 관리
   - 분산 버전
 
-![img](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/6f395559-9e08-47f9-ba79-c9106788e12f/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20211230%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20211230T063418Z&X-Amz-Expires=86400&X-Amz-Signature=0712dcff8709a5e1c184c5e5a6aa0b5a12e304695dd9e0b048837b96713151de&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject)
+![img](TIL/Git.PNG)
 
 
 - Github
@@ -103,7 +103,7 @@
   - clone을 하면 그 폴더는 깃의 관리를 받게 됨
 
 - hub에서 commit change 하지 않고 수정할 시 에러 발생함
-  - ![캡처](TIL/캡처.PNG)
+  - ![캡처](TIL/collision.PNG)
   - git pull origin master 입력
   - script 창에서 수정
   - (master|MERGING) 뜰 시
