@@ -1,6 +1,6 @@
 # TIL
 
-> "Today I Learned"
+> "Today I Learned" (2021.12.31 ~ )
 
 ## 과목
 
