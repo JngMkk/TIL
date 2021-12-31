@@ -103,7 +103,7 @@
   - clone을 하면 그 폴더는 깃의 관리를 받게 됨
 
 - hub에서 commit change 하지 않고 수정할 시 에러 발생함
-  - ![캡처](TIL/collision.PNG)
+  - ![collision](https://user-images.githubusercontent.com/87686562/147811861-67fe3d52-b837-4ab1-ac29-6ca9c2d032f8.PNG)
   - git pull origin master 입력
   - script 창에서 수정
   - (master|MERGING) 뜰 시
