@@ -33,6 +33,7 @@ print(car2 == car3)
 print(car1 == car3)
 print(car2)
 
+
 # 상속
 class SuperCar(Car):
     def __init__(self, color, speed = 0, bTurbo = True):

@@ -42,6 +42,7 @@ display('파이썬 리스트로 구현한 List(병합후) : ')
 clear()
 display('파이썬 리스트로 구현한 List(정리후) : ')
 
+
 # 배열로 구현한 리스트(클래스 버전)
 class ArrayList:
     def __init__(self):

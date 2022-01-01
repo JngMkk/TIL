@@ -1,5 +1,6 @@
 # 집합의 구현(리스트, 비트 벡터, 트리, 해싱 구조 등)
 # 리스트를 이용한 구현
+
 class Set:
     def __init__(self):
         self.items = []

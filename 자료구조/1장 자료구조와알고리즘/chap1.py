@@ -24,7 +24,6 @@ print('가방 속 물건:', myBag)
 
 
 # 실행시간 측정
-
 import time
 
 myBag = []
