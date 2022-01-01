@@ -24,8 +24,7 @@
     - [8. 데이터 입력, 삭제, 수정](https://github.com/JngMkk/TIL/blob/master/SQL/%EB%88%84%EA%B5%AC%EB%82%98%EC%89%BD%EA%B2%8CSQL(%ED%99%8D%ED%98%95%EA%B2%BD)/8_%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%9E%85%EB%A0%A5%EC%82%AD%EC%A0%9C%EC%88%98%EC%A0%95.sql)
 
 ## Git & Github
-- Git & Github (2021.12.30 ~ 2021.12.31)
-  - [Git & Github](https://github.com/JngMkk/TIL/blob/master/Git%20%26%20Github/Git%26Github.md)
+- [Git & Github](https://github.com/JngMkk/TIL/blob/master/Git%20%26%20Github/Git%26Github.md) (2021.12.30 ~ 2021.12.31)
 
 ## 자격증
 - 빅분기
