@@ -9,6 +9,7 @@ print('{:^20}'.format(s))
 print('{:-^20}'.format(s))
 print('{:-<20}'.format(s))
 print('{:->20}'.format(s))
+
 n = 1234
 print(n)
 print('{:10d}'.format(n))

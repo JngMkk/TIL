@@ -4,7 +4,6 @@
 
 # *args : arguments의 약자, 인수 값을 받음
 # **kwargs : keyWord arguments의 약자, key = value 값을 받음
-
 def sumN(*args):
     a = 0
     for arg in args:

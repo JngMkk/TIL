@@ -11,8 +11,8 @@ for i, std in enumerate(students):
     print(f'{stu_name[i]} 총점 : ', stu_tot)
     print(f'{stu_name[i]} 평균점수 : {stu_tot/len(students[0]):.2f}')
 
-majors = ['국어', '영어', '수학']
 # 과목별 총점과 평균점수 출력
+majors = ['국어', '영어', '수학']
 for i in range(len(majors)):
     tot = 0
     for j in range(len(students)):

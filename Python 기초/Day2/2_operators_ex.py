@@ -1,4 +1,5 @@
 # 연습문제 1
+
 myMoney = 5000
 candyPrice = 120
 numCandies = myMoney // candyPrice

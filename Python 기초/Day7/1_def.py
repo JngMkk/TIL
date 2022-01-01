@@ -24,7 +24,7 @@ def func1(x, y):
 
 # all() : 모든 요소가 참이면 True
 # False : 0, True : 0이 아닌 값
-# iterable(반복 가능한 자료형) : 리스트, 튜플, 딕셔너리 ...
+# iterable(반복 가능한 자료형)
 # for 반복문을 이용해서
 print(all([1, 2, 3]))
 print(all([0, 2, 3]))

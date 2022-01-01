@@ -1,5 +1,4 @@
 # 사칙연산 함수 작성
-
 def add(a, b):
     c = a + b
     return c

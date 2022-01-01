@@ -27,6 +27,7 @@ elif email.count('.') > 1:
 else:
     print('이메일 형식입니다.')
 
+
 # 숫자만 추출, 총 합계 구하기
 str_data = "{a1:20},{a2:30},{a3:15}, \
  {a4:50},{a5:-14},{a6:15},\
@@ -37,6 +38,7 @@ for d in data:
     num = d.split(':')[1].split('}')[0]
     nums.append(int(num))
 print(sum(nums))
+
 
 # 입력한 숫자만큼의 하트 출력
 tmp = input('숫자를 여러개 입력하세요.')

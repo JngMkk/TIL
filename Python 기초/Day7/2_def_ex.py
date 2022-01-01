@@ -8,7 +8,6 @@ ls = list(map(round, number1))
 # 연습문제 2
 ls1 = [1, 2, 3, 4]
 ls2 = [10, 20, 30, 40]
-
 def addlist(x, y):
     lst = [x[i] + y[i] for i in range(len(x))]
     print(lst)

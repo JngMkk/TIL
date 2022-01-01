@@ -1,4 +1,5 @@
 # 연습문제 1
+
 partyA = {'Park', 'Kim', 'Lee'}
 partyB = {'Park', '길동', '몽룡'}
 print('파티에 참석한 모든 사람\n', partyA | partyB)

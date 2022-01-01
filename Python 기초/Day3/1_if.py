@@ -2,7 +2,6 @@
 a = int(input('정수1 입력 : '))
 b = int(input('정수2 입력 : '))
 c = int(input('정수3 입력 : '))
-
 if a >= b and a >= c:
     MAX = a
 elif b >= c:

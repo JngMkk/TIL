@@ -10,6 +10,7 @@ def getArea_2():
     print(f'사각형 넓이 : {result}')
     return result
 
+# 입력 받아 주문액 계산
 def order():
     p = int(input('상품가격 입력 : '))
     q = int(input('주문 수량 입력 : '))

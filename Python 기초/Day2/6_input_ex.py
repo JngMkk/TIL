@@ -16,6 +16,7 @@ avg = tot / 3
 print(f'총점 : {tot}')
 print(f'평균 : {avg:.2f}')
 
+
 weight = int(input('몸무게(kg): '))
 height = int(input('키(미터): '))
 bmi = (weight / height ** 2) * 10000

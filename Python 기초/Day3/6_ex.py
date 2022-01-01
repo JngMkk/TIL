@@ -1,11 +1,14 @@
+# * 그리기
 for i in range(5, 0, -1):
     print('*' * i)
 
+# * 트리 그리기
 n = int(input('몇 층의 트리 ? '))
 for i in range(1, n * 2, 2):
     print(' ' * (n - 1) + '*' * i)
     n -= 1
 
+# if/else, while문 사용
 a = input('숫자 입력 : ')
 if a == '7':
     print('7 입력 ! 종료')
@@ -16,6 +19,7 @@ else:
             print('7 입력 ! 종료')
             break
 
+# 잔액 계산
 cash = 10000
 cnt = 0
 price = 3000

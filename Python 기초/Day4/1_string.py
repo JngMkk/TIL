@@ -19,6 +19,7 @@ print(s.index('is'))
 # print(s.index('parsing'))     # 에러 발생
 # print(s.index('is', 5, 15))   # 에러 발생
 
+# 테스트
 cities = '인천 대구 대전 부산 울산 청주 춘천'
 city = input('도시명 입력 : ')
 tmp = cities.find(city)

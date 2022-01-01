@@ -1,3 +1,4 @@
+# while문
 cnt = 0
 while True:
     a = input(' 입력 : ')

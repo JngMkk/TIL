@@ -20,12 +20,14 @@ if id == 'multicampus':
 else:
     print('아이디 확인')
 
+# 짝수 / 홀수 가려내기
 num = int(input('정수 입력 : '))
 if num % 2 == 0:
     print('짝수')
 else:
     print('홀수')
 
+# 성적
 score = int(input('점수 입력 : '))
 if score >= 90:
     print('A')

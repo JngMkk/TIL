@@ -1,3 +1,4 @@
+# 연습문제 1
 students = [{'name' : '홍길동', 'korean' : 87, 'math' : 98, 'english' : 88, 'science' : 95},
             {'name' : '이몽룡', 'korean' : 92, 'math' : 98, 'english' : 96, 'science' : 98},
             {'name' : '성춘향', 'korean' : 76, 'math' : 96, 'english' : 94, 'science' : 90},
@@ -13,8 +14,7 @@ for s in students:
     avg = tot / len(ls[1:])
     print(name,'\t',tot,'\t',avg)
 
-
-
+# 연습문제 2
 d = {}
 while True:
     key = input('영어 단어 등록 (종료는 quit) : ')
@@ -26,7 +26,6 @@ while True:
         d[key] = val
     else:
         print(f'{key}는 이미 등록된 단어 입니다.')
-
 while True:
     word = input('검색할 단어 입력 (종료는 quit) : ')
     if word == 'quit':

@@ -13,7 +13,7 @@ cTemp = (fTemp - 32) * 5 / 9
 print('%.2f' % cTemp)
 print(format(cTemp, '.2f'))
 
-# 온도 변환 혼자 만들어 봄..
+# 온도 변환 혼자 만들어 봄
 class ChangeTemp:
     def __init__(self):
         self.temp = 0

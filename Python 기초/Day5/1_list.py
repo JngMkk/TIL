@@ -3,7 +3,6 @@ print(scores)
 scores.sort()                       # 오름차순 정렬
 print(scores)
 
-
 scores = [90, 78, 81, 65, 99]
 scores.sort(reverse = True)         # 내림차순 정렬
 print(scores)
