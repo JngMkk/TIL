@@ -22,6 +22,7 @@
     - [6. 조인](https://github.com/JngMkk/TIL/blob/master/SQL/%EB%88%84%EA%B5%AC%EB%82%98%EC%89%BD%EA%B2%8CSQL(%ED%99%8D%ED%98%95%EA%B2%BD)/6_%EC%A1%B0%EC%9D%B8.sql)
     - [7. 서브쿼리](https://github.com/JngMkk/TIL/blob/master/SQL/%EB%88%84%EA%B5%AC%EB%82%98%EC%89%BD%EA%B2%8CSQL(%ED%99%8D%ED%98%95%EA%B2%BD)/7_%EC%84%9C%EB%B8%8C%EC%BF%BC%EB%A6%AC.sql)
     - [8. 데이터 입력, 삭제, 수정](https://github.com/JngMkk/TIL/blob/master/SQL/%EB%88%84%EA%B5%AC%EB%82%98%EC%89%BD%EA%B2%8CSQL(%ED%99%8D%ED%98%95%EA%B2%BD)/8_%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%9E%85%EB%A0%A5%EC%82%AD%EC%A0%9C%EC%88%98%EC%A0%95.sql)
+  - 데이터 분석을 위한 SQL레시피(가사키 나가토, 다미야 나오토) 정리
 
 ## Git & Github
 - [Git & Github](https://github.com/JngMkk/TIL/blob/master/Git%20%26%20Github/Git%26Github.md) (2021.12.30 ~ 2021.12.31)
