@@ -1,3 +1,2 @@
-*.md linguist-detectable = false
 *.sql linguist-detectable = True
 *.py linguist-detectable = True
