@@ -14,6 +14,7 @@
 ## SQL
 - SQL
   - 누구나쉽게SQL(홍형경) 정리 (2021.12.20 ~ )
+    - [DATA](https://github.com/JngMkk/TIL/tree/master/SQL/%EB%88%84%EA%B5%AC%EB%82%98%EC%89%BD%EA%B2%8CSQL(%ED%99%8D%ED%98%95%EA%B2%BD)/data)
     - [1. 테이블 생성](https://github.com/JngMkk/TIL/blob/master/SQL/%EB%88%84%EA%B5%AC%EB%82%98%EC%89%BD%EA%B2%8CSQL(%ED%99%8D%ED%98%95%EA%B2%BD)/1_%ED%85%8C%EC%9D%B4%EB%B8%94%EC%83%9D%EC%84%B1.sql)
     - [2. 데이터 조회(조건)](https://github.com/JngMkk/TIL/blob/master/SQL/%EB%88%84%EA%B5%AC%EB%82%98%EC%89%BD%EA%B2%8CSQL(%ED%99%8D%ED%98%95%EA%B2%BD)/2_%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%A1%B0%ED%9A%8C(%EC%A1%B0%EA%B1%B4).sql)
     - [3. SQL연산자 & 함수](https://github.com/JngMkk/TIL/blob/master/SQL/%EB%88%84%EA%B5%AC%EB%82%98%EC%89%BD%EA%B2%8CSQL(%ED%99%8D%ED%98%95%EA%B2%BD)/3_SQL%EC%97%B0%EC%82%B0%EC%9E%90_%ED%95%A8%EC%88%98.sql)
