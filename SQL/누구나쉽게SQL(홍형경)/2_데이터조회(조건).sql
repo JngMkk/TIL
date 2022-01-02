@@ -14,35 +14,35 @@ from subway_statistics;
 
 -- AND
 select * from subway_Statistics 
-where station_name = 'Àá½Ç(216)' and gubun = '½ÂÂ÷';
+where station_name = '??(216)' and gubun = '??';
 
 -- OR
 select * from subway_statistics 
-where station_name = 'Àá½Ç(216)' or station_name = '¼±¸ª(220)';
+where station_name = '??(216)' or station_name = '??(220)';
 
 -- AND & OR
 select * from subway_statistics
-where station_name = 'Àá½Ç(216)' and (boarding_time = 7 or boarding_time = 9);
+where station_name = '??(216)' and (boarding_time = 7 or boarding_time = 9);
 
 -- LIKE
 select * from subway_statistics
-where station_name like '¼±¸ª%';
+where station_name like '??%';
 
 -- LIKE & AND & IN
 select * from subway_statistics
-where station_name like '¼±¸ª%' and boarding_time in (7, 9);
+where station_name like '??%' and boarding_time in (7, 9);
 
 select * from subway_statistics
-where station_name like '¼±¸ª%' and passenger_number >= 500 and passenger_number <= 1000;
+where station_name like '??%' and passenger_number >= 500 and passenger_number <= 1000;
 
 -- BETWEEN a AND b
 select * from subway_statistics
-where station_name like '¼±¸ª%' and passenger_number between 500 and 1000;
+where station_name like '??%' and passenger_number between 500 and 1000;
 
 -- ORDER BY
 select * from subway_statistics
 order by station_name;
 
 select * from subway_Statistics
-where station_name like '¼±¸ª%'
+where station_name like '??%'
 order by 1, 2, 3, 4, 5, 6;
