@@ -26,7 +26,7 @@ print(os.path.isdir('C:/Users/[]/Desktop/TIL'))      # True/False
 print(os.path.isfile('C:/Users/[]/Desktop/TIL'))     # True/False
 
 # 파일 삭제
-os.remove('C:/Users/JngMK/Desktop/TIL/hi.py')
+os.remove('C:/Users/[]/Desktop/TIL/hi.py')
 
 # 파일 크기 확인
-print(os.path.getsize('C:/Users/JngMK/Desktop/TIL'))
+print(os.path.getsize('C:/Users/[]/Desktop/TIL'))
