@@ -6,15 +6,18 @@
 """
 
 def sum(inputname, savename):
-    except_str = ''
+    lst = []
     with open(inputname, 'r') as f:
         a = f.readlines()
-    ls = [i.split('\n')[0] for i in a]
-    ls = [i for i in ls if i != except_str]
-    ls = [i.split(' ') for i in ls]
+        for i in a:
+            tmp = i.split('\n')[0]
+            if tmp != '':
+                lst.append(tmp)
+    lst = [i.split() for i in lst]
+    
     with open(savename, 'w') as f:
-        for l in ls:
-            f.write(f'{l[0]}+{l[1]}={float(l[0]) + float(l[1])}\n')
+        for ls in lst:
+            f.write(f'{ls[0]}+{ls[1]}={float(ls[0]) + float(ls[1])}\n')
 
 if __name__ == '__main__':
     sum('num.txt', 'calc.txt')
