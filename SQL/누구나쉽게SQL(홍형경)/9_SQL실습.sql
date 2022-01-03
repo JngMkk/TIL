@@ -216,19 +216,3 @@ select a.months, a.pm10_avg,
     and a.pm25 > 0
     group by to_char(mea_date, 'YYYY-MM')) a
     order by 1;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
