@@ -154,3 +154,81 @@ from traffic_accident a,
     group by trans_type) b
     where a.trans_type = b.trans_type
     and a.death_person_num = b.death_per;
+    
+-- 서울시 미세먼지 분석
+-- 에어코리아(https://www.airkorea.or.kr)
+-- fine_dust 테이블 생성
+create table fine_dust(
+    gu_name varchar2(50) not null,          -- 구 명
+    mea_station varchar2(30) not null,      -- 측정소
+    mea_date date not null,                 -- 측정일자
+    pm10 number,                            -- 미세먼지 농도
+    pm25 number);                           -- 초미세먼지 농도
+
+alter table fine_dust
+add constraints fine_dust_pk primary key (gu_name, mea_station, mea_date);
+
+-- fine_dust_standard 테이블 생성 (미세농도 기준 테이블)
+-- 미세먼지와 초미세먼지 농도에 따른 미세먼지 기준 데이터를 담고 있음
+create table fine_dust_standard(
+    org_name varchar2(50) not null,     -- 기관명
+    std_name varchar2(30) not null,     -- 미세먼지 기준(좋음, 보통, 나쁨, 매우나쁨)
+    pm10_start number,                  -- 미세먼지 농도(시작 값)
+    pm10_end number,                    -- 미세먼지 농도(끝 값)
+    pm25_start number,                  -- 초미세먼지 농도(시작 값)
+    pm25_end number);                   -- 초미세먼지 농도(끝 값)
+    
+alter table fine_dust_standard
+add constraints fine_dust_standard_pk primary key (org_name, std_name);
+
+-- 월간 미세먼지와 초미세먼지의 최소, 최대, 평균값 구하기
+-- 월간 미세먼지의 최소, 최대, 평균값
+select to_char(a.mea_date, 'YYYY-MM') months
+    ,round(min(a.pm10), 0) pm10_min
+    ,round(max(a.pm10), 0) pm10_max
+    ,round(avg(a.pm10), 0) pm10_avg
+    ,round(min(a.pm25), 0) pm25_min
+    ,round(max(a.pm25), 0) pm25_max
+    ,round(avg(a.pm25), 0) pm25_avg
+    from fine_dust a
+    where pm10 > 0
+    and pm25 > 0
+    group by to_char(mea_date, 'YYYY-MM')
+    order by 1;
+    
+-- 월평균 미세먼지 현황
+-- 월평균 미세먼지 상태
+select a.months, a.pm10_avg,
+        (select b.std_name
+        from fine_dust_standard b
+        where b.org_name = 'WHO'
+        and a.pm10_avg between b.pm10_start and b.pm10_end) "미세먼지 상태"
+        ,a.pm25_avg,
+        (select b.std_name
+        from fine_dust_standard b
+        where b.org_name = 'WHO'
+        and a.pm25_avg between b.pm25_start and b.pm25_end) "초미세먼지 상태"
+    from (select to_char(a.mea_date, 'YYYY-MM') months
+    ,round(avg(a.pm10), 0) pm10_avg
+    ,round(avg(a.pm25), 0) pm25_avg
+    from fine_dust a
+    where a.pm10 > 0
+    and a.pm25 > 0
+    group by to_char(mea_date, 'YYYY-MM')) a
+    order by 1;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
