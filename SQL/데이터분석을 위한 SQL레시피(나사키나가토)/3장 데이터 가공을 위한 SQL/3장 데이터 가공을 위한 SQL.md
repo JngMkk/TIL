@@ -454,6 +454,7 @@ FROM
 ```
 
 - 실행결과
+
 | purchase_id | amount | coupon | discount_amount1 | discount_amount2 |
 | ----------- | ------ | ------ | ---------------- | ---------------- |
 | 10001       | 3280   | null   | null             | 3280             |
