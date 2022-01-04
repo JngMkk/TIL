@@ -13,6 +13,7 @@ def selection_sort(data):
         data[i], data[least] = data[least], data[i]     # 위치 교환
         printStep(data, i + 1)
 
+# 테스트
 myData = [5,3,8,4,9,1,6,2,7]
 print("Original :", myData)
 selection_sort(myData)
@@ -30,6 +31,7 @@ def insertion_sort(data):
         data[j + 1] = key
         printStep(data, i)
 
+# 테스트
 myData = [5,3,8,4,9,1,6,2,7]
 print("Original :", myData)
 insertion_sort(myData)
@@ -48,6 +50,7 @@ def bubble_sort(data):
             break
         printStep(data, n - i)
 
+# 테스트
 myData = [5,3,8,4,9,1,6,2,7]
 print("Original :", myData)
 bubble_sort(myData)
