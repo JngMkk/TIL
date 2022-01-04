@@ -456,9 +456,9 @@ FROM
 - 실행결과
 | purchase_id | amount | coupon | discount_amount1 | discount_amount2 |
 | ----------- | ------ | ------ | ---------------- | ---------------- |
-| 10001       | 3280   | [null] | [null]           | 3280             |
+| 10001       | 3280   | null   | null             | 3280             |
 | 10002       | 4650   | 500    | 4150             | 4150             |
-| 10003       | 3870   | [null] | [null]           | 3870             |
+| 10003       | 3870   | null   | null             | 3870             |
 
 ```
 이 코드 예에서 discount_price1은 price에서 coupon을 그대로 뺀 값이다.
