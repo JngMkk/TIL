@@ -25,9 +25,9 @@ class Car:
         return 'color = %s, speed = %d' % (self.color, self.speed)
 
 # 테스트
-car1 = Car('hi', 20)
-car2 = Car('bye', 30)
-car3 = Car('hi', 70)
+car1 = Car('Red', 20)
+car2 = Car('Black', 30)
+car3 = Car('White', 70)
 print(car1 == car2)
 print(car2 == car3)
 print(car1 == car3)
