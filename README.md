@@ -4,6 +4,7 @@
 
 ## Python
 - Python 기초 (2021.12.20 ~ )
+  - [Day1](https://github.com/JngMkk/TIL/tree/main/Python/Python%EA%B8%B0%EC%B4%88/Day1)
   - [Day2](https://github.com/JngMkk/TIL/tree/main/Python/Python%EA%B8%B0%EC%B4%88/Day2)
   - [Day3](https://github.com/JngMkk/TIL/tree/main/Python/Python%EA%B8%B0%EC%B4%88/Day3)
   - [Day4](https://github.com/JngMkk/TIL/tree/main/Python/Python%EA%B8%B0%EC%B4%88/Day4)
@@ -11,7 +12,6 @@
   - [Day6](https://github.com/JngMkk/TIL/tree/main/Python/Python%EA%B8%B0%EC%B4%88/Day6)
   - [Day7](https://github.com/JngMkk/TIL/tree/main/Python/Python%EA%B8%B0%EC%B4%88/Day7)
   - [Day8](https://github.com/JngMkk/TIL/tree/main/Python/Python%EA%B8%B0%EC%B4%88/Day8)
-
 ## SQL
 - SQL
   - 누구나쉽게SQL(홍형경) 정리 (2021.12.20 ~ 2022.01.03)
