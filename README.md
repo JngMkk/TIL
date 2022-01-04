@@ -32,14 +32,6 @@
 ## Git & Github
 - [Git & Github](https://github.com/JngMkk/TIL/blob/master/Git%20%26%20Github/Git%26Github.md) (2021.12.30 ~ 2021.12.31)
 
-## 자격증
-- 빅분기
-  - 실기
-  - 필기 (2021.12.31 ~ )
-    - [1장 빅데이터 개요 및 활용](https://github.com/JngMkk/TIL/blob/master/%EC%9E%90%EA%B2%A9%EC%A6%9D/%EB%B9%85%EB%B6%84%EA%B8%B0/%ED%95%84%EA%B8%B0/1%EC%9E%A5%20%EB%B9%85%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%9D%98%20%EA%B0%9C%EC%9A%94%20%EB%B0%8F%20%ED%99%9C%EC%9A%A9.md)
-    - [2장 빅데이터 기술 및 제도](https://github.com/JngMkk/TIL/blob/master/%EC%9E%90%EA%B2%A9%EC%A6%9D/%EB%B9%85%EB%B6%84%EA%B8%B0/%ED%95%84%EA%B8%B0/2%EC%9E%A5%20%EB%B9%85%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EA%B8%B0%EC%88%A0%20%EB%B0%8F%20%EC%A0%9C%EB%8F%84.md)
-
-
 ## 자료구조(Python)
 - 자료구조 (2021.01.01 ~ )
   - [1장 자료구조와 알고리즘](https://github.com/JngMkk/TIL/tree/master/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/1%EC%9E%A5%20%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0%EC%99%80%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98)
