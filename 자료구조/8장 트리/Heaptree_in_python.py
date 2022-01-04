@@ -38,7 +38,7 @@
 import sys
 import heapq
 # Python : 최소 힙 제공
-# Max heap : 데이터 넣을 때와 꺼낼 때 - 부호 (8장에 구현)
+# Max heap : 데이터 넣을 때와 꺼낼 때 (-) 부호 붙혀서.. (HeapTree.py에 Maxheap 구현)
 input = sys.stdin.readline
 
 def heapsort(iterable):     # List, Tuple
