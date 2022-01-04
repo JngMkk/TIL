@@ -15,7 +15,6 @@ def output_member(filename):
 def main_input():
     global a
     a = input('저장 1, 출력 2, 종료 q : ')
-    return a
 
 if __name__ == '__main__':
     while True:
