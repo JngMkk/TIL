@@ -1,13 +1,21 @@
+"""
+큐의 응용 : 너비우선탐색 (Breadth-First Search)
+
+- 출발점에서부터 인접한 위치들을 먼저 방문한 다음,
+  방문한 위치들에 인접한 위치들을 순서대로 찾아 가는 방법
+
+- 파이썬의 queue 모듈은 큐와 스택 클래스를 제공
+
+"""
+
 from CircularQueue import CircularQueue
-# 큐의 응용 : 너비우선탐색
-# 출발점에서부터 인접한 위치들을 먼저 방문한 다음
-# 방문한 위치들에 인접한 위치들을 순서대로 찾아 가는 방법
 def isValidPos(x, y):
     if x < 0 or y < 0 or x >= MAZE_SIZE or y >= MAZE_SIZE:
         return False
     else:
         return map[y][x] == '0' or map[y][x] == 'x'
 
+# BFS 미로 탐색 알고리즘
 def BFS():
     q = CircularQueue()
     q.enqueue((0, 1))

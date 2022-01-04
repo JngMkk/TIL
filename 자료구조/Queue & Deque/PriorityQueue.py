@@ -19,9 +19,27 @@
     > 삭제 시간 : O(logn)
   - 단순히 n개의 데이터를 힙에 넣었다가 모두 꺼내는 작업은 정렬과 동일(힙 정렬)
     > 시간복잡도 : O(nlogn)
+  - 구현 방법
+    > 배열 구조, 연결된 구조, 힙 트리
     
 . 응용분야
+  - 허프만 코딩 트리 : 빈도가 작은 두 노드 선택
+  - Kruska MST 알고리즘 : MST에 포함되지 않은 간선 중에 최소가중치 간선 선택
+  - Dijkstra의 최단거리 알고리즘 : 최단거리가 찾아지지 않은 정점들 중에서 가장 거리가 가까운 정점 선택
+  - 인공지능 A* 알고리즘 : 상태 공간트리에서 가장 가능성이 높은 경로를 먼저 선택하여 시도
   - 시뮬레이션, 네트워크 트래픽 제어, OS의 작업 스케쥴링 등
+
+. 시간복잡도
+  - 정렬되지 않은 리스트 사용
+    > enqueue() : 대부분의 경우 O(1)
+    > findMaxIndex() : O(n)
+    > dequeue(), peek() : O(n)
+  - 정렬된 리스트 사용
+    > enqueue() : O(n)
+    > dequeue(), peek() : O(1)
+  - 힙 트리
+    > enqueue(), dequeue() : O(logn)
+    > peek() : O(1)
 
 """
 
@@ -36,14 +54,14 @@ class PriorityQueue:
         return len(self.items)
     def clear(self):
         self.items = []
-    def findMaxIndex(self):
+    def findMaxIndex(self):                                 # 최대 우선순위 항목의 인덱스 반환
         if self.isEmpty():
             return None
         else:
-            highest = 0
-            for i in range(1, self.size()):
+            highest = 0                                     # 0을 최대라고 가정
+            for i in range(1, self.size()):                 # 모든 항목에 대해 검사
                 if self.items[i] > self.items[highest]:
-                    highest = i
+                    highest = i                             # 최대보다 큰 값으로 갱신
             return highest
     def enqueue(self, item):
         self.items.append(item)
@@ -56,23 +74,10 @@ class PriorityQueue:
         if highest is not None:
             return self.items[highest]
 
+
 # 테스트
 q = PriorityQueue()
 q.enqueue(34); q.enqueue(18); q.enqueue(27); q.enqueue(45); q.enqueue(15)
 print('PQueue : ', q.items)
 while not q.isEmpty():
     print('Max Priority = ', q.dequeue())
-
-# 시간 복잡도
-"""
-. 정렬되지 않은 리스트 사용
-  - enqueue() : 대부분의 경우 O(1)
-  - findMaxIndex() : O(n)
-  - dequeue(), peek() : O(n)
-. 정렬된 리스트 사용
-  - enqueue() : O(n)
-  - dequeue(), peek() : O(1)
-. 힙 트리
-  - enqueue(), dequeue() : O(logn)
-  - peek() : O(1)
-"""
