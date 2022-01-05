@@ -3,7 +3,12 @@ class Node:
         self.data = elem 			        
         self.link = link
 
+# 원형연결리스트의 응용 : 연결된 큐
 # 용량 제한이 없고, 삽입/삭제가 모두 O(1)
+# head(front)만 사용하는 것 보다 tail을 사용하는 것이
+# front와 rear에 바로 접근할 수 있다는 점에서 효율적
+# why? 원형연결리스트는 rear가 front를 가리키고,
+# Queue는 삽입은 rear에서, 삭제는 front에서 이뤄지므로
 class CircularLinkedQueue:
     def __init__(self):
         self.tail = None

@@ -1,12 +1,10 @@
-# 단순연결리스트 응용 : 연결된 스택(Linked Stack)
-
 # 노드 클래스
 class Node:
-    def __init__(self, elem, link = None):  # 생성자. 디폴트 인수 사용
-        self.data = elem                    # 데이터 멤버 생성 및 초기화
-        self.link = link                    # 링크 생성 및 초기화
+    def __init__(self, elem, link = None):      # 생성자. 디폴트 인수 사용
+        self.data = elem                        # 데이터 멤버 생성 및 초기화
+        self.link = link                        # 링크 생성 및 초기화
 
-# 연결된 스택 클래스
+# 단순연결리스트 응용 : 연결된 스택(Linked Stack)
 class LinkedStack:
     def __init__(self):
         self.top = None
@@ -20,23 +18,23 @@ class LinkedStack:
     def push(self, item):
         """ 삽입 연산 """
         n = Node(item, self.top)    # 노드 n의 링크가 시작노드를 가리키게 함
-        self.top = n    # top이 n을 가리키도록 함
+        self.top = n                # top이 n을 가리키도록 함
     def pop(self):
         """ 삭제 연산 """
         if not self.isEmpty():
-            n = self.top        # 변수 n이 시작노드를 가리키도록 함
-            self.top = n.link   # top이 다음노드를 가리키도록 함
-            return n.data       # n이 가리키는 노드의 데이터를 반환함
+            n = self.top            # 변수 n이 시작노드를 가리키도록 함
+            self.top = n.link       # top이 다음노드를 가리키도록 함
+            return n.data           # n이 가리키는 노드의 데이터를 반환함
     def size(self):
         """ 스택의 항목 수 연산 """
-        n = self.top     # 시작 노드
+        n = self.top                # 시작 노드
         count = 0
-        while not n == None:     # n이 None이 아닐 때 까지
-            n = n.link        # 다음 노드로 이동
+        while not n == None:        # n이 None이 아닐 때 까지
+            n = n.link              # 다음 노드로 이동
             count += 1
         return count
     def peek( self ):
-        """ STACK의 가장 마지막에 들어간 DATA"""	
+        """ STACK에 가장 마지막에 들어간 DATA"""	
         if not self.isEmpty():	
             return self.top.data
     def display(self, msg='LinkedStack:'):
