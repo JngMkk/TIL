@@ -34,7 +34,7 @@
     > enqueue() : 대부분의 경우 O(1)
     > findMaxIndex() : O(n)
     > dequeue(), peek() : O(n)
-  - 정렬된 리스트 사용
+  - 정렬된 리스트 사용(순서가 있으므로 데이터들과 비교해야 함)
     > enqueue() : O(n)
     > dequeue(), peek() : O(1)
   - 힙 트리

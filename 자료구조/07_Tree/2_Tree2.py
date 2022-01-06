@@ -98,7 +98,7 @@ def levelorder(root):
 # 이진 트리 연산
 # 노드 개수
 def count_node(n):
-    if n is None:               # n이 None이면 공백 트리 -> 0 반환
+    if n is None:                           # n이 None이면 공백 트리 -> 0 반환
         return 0
     else:
         return 1 + count_node(n.left) + count_node(n.right)     # 순환 이용. 좌우 서브트리의 노드수의 합+1을 반환 (루트까지)

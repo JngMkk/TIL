@@ -52,13 +52,14 @@ def heapsort(iterable):     # List, Tuple
         result.append(heapq.heappop(h))
     return result
 
-n = int(input())
+# 테스트
+n = int(input())                # 몇개의 노드 ?
 arr = []
 
 for i in range(n):
-    arr.append(int(input()))
+    arr.append(int(input()))    # 삽입할 숫자
 
-res = heapsort(arr)
+res = heapsort(arr)             # 오름차순 정렬
 
 for i in range(n):
-    print(res[i])
+    print(res[i], end=' ')      # 가장 작은 수 부터 출력
