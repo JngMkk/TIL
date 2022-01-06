@@ -4,15 +4,16 @@
 
 ## Python
 - Python 기초 (2021.12.20 ~ )
-  - [Day1](https://github.com/JngMkk/TIL/tree/main/Python/Python%EA%B8%B0%EC%B4%88/Day1)
-  - [Day2](https://github.com/JngMkk/TIL/tree/main/Python/Python%EA%B8%B0%EC%B4%88/Day2)
-  - [Day3](https://github.com/JngMkk/TIL/tree/main/Python/Python%EA%B8%B0%EC%B4%88/Day3)
-  - [Day4](https://github.com/JngMkk/TIL/tree/main/Python/Python%EA%B8%B0%EC%B4%88/Day4)
-  - [Day5](https://github.com/JngMkk/TIL/tree/main/Python/Python%EA%B8%B0%EC%B4%88/Day5)
-  - [Day6](https://github.com/JngMkk/TIL/tree/main/Python/Python%EA%B8%B0%EC%B4%88/Day6)
-  - [Day7](https://github.com/JngMkk/TIL/tree/main/Python/Python%EA%B8%B0%EC%B4%88/Day7)
-  - [Day8](https://github.com/JngMkk/TIL/tree/main/Python/Python%EA%B8%B0%EC%B4%88/Day8)
-  - [Day9](https://github.com/JngMkk/TIL/tree/main/Python/Python%EA%B8%B0%EC%B4%88/Day9)
+  - [Day1](https://github.com/JngMkk/TIL/tree/main/Python/Python%EA%B8%B0%EC%B4%88/01_Day1)
+  - [Day2](https://github.com/JngMkk/TIL/tree/main/Python/Python%EA%B8%B0%EC%B4%88/02_Day2)
+  - [Day3](https://github.com/JngMkk/TIL/tree/main/Python/Python%EA%B8%B0%EC%B4%88/03_Day3)
+  - [Day4](https://github.com/JngMkk/TIL/tree/main/Python/Python%EA%B8%B0%EC%B4%88/04_Day4)
+  - [Day5](https://github.com/JngMkk/TIL/tree/main/Python/Python%EA%B8%B0%EC%B4%88/05_Day5)
+  - [Day6](https://github.com/JngMkk/TIL/tree/main/Python/Python%EA%B8%B0%EC%B4%88/06_Day6)
+  - [Day7](https://github.com/JngMkk/TIL/tree/main/Python/Python%EA%B8%B0%EC%B4%88/07_Day7)
+  - [Day8](https://github.com/JngMkk/TIL/tree/main/Python/Python%EA%B8%B0%EC%B4%88/08_Day8)
+  - [Day9](https://github.com/JngMkk/TIL/tree/main/Python/Python%EA%B8%B0%EC%B4%88/09_Day9)
+  - [Day10](https://github.com/JngMkk/TIL/tree/main/Python/Python%EA%B8%B0%EC%B4%88/10_Day10)
 
 ## SQL
 - SQL
