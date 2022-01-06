@@ -30,7 +30,5 @@ nameL = ['Kim', 'Lee', 'Choi']
 
 for i in range(3):
     p = Person(nameL[i])
-    # print(p)
+    print(p)
     personL.appendPerson(p)
-
-personL.printInfo()
