@@ -15,6 +15,15 @@
   - [Day9](https://github.com/JngMkk/TIL/tree/main/Python/Python%EA%B8%B0%EC%B4%88/09_Day9)
   - [Day10](https://github.com/JngMkk/TIL/tree/main/Python/Python%EA%B8%B0%EC%B4%88/10_Day10)
 - [Numpy & Pandas](https://github.com/JngMkk/TIL/tree/main/Python/Numpy%20%26%20Pandas)
+- 자료구조
+  - [파이썬 리뷰](https://github.com/JngMkk/TIL/tree/main/Python/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/01_PythonReview)
+  - [리스트와 집합](https://github.com/JngMkk/TIL/tree/main/Python/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/02_List%20%26%20Set)
+  - [스택](https://github.com/JngMkk/TIL/tree/main/Python/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/03_Stack)
+  - [큐와 덱](https://github.com/JngMkk/TIL/tree/main/Python/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/04_Queue%20%26%20Deque)
+  - [연결된 구조](https://github.com/JngMkk/TIL/tree/main/Python/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/05_LinkedStructure)
+  - [정렬과 탐색](https://github.com/JngMkk/TIL/tree/main/Python/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/06_Sorting%20%26%20Searching)
+  - [트리](https://github.com/JngMkk/TIL/tree/main/Python/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/07_Tree)
+- [백준문제풀이](https://github.com/JngMkk/TIL/tree/main/Python/%EB%B0%B1%EC%A4%80_ex)
 
 ## SQL
 - SQL
@@ -39,13 +48,3 @@
       - [하나의 테이블에 대한 조작](https://github.com/JngMkk/TIL/blob/main/SQL/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D%EC%9D%84%20%EC%9C%84%ED%95%9C%20SQL%EB%A0%88%EC%8B%9C%ED%94%BC(%EB%82%98%EC%82%AC%ED%82%A4%EB%82%98%EA%B0%80%ED%86%A0)/3%EC%9E%A5%20%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EA%B0%80%EA%B3%B5%EC%9D%84%20%EC%9C%84%ED%95%9C%20SQL/3_%ED%95%98%EB%82%98%EC%9D%98%20%ED%85%8C%EC%9D%B4%EB%B8%94%EC%97%90%20%EB%8C%80%ED%95%9C%20%EC%A1%B0%EC%9E%91.md)
 ## Git & Github
 - [Git & Github](https://github.com/JngMkk/TIL/blob/master/Git%20%26%20Github/Git%26Github.md) (2021.12.30 ~ 2021.12.31)
-
-## 자료구조(Python)
-- 자료구조 (2021.01.01 ~ )
-  - [파이썬 리뷰](https://github.com/JngMkk/TIL/tree/main/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/01_PythonReview)
-  - [리스트와 집합](https://github.com/JngMkk/TIL/tree/main/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/02_List%20%26%20Set)
-  - [스택](https://github.com/JngMkk/TIL/tree/main/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/03_Stack)
-  - [큐와 덱](https://github.com/JngMkk/TIL/tree/main/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/04_Queue%20%26%20Deque)
-  - [연결된 구조](https://github.com/JngMkk/TIL/tree/main/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/05_LinkedStructure)
-  - [정렬과 탐색](https://github.com/JngMkk/TIL/tree/main/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/06_Sorting%20%26%20Searching)
-  - [트리](https://github.com/JngMkk/TIL/tree/main/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/07_Tree)
