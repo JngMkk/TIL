@@ -32,6 +32,7 @@
 # 배열로 구현한 리스트(함수 버전)
 # 자료구조 리스트의 ADT 구현에 파이썬 리스트 이용
 # 전역변수와 함수로 구현
+
 items = []
 def insert(pos, elem):
     items.insert(pos, elem)

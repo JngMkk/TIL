@@ -21,7 +21,6 @@ ex) 프린터와 컴퓨터 사이의 인쇄 작업 큐
 # 포화상태 : front % MAX_QSIZE == (rear + 1) % MAX_QSIZE
 # 하나의 공간은 항상 비어있음
 
-
 MAX_QSIZE = 10  # 원형 큐의 크기
 
 class CircularQueue:

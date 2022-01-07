@@ -46,6 +46,7 @@ class LinkedStack:
         print()
 
 
+
 # 테스트
 odd = LinkedStack()		
 even = LinkedStack()	

@@ -8,7 +8,6 @@
 
 - CircularQueue.py 참고
 """
-
 from CircularQueue import CircularQueue
 def isValidPos(x, y):
     if x < 0 or y < 0 or x >= MAZE_SIZE or y >= MAZE_SIZE:

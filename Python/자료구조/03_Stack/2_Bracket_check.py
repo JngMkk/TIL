@@ -8,7 +8,6 @@
 - 소스파일 괄호검사 가능
 
 """
-
 from Stack_class import Stack
 
 def checkBrackets(statement):

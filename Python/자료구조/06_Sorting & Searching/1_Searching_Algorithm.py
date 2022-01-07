@@ -24,6 +24,7 @@ def binary_search(data, key, low, high):
             return binary_search(data, key, middle + 1, high)
     return None
 
+
 # 이진 탐색 알고리즘 반복 구조
 def binary_search_iter(data, key, low, high):
     while low <= high:

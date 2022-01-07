@@ -18,6 +18,7 @@ def clear():
     global top
     top = []
 
+
 # 테스트
 for i in range(1, 6):
     push(i)

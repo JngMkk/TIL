@@ -59,6 +59,7 @@ class CircularLinkedQueue:
             print(n.data, end = ' ')
         print()
 
+
 # 테스트
 q = CircularLinkedQueue()
 for i in range(8): 

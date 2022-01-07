@@ -43,6 +43,7 @@ class TNode:
         self.left = left
         self.right = right
 
+
 # 이진트리의 연산
 """
 순회

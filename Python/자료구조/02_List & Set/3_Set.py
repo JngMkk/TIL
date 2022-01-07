@@ -10,6 +10,7 @@
 """
 
 # 리스트를 이용한 구현
+
 class Set:
     def __init__(self):
         self.items = []

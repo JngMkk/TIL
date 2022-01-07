@@ -34,7 +34,6 @@
     > 따라서 값이 큰 데이터가 우선적으로 제거
 
 """
-
 import sys
 import heapq
 # Python : 최소 힙 제공

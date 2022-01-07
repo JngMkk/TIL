@@ -134,4 +134,5 @@ def hanoi_tower(n, fr, tmp, to):
         print('원판 %d: %s --> %s' % (n, fr, to))
         hanoi_tower(n - 1, tmp, fr, to)
 
+
 hanoi_tower(4, 'A', 'B', 'C')

@@ -28,6 +28,7 @@ class Stack:
     def __str__(self):
         return str(self.top[::-1])  # 처음부터 끝까지 역순으로 나타내어라.
 
+
 # # 테스트
 # odd = Stack()
 # even = Stack()

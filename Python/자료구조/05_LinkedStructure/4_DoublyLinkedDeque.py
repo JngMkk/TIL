@@ -59,6 +59,7 @@ class DoublyLinkedDeque:
                 self.rear.next = None
             return data
 
+
 # 테스트
 dq = DoublyLinkedDeque()
 for i in range(9):

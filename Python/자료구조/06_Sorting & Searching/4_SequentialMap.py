@@ -35,6 +35,7 @@ def sequential_search(data, key, low, high):
                 return i
         return None
 
+
 # 테스트
 m = SequentialMap()
 m.insert('data', '자료')

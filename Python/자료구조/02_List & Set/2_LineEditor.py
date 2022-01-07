@@ -10,6 +10,7 @@ s : 파일 출력. 지정된 파일로 편집 내용을 저장
 
 from ArrayList import ArrayList
 
+
 def LineEditor():
     lst = ArrayList()
     while True:

@@ -56,6 +56,7 @@ class HashChainMap:
                     node = node.link
                 print()
 
+
 # 테스트
 m = HashChainMap(13)
 m.insert('data', '자료')

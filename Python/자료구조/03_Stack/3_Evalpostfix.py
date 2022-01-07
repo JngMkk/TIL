@@ -17,7 +17,6 @@
         . 5 A B * +
 
 """
-
 from Stack_class import Stack
 
 # 후위 표기 수식 계산 알고리즘

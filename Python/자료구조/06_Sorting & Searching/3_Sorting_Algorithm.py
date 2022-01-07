@@ -24,6 +24,7 @@ selection_sort(myData)
 print("Selection :", myData)
 print()
 
+
 """
 삽입 정렬?
 
