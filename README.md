@@ -3,7 +3,7 @@
 > "Today I Learned" (2021.12.20 ~ )
 
 ## Python
-- Python 기초 (2021.12.20 ~ )
+- Python 기초
   - [Day1](https://github.com/JngMkk/TIL/tree/main/Python/Python%EA%B8%B0%EC%B4%88/01_Day1)
   - [Day2](https://github.com/JngMkk/TIL/tree/main/Python/Python%EA%B8%B0%EC%B4%88/02_Day2)
   - [Day3](https://github.com/JngMkk/TIL/tree/main/Python/Python%EA%B8%B0%EC%B4%88/03_Day3)
