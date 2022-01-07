@@ -1,0 +1,4 @@
+*.md linguist-vendored
+*.ipynb linguist-vendored
+*.py linguist-vendored=false
+*.sql linguist-vendored=false
