@@ -6,6 +6,6 @@ n = int(input())
 for i in range(1, 10):
     print('%d * %d = %d' % (n, i, n*i))
 
-# 숏코드
+# 다른 방법
 n1, n2 = int(input()), 1
 exec("print(n1, '*', n2, '=', n1*n2); n2+=1;"*9)

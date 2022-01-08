@@ -7,7 +7,7 @@ for i in range(len(a)):
         print(a[i], end =' ')
 print()
 
-# 숏코드
+# 다른 방법
 n, x = map(int, input().split())
 a = [i for i in input().split() if int(i) < x]
 print(' '.join(a))
