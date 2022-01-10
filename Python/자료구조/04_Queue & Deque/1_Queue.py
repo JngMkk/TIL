@@ -8,6 +8,17 @@
 - 리스트는 원소를 꺼내고 난 후 위치 조정작업이 필요하므로.. O(n)
 
 """
+# 파이썬 제공 queue 모듈 사용
+import queue
+
+# 테스트
+Q = queue.Queue(maxsize = 20)
+for i in range(1, 10):
+    Q.put(i)                        # 삽입
+print('큐의 내용 : ', end = '')
+for _ in range(1, 10):
+    print(Q.get(), end = ' ')       # 삭제
+print()
 
 # deque 라이브러리 사용
 from collections import deque
