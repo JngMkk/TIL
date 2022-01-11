@@ -15,7 +15,7 @@
   - [Day9](https://github.com/JngMkk/TIL/tree/main/Python/Python%EA%B8%B0%EC%B4%88/09_Day9)
   - [Day10](https://github.com/JngMkk/TIL/tree/main/Python/Python%EA%B8%B0%EC%B4%88/10_Day10)
 - [Numpy & Pandas](https://github.com/JngMkk/TIL/tree/main/Python/Numpy%20%26%20Pandas)
-- 자료구조
+- 자료구조 & 알고리즘
   - [파이썬 리뷰](https://github.com/JngMkk/TIL/tree/main/Python/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/01_PythonReview)
   - [리스트와 집합](https://github.com/JngMkk/TIL/tree/main/Python/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/02_List%20%26%20Set)
   - [스택](https://github.com/JngMkk/TIL/tree/main/Python/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/03_Stack)
