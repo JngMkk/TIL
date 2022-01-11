@@ -4,6 +4,7 @@ class DNode:
         self.prev = prev
         self.next = next
 
+# 이중연결리스트의 응용 : 연결된 덱
 class DoublyLinkedDeque:
     def __init__(self):
         self.front = None
