@@ -67,7 +67,7 @@ def findNode(findData):
     return Node()
 
 # 전역
-memory = []
+memory = []     # c 언어.... Python은 없어도 됨
 head, current, pre = None, None, None
 dataArray = ['다현', '정연', '쯔위', '사나', '지효']
 
