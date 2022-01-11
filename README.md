@@ -3,26 +3,9 @@
 > "Today I Learned" (2021.12.20 ~ )
 
 ## Python
-- Python 기초
-  - [Day1](https://github.com/JngMkk/TIL/tree/main/Python/Python%EA%B8%B0%EC%B4%88/01_Day1)
-  - [Day2](https://github.com/JngMkk/TIL/tree/main/Python/Python%EA%B8%B0%EC%B4%88/02_Day2)
-  - [Day3](https://github.com/JngMkk/TIL/tree/main/Python/Python%EA%B8%B0%EC%B4%88/03_Day3)
-  - [Day4](https://github.com/JngMkk/TIL/tree/main/Python/Python%EA%B8%B0%EC%B4%88/04_Day4)
-  - [Day5](https://github.com/JngMkk/TIL/tree/main/Python/Python%EA%B8%B0%EC%B4%88/05_Day5)
-  - [Day6](https://github.com/JngMkk/TIL/tree/main/Python/Python%EA%B8%B0%EC%B4%88/06_Day6)
-  - [Day7](https://github.com/JngMkk/TIL/tree/main/Python/Python%EA%B8%B0%EC%B4%88/07_Day7)
-  - [Day8](https://github.com/JngMkk/TIL/tree/main/Python/Python%EA%B8%B0%EC%B4%88/08_Day8)
-  - [Day9](https://github.com/JngMkk/TIL/tree/main/Python/Python%EA%B8%B0%EC%B4%88/09_Day9)
-  - [Day10](https://github.com/JngMkk/TIL/tree/main/Python/Python%EA%B8%B0%EC%B4%88/10_Day10)
+- [Python 기초](https://github.com/JngMkk/TIL/tree/main/Python/Python%EA%B8%B0%EC%B4%88)
 - [Numpy & Pandas](https://github.com/JngMkk/TIL/tree/main/Python/Numpy%20%26%20Pandas)
-- 자료구조 & 알고리즘
-  - [파이썬 리뷰](https://github.com/JngMkk/TIL/tree/main/Python/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0%EC%99%80%20%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/01_PythonReview)
-  - [리스트와 집합](https://github.com/JngMkk/TIL/tree/main/Python/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0%EC%99%80%20%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/02_List%20%26%20Set)
-  - [스택](https://github.com/JngMkk/TIL/tree/main/Python/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0%EC%99%80%20%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/03_Stack)
-  - [큐와 덱](https://github.com/JngMkk/TIL/tree/main/Python/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0%EC%99%80%20%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/04_Queue%20%26%20Deque)
-  - [연결된 구조](https://github.com/JngMkk/TIL/tree/main/Python/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0%EC%99%80%20%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/05_LinkedStructure)
-  - [정렬과 탐색](https://github.com/JngMkk/TIL/tree/main/Python/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0%EC%99%80%20%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/06_Sorting%20%26%20Searching)
-  - [트리](https://github.com/JngMkk/TIL/tree/main/Python/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0%EC%99%80%20%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/07_Tree)
+- [자료구조 & 알고리즘](https://github.com/JngMkk/TIL/tree/main/Python/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0%EC%99%80%20%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98)
 - [백준문제풀이](https://github.com/JngMkk/TIL/tree/main/Python/%EB%B0%B1%EC%A4%80_ex)
 
 ## SQL
