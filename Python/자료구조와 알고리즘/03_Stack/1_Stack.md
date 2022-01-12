@@ -137,7 +137,7 @@
               if stack.isEmpty():		# 스택이 비었으면
                   return False		# 조건 2 위반
               else:
-                  left = stack.pop()		# 꺼낸 괄호가 오른쪽 괄호와 짝이 맞지 않으면
+                  left = stack.pop()	# 꺼낸 괄호가 오른쪽 괄호와 짝이 맞지 않으면
                   if ch == '}' and left != '{' or \
                       ch == ']' and left != '[' or \
                       ch == ')' and left != '(':
