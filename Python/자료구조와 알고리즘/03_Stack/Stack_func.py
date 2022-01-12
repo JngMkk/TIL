@@ -1,14 +1,11 @@
-# 스택은 가장 최근에 들어온 데이터가 가장 먼저 나감.
-# 스택의 용도 : 되돌리기, 함수호출, 괄호 검사, 미로 탐색 등
-# 리스트를 이용한 스택의 구현(함수 버전)
 top = []
 def isEmpty():
-    return len(top) == 0        # True / False
+    return len(top) == 0
 def push(item):
     top.append(item)
 def pop():
-    if not isEmpty():           # 공백상태가 아니면
-        return top.pop(-1)      # 리스트 맨 뒤에서 하나 꺼내고 반환
+    if not isEmpty():
+        return top.pop(-1)
 def peek():
     if not isEmpty():
         return top[-1]

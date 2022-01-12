@@ -14,7 +14,7 @@ class Stack:
         if not self.isEmpty():
             return self.top[-1]
     def __str__(self):
-        return str(self.top[::-1])  # 처음부터 끝까지 역순으로 나타내어라.
+        return str(self.top[::-1])
 
 
 # # 테스트
