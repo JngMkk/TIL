@@ -92,9 +92,9 @@
 
    - 정점 v에 대한 차수
 
-   $$
-   degree(v) = \sum_{k=0}^{n-1} M[v][k]
-   $$
+     ![image](https://user-images.githubusercontent.com/87686562/149060620-9eef32b3-35f4-42e7-8b77-678374277fa6.png)
+   
+     
 
    
 
