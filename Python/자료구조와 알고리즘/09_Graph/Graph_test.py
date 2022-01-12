@@ -4,8 +4,8 @@ def DFS(graph, start, visited = set()):     # 처음 호출할 때 visited 공�
         visited.add(start)                  # start를 방문한 노드 집합에 추가
         print(start, end = ' ')             # start를 방문했다고 출력
         nbr = graph[start] - visited        # nbr : 차집합 연산 이용
-        for v in nbr:                       
-            DFS(graph, v, visited)          
+        for v in nbr:                       # v is an element {인접정점} - {방문정점}
+            DFS(graph, v, visited)          # v에 대해 DFS를 순환적으로 호출
 
 
 import collections
