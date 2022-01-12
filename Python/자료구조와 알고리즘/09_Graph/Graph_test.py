@@ -25,16 +25,13 @@ def BFS(graph, start):
 # 연결 성분 검사 알고리즘
 def find_connected_component(graph):
     visited = set()                                     # 이미 방문한 정점 집합
-    colorList = []                                      # 부분 그래프별 정점 리스트
-    
+    colorList = []                                      # 부분 그래프별 정점 리스트 
     for vtx in graph:                                   # 그래프의 모든 정점들에 대해
         if vtx not in visited:                          # 방문하지 않은 정점이 있다면
             color = dfs_cc(graph, [], vtx, visited)     # 새로운 컬러 리스트
             colorList.append(color)                     # 새로운 리스트 추가
-    
     print('그래프 연결성분 개수 = %d' % len(colorList))
     print(colorList)
-    
 def dfs_cc(graph, color, vertex, visited):
     if vertex not in visited:                           # 아직 칠해지지 않은 정점에 대해
         visited.add(vertex)                             # 방문했음
@@ -74,17 +71,14 @@ def bfsST(graph, start):
 def topological_sort_AM(vertex, graph):
     n = len(vertex)
     inDeg = [0] * n                         # 정점의 진입차수 저장
-    
     for i in range(n):
         for j in range(n):
             if graph[i][j] > 0:
                 inDeg[j] += 1               # 진입차수를 1 증가시킴
-    
     vlist = []                              # 진입차수가 0인 정점 리스트를 만듦
     for i in range(n):
         if inDeg[i] == 0:
             vlist.append(i)
-            
     while len(vlist) > 0:                   # 리스트가 공백이 아닐 때까지
         v = vlist.pop()                     # 진입차수가 0인 정점을 하나 꺼냄
         print(vertex[v], end = ' ')
