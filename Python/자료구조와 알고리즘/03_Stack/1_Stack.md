@@ -285,8 +285,8 @@
   def isValidPos(x, y):
       """ (x, y)가 갈 수 있는 방인지 검사하는 함수 """
       if x < 0 or y < 0 or x >= MAZE_SIZE or y >= MAZE_SIZE:
-          return False			# (x, y)가 미로 밖이면 갈 수 없음
-      else:				# 출구('x')이거나 방('0')이면 갈 수 있음
+          return False			    # (x, y)가 미로 밖이면 갈 수 없음
+      else:				    # 출구('x')이거나 방('0')이면 갈 수 있음
           return map[y][x] == '0' or map[y][x] == 'x'
   
   def DFS():
@@ -295,13 +295,13 @@
       print('DFS : ')
   
       while not stack.isEmpty():			# 공백이 아닐 동안
-          here = stack.pop()				# 항목을 꺼냄
+          here = stack.pop()			# 항목을 꺼냄
           print(here, end = '->')
           (x, y) = here
           if map[y][x] == 'x':			# 출구이면 탐색 성공. True 반환
               return True
           else:
-              map[y][x] = '.'				# 현재위치를 지나왔다고 . 표시
+              map[y][x] = '.'			# 현재위치를 지나왔다고 . 표시
               """ 4방향의 이웃을 검사해 갈 수 있으면 스택에 삽입 """
               if isValidPos(x, y - 1):
                   stack.push((x, y - 1))          # 상
