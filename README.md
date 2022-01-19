@@ -5,6 +5,8 @@
 ## Python
 - [Python 기초](https://github.com/JngMkk/TIL/tree/main/Python/Python%EA%B8%B0%EC%B4%88)
 - [Numpy & Pandas](https://github.com/JngMkk/TIL/tree/main/Python/Numpy%20%26%20Pandas)
+- [Matplotlib](https://github.com/JngMkk/TIL/blob/main/Python/Matplotlib/Matplotlib.ipynb)
+- [Statistic](https://github.com/JngMkk/TIL/tree/main/Python/Statistic)
 - [자료구조 & 알고리즘](https://github.com/JngMkk/TIL/tree/main/Python/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0%EC%99%80%20%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98)
 - [백준문제풀이](https://github.com/JngMkk/TIL/tree/main/Python/%EB%B0%B1%EC%A4%80_ex)
 
