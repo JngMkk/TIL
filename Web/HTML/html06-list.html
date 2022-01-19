@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1>목록</h1>
+    <h2>순차적 목록</h2>
+    <!-- ordered list -->
+    <ol>
+        학원 오는 순서
+        <li>눈을 뜬다</li>
+        <li>침대에서 나온다</li>
+        <li>씻는다
+            <ol>
+                <li>양치한다</li>
+                <li>머리감는다</li>
+                <li>샤워한다</li>
+            </ol>
+        </li>
+        <li>옷입는다</li>
+        <li>출발한다</li>
+    </ol>
+
+    <h2>비 순차적 목록</h2>
+    <!-- unordered list -->
+    <ul>
+        점심고르기
+        <li>굶는다</li>
+        <li>짜파게티</li>
+        <li>편의점
+            <ul>
+                <li>불닭 + 치즈볶이</li>
+                <li>도시락</li>
+                <li>컵라면 + 참김</li>
+                <li>삼각김밥</li>
+                <li>샌드위치</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h2>정의형 목록</h2>
+    <!-- definition list / description list -->
+    <dl>
+        <dt>제목</dt>
+        <dd>내용</dd>
+    </dl>
+
+    <dl>
+        <dt>DS/DE</dt>
+        <dd>Python</dd>
+        <dd>Numpy / Pandas</dd>
+        <dd>HTML CSS JS Jquery</dd>
+        <dd>Django</dd>
+        <dd>Crawling / Visulization</dd>
+        <dd>
+            <dl>
+                <dt>DS</dt>
+                <dd>ML</dd>
+                <dd>DL</dd>
+                <dd>...</dd>
+            </dl>
+            <dl>
+                <dt>DE</dt>
+                <dd>ML</dd>
+                <dd>Hadoop / Spark</dd>
+            </dl>
+        </dd>
+    </dl>
+    
+</body>
+</html>
