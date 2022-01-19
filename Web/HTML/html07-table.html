@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1>Table</h1>
+
+    <h2>기본 테이블</h2>
+    <table>
+        <tr>
+            <th>컬럼</th>
+            <th>컬럼</th>
+        </tr>
+        <tr>
+            <td>데이터1</td>
+            <td>데이터2</td>
+        </tr>
+        <tr>
+            <td>데이터3</td>
+            <td>데이터4</td>
+        </tr>
+    </table>
+
+    <h2>추가</h2>
+    <table border="2">
+
+        <caption>테이블 제목</caption>
+
+        <!-- 열 전체 색, 크기 등 -->
+        <colgroup>
+            <col width="100px" style="background-color: rgb(189, 241, 241);">
+            <col width="300px">
+            <col width="500px">
+        </colgroup>
+
+        <!-- 가장 위에 -->
+        <thead>
+            <tr>
+                <th>컬럼1</th>
+                <th>컬럼2</th>
+                <th>컬럼3</th>
+            </tr>
+        </thead>
+
+        <!-- 가장 아래에 -->
+        <tfoot>
+            <tr>
+                <td>foot1</td>
+                <td>foot2</td>
+                <td>foot3</td>
+            </tr>
+        </tfoot>
+
+        <!-- 표 중앙에 -->
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+            </tr>
+            <tr style="color: red;">
+                <td>4</td>
+                <td>5</td>
+                <td>6</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>8</td>
+                <td>9</td>
+            </tr>
+        </tbody>
+
+    </table>
+
+    <h2>셀 병합</h2>
+
+    <table border="2">
+        <colgroup>
+            <col width="200px">
+            <col width="200px">
+            <col width="200px">
+            <col width="200px">
+        </colgroup>
+
+        <thead>
+            <tr>
+                <th>컬럼1</th>
+                <th>컬럼2</th>
+                <th>컬럼3</th>
+                <th>컬럼4</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td rowspan="2">1 (열 합치기)</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td colspan="2">7 (행 합치기)</td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td>10</td>
+                <td>11</td>
+                <td>12</td>
+            </tr>
+        </tbody>
+
+        <tfoot>
+            <tr>
+                <td colspan="4">행 4개 합치기</td>
+            </tr>
+        </tfoot>
+
+    </table>
+
+</body>
+</html>
