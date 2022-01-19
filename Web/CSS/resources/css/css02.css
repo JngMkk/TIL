@@ -1,0 +1,47 @@
+/* 타입 */
+h3 + pre{
+    text-align: center;
+}
+
+/* id */
+#s-id01{
+    color: hotpink;
+}
+#s-id02{
+    color: darkred;
+}
+#s-id03{
+    color: deepskyblue;
+}
+
+/* class */
+.s-cls01{
+    background-color: black;
+    color: white;
+}
+
+/* 전체요소에 다 적용 */
+*{
+    text-align: right;
+}
+
+/* 자식 */
+#atc > p{
+    color: yellowgreen;
+}
+
+/* 인접 */
+/* span 태그 바로 다음에 나오는 pre */
+span + pre{
+    background-color: cornflowerblue;
+}
+
+/* 하위 */
+#atc02 span{
+    color: chocolate;
+}
+
+/* 속성 */
+p[title]{
+    background-color: gray;
+}
