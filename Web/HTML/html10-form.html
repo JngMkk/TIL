@@ -7,16 +7,44 @@
     <title>Document</title>
 </head>
 <body>
-    <!-- request할 때 GET : header에 저장 POST : body에 저장 -->
-    <form action="html-form-res.html" method="get">
+    <!-- 
+        request할 때 method(GET : header에 저장, 주소에 query string이 보임
+        POST : body에 저장, 주소에 query string이 보이지 않고 숨겨져서 감)
+    -->
+    <form action="html-form-res.html" method="post">
         <fieldset>
             <legend>회원가입</legend>
+
             <p>ID : <input type="text" name="id"></p>
             <p>PW : <input type="password" name="pw"></p>
             <p>Email 수신 여부<br>
+                <!-- radio button : name이 같은 것 중 하나만 선택 가능 -->
                 <input type="radio" name="rdo" value="y">y
                 <input type="radio" name="rdo" value="n">n
             </p>
+
+            <p>관심분야<br>
+                <!-- checkbox : 선택한 것들의 value만 -->
+                <input type="checkbox" name="web" value="web">Web<br>
+                <input type="checkbox" name="ai" value="ai">Data Science<br>
+                <input type="checkbox" name="engi" value="engi">Data Engineer
+            </p>
+
+            <p>하고싶은 말<br>
+                <!-- cols(가로길이) rows(세로길이) -->
+                <!-- 페이지에서 size 조절 가능 (default) -->
+                <textarea name="etc" cols="60" rows="10"></textarea>
+            </p>
+
+            <p>
+                <!-- reset : input에 걸려있는 것들 모두 reset -->
+                <!-- submit :
+                    form 태그 안에서 입력해준 것들 중에 name과 value값을 form 태그에서 action 속성에 지정해준 경로로 요청 -->
+                <input type="button" value="just button"><br>
+                <input type="reset" value="cancel"><br>
+                <input type="submit" value="submit">
+            </p>
+
         </fieldset>
 
     </form>
