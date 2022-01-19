@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1>이미지</h1>
+    <!--
+        속성 
+        src : 경로
+        alt : 설명(그림을 못 찾았을 때)
+        width : 너비 (가로)
+        height : 높이 (세로)
+        px : 픽셀 (해상도 별 상대크기)
+        pt : 포인트 (1pt = 약 0.72인치)
+        %, em : 지정/상속 등에 대한 백분율 (부모에 대한 상대크기)
+    -->
+    <img src="./images/img.jpg" alt="그림입니다" width="150px" height="200px">
+
+    <!-- 이미지에 링크 걸기 -->
+    <a href="index.html">
+        <img src="images/img.jpg" alt="그림 링크입니다" width="50px" height="50px">
+    </a>
+    <br>
+
+    <!-- 이미지의 특정 부분에 링크 걸기 (image map) -->
+    <img src="images/img.jpg" alt="그림입니다" width="150px" height="200px" usemap="#go2index">
+    <map name="go2index">
+        <area shape="rect" coords="25, 25, 125, 175" href="index.html" alt="그림일껄?">
+    </map>
+
+</body>
+</html>
