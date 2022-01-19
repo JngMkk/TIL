@@ -45,3 +45,24 @@ span + pre{
 p[title]{
     background-color: gray;
 }
+
+/* 가상 클래스 선택자 */
+a:link{
+    color: green;
+    font-size: 20pt;
+}
+a:visited{
+    color: gold;
+}
+a:hover{/* 마우스 올렸을 때 */
+    background-color: black;
+    color: white;
+}
+a:active{/* 누르는 순간 */
+    background-color: yellow;
+    color: tomato;
+}
+input:checked{/* 체크하면 체크박스가 */
+    width: 100px;
+    height: 100px;
+}
