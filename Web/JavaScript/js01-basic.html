@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+        function embeddedFunction(){
+            var doc = document.getElementsByTagName("li")[1];
+            doc.style.color = "red";
+            doc.innerHTML = "<strong>javascript가 html 문서(documnet)를 변화시켰다!!</strong>";
+        }
+    </script>
+
+    <script type="text/javascript" src="resources/js/js01.js">
+
+    </script>
+</head>
+<body>
+    
+    <h1>JS 기본 문법</h1>
+    
+    <ol>
+        <!-- on : 뭔가의 이벤트-->
+        <li onclick="alert('inline 방식!!!');">Inline 방식</li>
+        <li onclick="embeddedFunction();">내부 작성 방식</li>
+        <li onclick="fileFunction();">외부 *.js 방식(file)</li>
+    </ol>
+
+</body>
+</html>
