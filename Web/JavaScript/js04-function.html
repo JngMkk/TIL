@@ -27,6 +27,28 @@
                alert("즉시 실행 함수");
            })();                        // function을 괄호로 감싸줌
         }
+        
+        function literalPrn(literal){
+            literal("안녕하세요. 함수 형태의 값!! 입니다");
+        }
+
+        function func04(){
+            literalPrn(function(msg){alert(msg);})
+        }
+
+        function closureFunc(val){
+            var suffix = "님, 안녕하세요~";
+            function innerFunc(){
+                alert(val + suffix + "잘 부탁 드립니다")
+            }
+            return innerFunc;   // 익명함수에서 변수에 함수를 담아놓고 실행 안한 것이랑 같은 상태(함수가 값으로 사용됨)    
+        }                       // 내부함수에서 외부함수의 것을 가져와서 쓰는 것을 클로저라고 함
+        
+        var closureTest01 = closureFunc("멀캠");
+
+        function colsureTest02(val){
+            closureFunc(val)();
+        }
 
     </script>
 </head>
@@ -39,5 +61,8 @@
     <!-- 괄호 안붙히면 그냥 값(function(){...}만 가져옴 alert도 x )-->
     <p onclick="func02();">익명 함수</p>
     <p onclick="func03();">즉시 실행 함수</p>
+    <p onclick="func04();">함수 리터럴</p>
+    <p onclick="closureTest01();">클로저 : 외부함수에 접근 가능(변수 등)</p>
+    <p onclick="colsureTest02('멀티캠퍼스');">연습</p>
 </body>
 </html>
