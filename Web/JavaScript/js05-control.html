@@ -48,15 +48,21 @@
 
         function forTest(){
             // 초기값 ; 조건식 ; 증감식
-            for(var i=0; i<10; i++){
-                console.log(i);
-            }
+            // for(var i=0; i<10; i++){
+            //     console.log(i);
+            // }
             // 구구단 만들기
-
+            for(var i=2; i<10; i++){
+                for(var j=1; j<10; j++){
+                    console.log(i+'*'+j+'='+i*j)
+                }
+                console.log('----------')
+            }
         }
 
         function whileTest(){
             var i=0;
+            // 조건 먼저 확인
             while(i<10){
                 // console.log(i)
                 // console.log(i++);
@@ -70,8 +76,13 @@
                     ++변수 : 연산한 뒤 변수 값 리턴
                 */
             }
+            var j = 10;
+            // 일단 실행 한 후 조건 확인
+            do{
+                console.log(j);
+                j--;
+            }while(j>0);
         }
-
     </script>
 
 </head>
