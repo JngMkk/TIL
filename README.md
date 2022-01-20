@@ -29,3 +29,4 @@
 ## Web
 - [HTML](https://github.com/JngMkk/TIL/tree/main/Web/HTML)
 - [CSS](https://github.com/JngMkk/TIL/tree/main/Web/CSS)
+- [JavaScript](https://github.com/JngMkk/TIL/tree/main/Web/JavaScript)
