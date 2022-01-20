@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+        // 전역변수
+        var variable = 10;
+        function val01(){
+            variable = variable + 5;
+            document.getElementById("value01").innerHTML = "<b style='color:red; background:yellow;'>"+variable+"</b>";
+        }
+        function val02(){
+            // 지역변수
+            var innerVal = variable + 10;
+            document.getElementById("value02").innerHTML = "<b style='color:red; background:yellow;'>"+innerVal+"</b>";
+        }
+    </script>
+
+    <script>
+        // alert(variable);
+    </script>
+
+</head>
+<body>
+    
+    <h1>var 변수 = 값;</h1>
+
+    <dl>
+        <dt>변수 선언 규칙</dt>
+        <dd>대소문자 구분</dd>
+        <dd>영문, $, _로 시작</dd>
+        <dd>영문, $, _, 숫자 사용 가능</dd>
+        <dd>키워드(예약어) 사용 불가</dd>
+        <br>
+        <dt>변수의 범위</dt>
+        <dd>전역 변수 : window 객체에 포함됨
+            <button onclick="val01();">확인</button>
+            <p id="value01"></p>
+        </dd>
+        <dd>지역 변수 : 함수나 객체 내부에 선언
+            <button onclick="val02();">확인</button>
+            <p id="value02"></p>
+        </dd>
+    </dl>
+
+</body>
+</html>
