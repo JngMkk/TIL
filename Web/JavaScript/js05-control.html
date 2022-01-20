@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        button{
+            width: 80px;
+        }
+    </style>
+
+    <script>
+
+        function ifTest(){
+            var i = prompt("숫자 1이나 2를 입력해 주세요");
+            if(i==1){
+                alert("1 입니다");
+            }else if(i==2){
+                alert("2 입니다");
+            }else{
+                alert("잘못된 입력입니다");
+            }
+        }
+
+        function switchTest(){
+            var season = prompt("봄, 여름, 가을, 겨울 중 좋아하는 계절을 입력해 주세요");
+            switch(season){
+                // break 안해주면 break 만날 때까지 출력
+                case "봄":
+                    alert("봄에는 벚꽃엔딩!");
+                    break;
+                case "여름":
+                    alert("여름은 바다죠!");
+                    break;
+                case "가을":
+                    alert("가을엔 단풍구경!");
+                    break;
+                case "겨울":
+                    alert("겨울엔 스키장!");
+                    break;    
+                default:
+                    alert("봄, 여름, 가을, 겨울 중 하나만 입력해 주세요!!")
+            }
+        }
+
+        function forTest(){
+            // 초기값 ; 조건식 ; 증감식
+            for(var i=0; i<10; i++){
+                console.log(i);
+            }
+            // 구구단 만들기
+
+        }
+
+        function whileTest(){
+            var i=0;
+            while(i<10){
+                // console.log(i)
+                // console.log(i++);
+                // i++;
+                // i += 1;
+                // i = i + 1;       // 0 ~ 9
+                console.log(++i);   // 1 ~ 10
+                /*
+                    증감연산자 (++ / --)
+                    변수++ : 변수 값을 리턴한 뒤, 연산
+                    ++변수 : 연산한 뒤 변수 값 리턴
+                */
+            }
+        }
+
+    </script>
+
+</head>
+<body>
+    
+    <button onclick="ifTest();">IF</button>
+    <br>
+    <button onclick="switchTest();">SWITCH</button>
+    <br>
+    <button onclick="forTest();">FOR</button>
+    <br>
+    <button onclick="whileTest();">WHILE</button>
+
+
+</body>
+</html>

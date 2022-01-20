@@ -11,12 +11,20 @@
             alert("내용 출력(단순 대화창)");
         }
         function confirmFunc(){
-            if(confirm("배경을 노란색으로 변환?")){
-                alert("노란색으로 변환");
-                document.body.style.backgroundColor='yellow';
+            if(document.body.style.backgroundColor=="yellow"){
+                if(confirm("배경을 초기화?")){
+                    alert("초기화 완료");
+                    document.body.style.backgroundColor='';
+                }else{
+                    alert("유지");
+                }
             }else{
-                alert("X");
-                document.body.style.backgroundColor='';
+                if(confirm("배경을 노란색으로 변환?")){
+                    alert("변환 완료");
+                    document.body.style.backgroundColor="yellow"
+                }else{
+                    alert("유지")
+                }
             }
         }
         function promptFunc(){
