@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+
+        function func01(){
+            alert("함수의 이름이 있습니다");
+        }
+
+        var func02 = function(){
+            alert("함수의 이름이 없어요..");
+        }
+
+        function func03(){
+            /*
+            function test(){
+                alert("내부 함수");
+            }
+            test();
+            */
+
+           (function(){
+               alert("즉시 실행 함수");
+           })();                        // function을 괄호로 감싸줌
+        }
+
+    </script>
+</head>
+<body>
+    
+    <h1>function = 기능</h1>
+
+    <h2>함수의 종류</h2>
+    <p onclick="func01();">명시적 함수</p>
+    <!-- 괄호 안붙히면 그냥 값(function(){...}만 가져옴 alert도 x )-->
+    <p onclick="func02();">익명 함수</p>
+    <p onclick="func03();">즉시 실행 함수</p>
+</body>
+</html>

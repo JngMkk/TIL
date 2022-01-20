@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+
+        function alertFunc(){
+            alert("내용 출력(단순 대화창)");
+        }
+        function confirmFunc(){
+            if(confirm("배경을 노란색으로 변환?")){
+                alert("노란색으로 변환");
+                document.body.style.backgroundColor='yellow';
+            }else{
+                alert("X");
+                document.body.style.backgroundColor='';
+            }
+        }
+        function promptFunc(){
+            var txt = prompt("좋아하는 과목을 선택해 주세요\n[1:python 2:html/css 3:javascript]", "3"); // 3이 default로 들어가있음
+            if(txt==1){
+                alert("python 재밌죠!");
+            }else if(txt==2){
+                alert("문서 구조화 하고 스타일 지정 재밌죠!");
+            }else if(txt==3){
+                alert("아직 몇개 안해봤는데 벌써 재밌죠!");
+            }else if(txt==null){    // null : 취소
+                alert("하나라도 좋아해 주세요!");
+            }else{
+                alert("1이나 2나 3만 입력해 주세요!");
+            }
+        }
+
+    </script>
+</head>
+<body>
+    
+    <h1>window 객체의 대화형 메서드</h1>
+
+    <p>
+        alert() : 경고, 코드 디버깅용
+        <button onclick="alertFunc();">확인</button>
+    </p>
+    <p>
+        confirm() : 확인 / 취소 버튼 (true / false 리턴)
+        <button onclick="confirmFunc();">확인</button>
+    </p>
+    <p>
+        prompt() : 텍스트박스, 확인 / 취소 버튼(텍스트 / null 리턴)
+        <button onclick="promptFunc();">확인</button>
+    </p>
+
+
+</body>
+</html>
