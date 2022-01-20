@@ -5,8 +5,85 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        div{
+            margin: 15px;
+            width: 200px;
+            height: 100px;
+            background: red;
+            color: white;
+            font-size: 15pt;
+            word-wrap: break-word;
+        }
+        #tlate{
+            transform: translate(50px, 50px);
+        }
+        #trotate{
+            transform: rotate(30deg);
+        }
+        #tscale{
+            /* 0.5(50%) */
+            transform: scale(0.5, 0.5);
+        }
+        #tskew{
+            transform: skew(20deg, 10deg);
+        }
+        #tran{
+            transition: width 0.5s, background 1.5s linear, transform 1.5s;
+        }
+        #tran:hover{
+            transform: translate(100px, 0px);
+        }
+        li{
+            width: 200px;
+            background: yellow;
+            color: black;
+            margin-bottom: 5px;
+            font-size: 20pt;
+            font-weight: bold;
+            list-style-type: none;
+            cursor: pointer;
+            transition: width 1s linear, color 1s linear, letter-spacing 1s;
+        }
+        li:hover{
+            width: 400px;
+            color: red;
+            letter-spacing: 5px;
+        }
+    </style>
 </head>
 <body>
     
+    <h1>Transform</h1>
+
+    <h2>Transform - translate</h2>
+    <div id="tlate">translate(x, y) : 위치 이동</div>
+    <br><br>
+
+    <h2>Transform - rotate</h2>
+    <br>
+    <div id="trotate">rotate(deg) : 회전</div>
+    <br><br>
+
+    <h2>Transform - scale</h2>
+    <div id="tscale">scale(x, y) : 크기</div>
+    <br>
+
+    <h2>Transform - skew</h2>
+    <div id="tskew">skew(deg, deg) : 변형</div>
+    <br>
+
+    <h2>Transition 속성 전환</h2>
+    <div id="tran">transition</div>
+    <br>
+
+    <h2>MENU</h2>
+    <ul>
+        <li>학원소개</li>
+        <li>과정소개</li>
+        <li>채용정보</li>
+        <li>커뮤니티</li>
+    </ul>
+
 </body>
 </html>
