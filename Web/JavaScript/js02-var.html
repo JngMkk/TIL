@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script type="text/javascript">
+
         // 전역변수
         var variable = 10;
+
         function val01(){
             variable = variable + 5;
             document.getElementById("value01").innerHTML = "<b style='color:red; background:yellow;'>"+variable+"</b>";
@@ -17,10 +19,30 @@
             var innerVal = variable + 10;
             document.getElementById("value02").innerHTML = "<b style='color:red; background:yellow;'>"+innerVal+"</b>";
         }
+        function jsType(){
+            var inferVal = "문자";
+            alert(inferVal + "의 타입은 : " + typeof(inferVal));
+            inferVal = 33;
+            alert(inferVal + "의 타입은 : " + typeof(inferVal));
+            inferVal = true;
+            alert(inferVal + "의 타입은 : " + typeof(inferVal));
+            inferVal = null;
+            alert(inferVal + "의 타입은 : " + typeof(inferVal));
+            inferVal = new val01();
+            alert(inferVal + "의 타입은 : " + typeof(inferVal));
+            // 함수가 타입이다..!
+            inferVal = function(){
+                alert("타입 추론!");
+            }
+            alert(inferVal + "의 타입은 : " + typeof(inferVal));
+        }
+
     </script>
 
     <script>
-        // alert(variable);
+        // alert(variable); -> 정상 반환
+        // alert(innerVal); -> 아무것도 안나옴 오류.
+        // alert(val02.innerVal); -> undefined
     </script>
 
 </head>
@@ -44,6 +66,16 @@
             <button onclick="val02();">확인</button>
             <p id="value02"></p>
         </dd>
+        <br>
+        <dt>타입의 종류
+            <button onclick="jsType();">확인</button>
+        </dt>
+        <dd>string</dd>
+        <dd>number</dd>
+        <dd>boolean</dd>
+        <dd>null</dd>
+        <dd>object</dd>
+        <dd>function</dd>
     </dl>
 
 </body>
