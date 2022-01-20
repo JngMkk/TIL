@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        ul{
+            margin: 100px;
+        }
+        li{
+            list-style: none;
+            width: 100px;
+            height: 100px;
+            text-align: center;
+            font-weight: bold;
+            float: left;
+            /* border-radius 왼위 오위 오아래 왼아래 */
+            border-radius: 50px 50px 50px 50px;
+            /*
+                브라우저 별로 다르게 표시
+                webkit : 구글, 사파리
+                moz : 파이어폭스
+                ms : 익스플로러
+                o : 오페라
+            */
+            -webkit-border-radius: 50px 50px 50px 50px;
+            -moz-border-radius: 50px 50px 50px 50px;
+            -ms-border-radius: 50px 50px 50px 50px;
+            -o-border-radius: 50px 50px 50px 50px;
+            color: yellow;
+            font-size: 40px;
+        }
+        #ball01{background: red;}
+        #ball02{background: green;}
+        #ball03{background: blue;}
+    </style>
+</head>
+<body>
+    
+    <ul>
+        <li id="ball01">
+            <span>C</span>
+        </li>
+        <li id="ball02">
+            <span>S</span>
+        </li>
+        <li id="ball03">
+            <span>S</span>
+        </li>
+    </ul>
+
+</body>
+</html>

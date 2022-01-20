@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        /*
+            relative 원래 자신의 위치에서 얼마나 움직이는지
+            absolute 부모의 위치 기준으로 상대적으로 얼마나 움직이는지
+            fixed 브라우저 기준으로 얼마나 움직이는지(고정)
+        */
+        #box{
+            /* 박스가 가장 부모이므로 relative 걸어줘야 함 
+                안걸어주면 body까지 올라감 */
+            position: relative;
+            width: 500px;
+            margin: 10px;
+            padding: 10px;
+            border: 1px dotted red;
+        }
+        p{
+            width: 150px;
+            height: 150px;
+            color: #fff;
+            font-weight: bold;
+        }
+        .myred{
+            background: red;
+            position: relative;
+        }
+        .myblue{
+            /* 부모(box)위치 기준으로 왼쪽에서 100px 위에서 30px */
+            background: blue;
+            position: absolute;
+            left: 100px;
+            top: 30px;
+            z-index: 2;
+        }
+        .mygreen{
+            /* 원래 본인 위치(빨간 박스 아래)에서 왼쪽에서 30px 위로 -30px */
+            background: green;
+            position: relative;
+            left: 30px;
+            top: -30px;
+        }
+        .myred:hover{
+            z-index: 100;
+        }
+        .myblue:hover{
+            z-index: 100;
+        }
+        .mygreen:hover{
+            z-index: 100;
+        }
+        #fixed{
+            width: 100px;
+            height: 300px;
+            background: silver;
+            position: fixed;
+            /* 브라우저 기준(fixed) 오른쪽에서 50px, 위쪽에서 100px만큼 */
+            right: 50px;
+            top: 100px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="box">
+        <p class="myred">빨간 박스</p>
+        <p class="mygreen">초록 박스</p>
+        <p class="myblue">파란 박스</p>
+    </div>
+    <div id="fixed">
+        Fixed!!!!!
+    </div>
+    <br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br>
+
+</body>
+</html>
