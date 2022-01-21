@@ -10,6 +10,9 @@
         onload=function(){
             document.getElementsByTagName("button")[0].onclick = testDate01
             document.getElementsByTagName("button")[1].onclick = testDate02
+            document.getElementsByTagName("button")[2].onclick = testDate03
+            document.getElementsByTagName("button")[3].onclick = testDate04
+            document.getElementsByTagName("button")[4].onclick = testDate05
         }
 
         function testDate01(){
@@ -37,12 +40,33 @@
             alert("HI")
         }
 
-    </script>
-    <style>
-        button{
-            margin: 10px;
+        function testDate03(){
+            var year = 2022
+            var month = 5
+            var day = 13
+            var date = new Date(year, month-1, day)
+            
+            document.getElementById("specific").innerHTML = "수료 일시 : " + date
         }
-    </style>
+
+        function testDate04(){
+            var dates = document.getElementById("dates").value
+            var inputDate = document.getElementById("inputdate").value
+            var date = new Date(dates)
+            date.setDate(date.getDate() + parseInt(inputDate))
+            document.getElementById("result").value = date.toLocaleDateString()
+        }
+
+        function testDate05(){
+            var dates2 = document.getElementById("dates2").value
+            var inputDate2 = document.getElementById("inputdate2").value
+            var nowDate = new Date(dates2)
+            var afterDate = new Date(inputDate2)
+            var resultVal = (afterDate.getTime() - nowDate.getTime()) / (1000 * 60 * 60 * 24)
+            
+            document.getElementById("result2").value = resultVal
+        }
+    </script>
 
 </head>
 <body>
@@ -52,6 +76,33 @@
     <br>
     <button>오늘 날짜</button>
     <button>오늘 날짜(표현)</button>
+
+    <h2>특정 날짜 출력하기</h2>
+    <span id="specific"></span>
+    <br>
+    <button>특정 날짜</button>
+
+    <h2>경과 날짜 출력하기</h2>
+    <label>지정 날짜</label>
+    <input type="date" id="dates" size="50">
+    <br>
+    <label>경과일</label>
+    <input type="number" id="inputdate">
+    <br>
+    <label>경과 후 날짜</label>
+    <input type="text" id="result" readonly="readonly">
+    <button>경과 날짜</button>
+
+    <h2>D-Day</h2>
+    <label>시작 날짜</label>
+    <input type="date" id="dates2" size="50">
+    <br>
+    <label>종료 날짜</label>
+    <input type="date" id="inputdate2">
+    <br>
+    <label>남은 일수</label>
+    <input type="text" id="result2" readonly="readonly">
+    <button>남은 일수 구하기</button>
 
 </body>
 </html>
