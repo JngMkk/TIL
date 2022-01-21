@@ -31,6 +31,7 @@
   $ sudo su - $USER
   ```
 <br>
+
 ## Image 기초
 
 ```
@@ -56,6 +57,7 @@
 <br>
 - [Docker에서 제공하는 공식 이미지](https://index.docker.io/search?q=&type=image)
 <br>
+
 ## Container 이해하기
 
 ```diff
