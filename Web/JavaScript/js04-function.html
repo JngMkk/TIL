@@ -28,12 +28,12 @@
            })();                        // function을 괄호로 감싸줌
         }
         
-        function literalPrn(literal){
-            literal("안녕하세요. 함수 형태의 값!! 입니다");
+        function literalPrn(literal){       // literal parameter에 function(msg){alert(msg);} 전달
+            literal("안녕하세요. 함수 형태의 값!! 입니다");     // 함수 실행
         }
 
         function func04(){
-            literalPrn(function(msg){alert(msg);})
+            literalPrn(function(msg){alert(msg);})      // literal = function(msg){alert(msg);}
         }
 
         function closureFunc(val){
