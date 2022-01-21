@@ -39,9 +39,10 @@
         function closureFunc(val){
             var suffix = "님, 안녕하세요~";
             function innerFunc(){
-                alert(val + suffix + "잘 부탁 드립니다")
+                alert(val + suffix + " 잘 부탁 드립니다")
             }
             return innerFunc;   // 익명함수에서 변수에 함수를 담아놓고 실행 안한 것이랑 같은 상태(함수가 값으로 사용됨)    
+                                // 함수를 리턴한게 아니라 값을 리턴
         }                       // 내부함수에서 외부함수의 것을 가져와서 쓰는 것을 클로저라고 함
         
         var closureTest01 = closureFunc("멀캠");
