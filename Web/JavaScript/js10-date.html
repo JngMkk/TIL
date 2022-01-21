@@ -62,6 +62,8 @@
             var inputDate2 = document.getElementById("inputdate2").value
             var nowDate = new Date(dates2)
             var afterDate = new Date(inputDate2)
+            
+            // getTime() : milliseconds
             var resultVal = (afterDate.getTime() - nowDate.getTime()) / (1000 * 60 * 60 * 24)
             
             document.getElementById("result2").value = resultVal
