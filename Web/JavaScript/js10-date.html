@@ -14,7 +14,6 @@
             document.getElementsByTagName("button")[3].onclick = testDate04
             document.getElementsByTagName("button")[4].onclick = testDate05
         }
-
         function testDate01(){
             var inputDate = document.getElementById("today")
             // Date 객체 생성
@@ -24,7 +23,6 @@
             inputDate.innerHTML += date.toLocaleString() + "<br>"
             inputDate.innerHTML += date.toLocaleTimeString() + "<br>"
         }
-
         function testDate02(){
             var date = new Date()
             var year = date.getFullYear()
@@ -35,20 +33,16 @@
             document.getElementById("today").innerHTML = year + "/" + month + "/" + day + "/" + dayOfWeek[week]
             date.prn()
         }
-
         Date.prototype.prn = function(){
             alert("HI")
         }
-
         function testDate03(){
             var year = 2022
             var month = 5
             var day = 13
-            var date = new Date(year, month-1, day)
-            
+            var date = new Date(year, month-1, day)         
             document.getElementById("specific").innerHTML = "수료 일시 : " + date
         }
-
         function testDate04(){
             var dates = document.getElementById("dates").value
             var inputDate = document.getElementById("inputdate").value
@@ -56,16 +50,13 @@
             date.setDate(date.getDate() + parseInt(inputDate))
             document.getElementById("result").value = date.toLocaleDateString()
         }
-
         function testDate05(){
             var dates2 = document.getElementById("dates2").value
             var inputDate2 = document.getElementById("inputdate2").value
             var nowDate = new Date(dates2)
-            var afterDate = new Date(inputDate2)
-            
+            var afterDate = new Date(inputDate2) 
             // getTime() : milliseconds
-            var resultVal = (afterDate.getTime() - nowDate.getTime()) / (1000 * 60 * 60 * 24)
-            
+            var resultVal = (afterDate.getTime() - nowDate.getTime()) / (1000 * 60 * 60 * 24)  
             document.getElementById("result2").value = resultVal
         }
     </script>
