@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        onload=function(){
+            document.getElementsByTagName("button")[0].onclick = testDate01
+            document.getElementsByTagName("button")[1].onclick = testDate02
+        }
+
+        function testDate01(){
+            var inputDate = document.getElementById("today")
+            // Date 객체 생성
+            var date = new Date()
+            inputDate.innerHTML = date.toDateString() + "<br>"
+            inputDate.innerHTML += date.toLocaleDateString() + "<br>"
+            inputDate.innerHTML += date.toLocaleString() + "<br>"
+            inputDate.innerHTML += date.toLocaleTimeString() + "<br>"
+        }
+
+        function testDate02(){
+            var date = new Date()
+            var year = date.getFullYear()
+            var month = date.getMonth() + 1
+            var day = date.getDate()
+            var week = date.getDay()
+            var dayOfWeek = ["일", "월", "화", "수", "목", "금", "토"]
+            document.getElementById("today").innerHTML = year + "/" + month + "/" + day + "/" + dayOfWeek[week]
+            date.prn()
+        }
+
+        Date.prototype.prn = function(){
+            alert("HI")
+        }
+
+    </script>
+    <style>
+        button{
+            margin: 10px;
+        }
+    </style>
+
+</head>
+<body>
+    
+    <h2>오늘 날짜 출력하기</h2>
+    <span id="today"></span>
+    <br>
+    <button>오늘 날짜</button>
+    <button>오늘 날짜(표현)</button>
+
+</body>
+</html>
