@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 8px;
+        }
+        li > span{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    
+    <h1>HTML 연습</h1>
+    <ul>
+        <li>
+            <span>ProgressBar</span>
+            <br>
+            <progress min="0" max="100" value="10"></progress>
+        </li>
+        <li>
+            <span>meter : 값의 수준을 보여줌.
+                CSS pseudo classes 활용해 커스터마이징 가능
+            </span>
+            <br>
+            <meter min="0" max="100" low="20" high="65" optimum="15" value="20"></meter>
+        </li>
+        <li>
+            <span>details & summary(+span)</span>
+            <details>
+                <summary>What is ur hobby?</summary>
+                <span>Coding</span>
+                <span>Swimming</span>
+            </details>
+        </li>
+        <li>
+            <span>&lt;input type = "date, month, week, time"&gt;</span>
+            <br>
+            <input type="date">
+            <br>
+            <input type="month">
+            <br>
+            <input type="week">
+            <br>
+            <input type="time">
+        </li>
+        <li>
+            <span>picture tag(+source, img)</span>
+        </li>
+        <li>
+            <span>Auto complete * input list속성과 datalist id는 같아야 함
+            </span>
+            <br>
+            <label for="movie">What is ur favorite movie?</label>
+            <input type="text" list="movie-options">
+            <datalist id="movie-options">
+                <option value="Iron Man">
+                <option value="Matrix">
+                <option value="Dune">
+                <option value="The Avengers">
+                <option value="The Artist">
+                <option value="JoongMo">
+            </datalist>
+        </li>
+    </ul>
+
+</body>
+</html>
