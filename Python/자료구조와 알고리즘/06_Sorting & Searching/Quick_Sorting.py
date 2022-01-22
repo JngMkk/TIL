@@ -48,6 +48,8 @@ def quick_sort2(array):
     # 분할 이후 왼쪽 부분과 오른쪽 부분에서 각각 정렬 수행하고, 전체 리스트 반환
     return quick_sort2(left_side) + [pivot] + quick_sort2(right_side)
 
+
+# 테스트
 arr = [5, 7, 9, 0, 3, 1, 6, 2, 4, 8]
 quick_sort(arr, 0, len(arr) - 1)
 print(arr)
