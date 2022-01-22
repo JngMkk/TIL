@@ -45,9 +45,15 @@
 - 간단한 구현 방법
     - 단계마다 방문하지 않은 노드 중에서 최단 거리가 가장 짧은 노드를 선택하기 위해
       매 단계마다 1차원 테이블의 모든 원소를 확인(순차 탐색)함
+    - 성능
+        - 총 O(V)번에 걸쳐서 최단 거리가 가장 짧은 노드를 매번 선형 탐색해야 함
+        - 즉, 전체 시간 복잡도는 O(V^2)
+        - 일반적으로 코딩 테스트의 최단 경로 문제에서 전체 노드의 개수가 5000개 이하라면 이 코드로 문제 해결 가능
+            - 10000개가 넘어가는 문제라면 어떻게 해야 할까?
 
 """
 
+# Dijkstra Algorithm 간단 구현
 import sys
 
 input = sys.stdin.readline
@@ -86,6 +92,25 @@ def dijkstra(start):
             if cost < distance[j[0]]:   # 현재 노드를 거쳐서 다른 노드로 이동하는 거리가 더 짧은 경우
                 distance[j[0]] = cost
 
+"""
+입력 예제
+
+6 11
+1
+1 2 2
+1 3 5
+1 4 1
+2 3 3
+2 4 2
+3 2 3
+3 6 5
+4 3 3
+4 5 1
+5 3 1
+5 6 2
+
+"""
+
 # 테스트
 dijkstra(start)
 
@@ -93,4 +118,4 @@ for i in range(1, n+1):                 # 모든 노드로 가기 위한 최단 
     if distance[i] == inf:              # 도달할 수 없는 경우,
         print("Infinity")               # infinity 출력
     else:                               # 도달할 수 있는 경우 거리를 출력
-        print(distance[i])
+        print(distance[i], end = ' ')
