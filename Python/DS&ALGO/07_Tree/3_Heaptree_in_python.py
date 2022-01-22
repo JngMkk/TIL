@@ -37,7 +37,6 @@
 import sys
 import heapq
 # Python : 최소 힙 제공
-# 리스트 최대 힙 -> HeapTree.py에
 input = sys.stdin.readline
 
 def heapsort(iterable):     # List, Tuple
