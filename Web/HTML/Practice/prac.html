@@ -6,10 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        *{
-            margin: 8px;
+        @font-face{
+            font-family: "Goyang";
+            src: url("../../CSS/resources/font/Goyang.ttf")
         }
-        li > span{
+        *{
+            font-family: 'Goyang';
+            margin: 8px;
+            font-size: x-large;
+        }
+        .list > span{
+            color: red;
+        }
+        li::marker{
             color: red;
         }
     </style>
@@ -18,19 +27,19 @@
     
     <h1>HTML 연습</h1>
     <ul>
-        <li>
+        <li class="list">
             <span>ProgressBar</span>
             <br>
             <progress min="0" max="100" value="10"></progress>
         </li>
-        <li>
+        <li class="list">
             <span>meter : 값의 수준을 보여줌.
                 CSS pseudo classes 활용해 커스터마이징 가능
             </span>
             <br>
             <meter min="0" max="100" low="20" high="65" optimum="15" value="20"></meter>
         </li>
-        <li>
+        <li class="list">
             <span>details & summary(+span)</span>
             <details>
                 <summary>What is ur hobby?</summary>
@@ -38,7 +47,7 @@
                 <span>Swimming</span>
             </details>
         </li>
-        <li>
+        <li class="list">
             <span>&lt;input type = "date, month, week, time"&gt;</span>
             <br>
             <input type="date">
@@ -49,10 +58,10 @@
             <br>
             <input type="time">
         </li>
-        <li>
+        <li class="list">
             <span>picture tag(+source, img)</span>
         </li>
-        <li>
+        <li class="list">
             <span>Auto complete * input list속성과 datalist id는 같아야 함
             </span>
             <br>
