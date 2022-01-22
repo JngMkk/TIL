@@ -37,7 +37,7 @@
 import sys
 import heapq
 # Python : 최소 힙 제공
-# Max heap : 데이터 넣을 때와 꺼낼 때 (-) 부호 붙혀서.. (HeapTree.py에 Maxheap 구현)
+# 리스트 최대 힙 -> HeapTree.py에
 input = sys.stdin.readline
 
 def heapsort(iterable):     # List, Tuple
@@ -46,19 +46,23 @@ def heapsort(iterable):     # List, Tuple
     # 모든 원소를 차례대로 힙에 삽입
     for value in iterable:
         heapq.heappush(h, value)
-    # 힙에 삽인된 모든 원소를 차례대로 꺼내어 담기
+    # 힙에 삽입된 모든 원소를 차례대로 꺼내어 담기
     for _ in range(len(h)):
         result.append(heapq.heappop(h))
     return result
 
+# Max heap : 데이터 넣을 때와 꺼낼 때 (-) 부호 붙혀서
+def heapsort2(iterable):
+    h = []
+    result = []
+    for value in iterable:
+        heapq.heappush(h, -value)
+    for _ in range(len(h)):
+        result.append(-heapq.heappop(h))
+    return result
+
 # 테스트
-n = int(input())                # 몇개의 노드 ?
-arr = []
-
-for i in range(n):
-    arr.append(int(input()))    # 삽입할 숫자
-
-res = heapsort(arr)             # 오름차순 정렬
-
-for i in range(n):
-    print(res[i], end=' ')      # 가장 작은 수 부터 출력
+result = heapsort([1, 3, 5, 7, 9, 2, 4, 6, 8, 0])
+result2 = heapsort2([1, 3, 5, 7, 9, 2, 4, 6, 8, 0])
+print(result)
+print(result2)
