@@ -83,3 +83,29 @@ for i in range(1, n+1):
         print("infinity")
     else:
         print(distance[i])
+
+"""
+입력 예제
+
+6 9
+1
+1 2 6
+1 3 2
+2 3 2
+2 4 2
+3 5 1
+4 6 2
+5 2 -2
+5 4 3
+5 6 4
+
+"""
+
+# 테스트
+dijkstra(start)
+
+for i in range(1, n+1):
+    if distance[i] == inf:
+        print("infinity")
+    else:
+        print(distance[i])
