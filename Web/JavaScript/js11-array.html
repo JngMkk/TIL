@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 6px;
+        }
+    </style>
+    <script>
+        var arrayObj = new Array()
+        var arrayLiteral = ['v1', 'v2', 3, 4]       // object
+        var arrayObj2 = new Array(5)
+        var arrayObj3 = new Array(1, 2, 3, 4, 5)
+
+        // onload = function(){
+        //     alert(arrayObj2[1])                     // undefined
+        // }
+
+        function multiArr(){
+            var len = 3
+            var arr = new Array(len)
+        }
+
+
+    </script>
+</head>
+<body>
+    
+    <h1>배열(객체)</h1>
+
+    <ul>
+        <li onclick="multiArr()">다중 배열</li>
+        <li>join 함수</li>
+        <li>배열 정렬
+            <ul>
+                <li>sort() : 문자 정렬</li>
+                <li>sort() : 숫자 정렬</li>
+                <li>reverse() : 거꾸로 정렬</li>
+            </ul>
+        </li>
+        <li>배열 Queue
+            <ul>
+                <li>push()</li>
+                <li>shift()</li>
+                <li>pop()</li>
+            </ul>
+        </li>
+        <li>slice() : 배열의 부분을 가지고 새로운 배열 생성</li>
+    </ul>
+
+</body>
+</html>
