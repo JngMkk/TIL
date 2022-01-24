@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script type="text/javascript">
+        function test(){
+            var val=document.getElementsByName("test")[0].value;
+            opener.document.getElementsByTagName("h1")[1].innerHTML=val;
+            close();
+        }
+    </script>
+    
+</head>
+<body>
+    
+	<input type="text" name="test"/>
+	<input type="button" onclick="test()" value="전달"/>
+	<input type="button" onclick="self.close()" value="창닫기">
+
+
+</body>
+</html>

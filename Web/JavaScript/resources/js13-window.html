@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style type="text/css">
+        #regist {
+            border: 1px solid black;
+            background: pink;
+            position: absolute;
+            top: 200px;
+            left: 500px;
+            display: none;
+        }
+    </style>
+    
+    <!-- 
+        display : none;			//공간을 차지하지 않는다 (만들어지지 않은 상태)
+        visibility: hidden;		//공간을 차지하고, 보이지 않는다 (만들어져 있는 상태)
+     -->
+    
+    <script type="text/javascript">
+        function openWin() {
+            var url = "js13-window-popup.html";
+            var title = "myframe";
+            var prop = "top=200px,left=600px,width=500px,height=500px";
+            window.open(url, title, prop);
+        }
+    
+        function registForm() {
+            document.getElementById("regist").style.display = "block";
+            document.body.style.background = "gray";
+    
+            var btns = document.getElementsByName("btn");
+            for ( var i in btns) {
+                btns[i].disabled = "disabled";
+            }
+        }
+    
+        function closeWin() {
+            document.getElementById("regist").style.display = "none";
+            document.body.style.background = "white";
+    
+            var btns = document.getElementsByName("btn");
+            for ( var i in btns) {
+                btns[i].disabled = "";
+            }
+        }
+    
+        function idchk() {
+            alert("중복체크를 확인하세요");
+        }
+    
+        function idCheck() {
+            open("js13-window-id-check.html", "", "width=300px,height=300px");
+        }
+    </script>
+    
+    
+</head>
+<body>
+    
+    <h1>Window Object</h1>
+	
+	<pre>
+	Property
+	 -document
+	 -history
+	 -location
+	 -navigator
+	 -screen
+	 -frames
+	 -parent
+	 -top
+	 -self
+	Method
+	 -alert()
+	 -confirm()
+	 -prompt()
+	 -back()
+	 -forward()
+	 -setInterval()
+	 -clearInterval()
+	 -setTimeout()
+	 -open()
+	 -close()
+	 -scroll(),scrollBy(), scrollTo() 
+	</pre>
+
+    
+	<div id="f1">
+		<h1>팝업창 만들기</h1>
+		<button onclick="openWin()" name="btn">창열기</button>
+		<hr>
+		<h1>회원가입하기(div팝업창)</h1>
+		<button onclick="registForm()" name="btn">회원가입</button>
+	</div>
+
+    <!-- 회원가입폼 시작 -->
+	<div id="regist">
+		<form>
+			<table>
+				<caption>회원가입</caption>
+				<tr>
+					<td>아이디</td>
+					<td><input type="text" name="id" onclick="idchk()" readonly="readonly" /> 
+					<input type="button" value="중복체크" onclick="idCheck()" /></td>
+				</tr>
+				<tr>
+					<td>패스워드</td>
+					<td><input type="password" name="pwd" alt="" style="color: red;" checked="checked" /></td>
+				</tr>
+				<tr>
+					<td colspan="2" align="center"><input type="button" value="확인" onclick="closeWin()" /></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<!-- 회원가입폼 종료 -->
+
+	<br/><br/><br/>
+	<iframe name="myframe"></iframe>
+
+
+</body>
+</html>
