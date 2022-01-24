@@ -4,29 +4,29 @@
 
 - Linux에서 Docker 설치하기
 
-  ```
+  ```shell
   $ curl -s https://get.docker.com | sudo sh
   ```
 
 - 설치 후 Docker version 확인
 
-  ```
+  ```shell
   $ docker -v
   Docker version 20.10.11, build dea9396
   ```
 
 - 현재 실행중인 모든 컨테이너 목록 출력
 
-  ```
+  ```shell
   $ docker ps
-  (permission denied 시)
+  (permission denied)
   (Window) Powershell 관리자 권한으로 실행
   (Linux) $ sudo docker ps
   ```
 
 - Linux에서 사용자 계정에서 도커를 직접 사용할 수 있게 docker 그룹에 사용자 추가하기
 
-  ```
+  ```shell
   $ sudo usermod -aG docker $USER
   $ sudo su - $USER
   ```
@@ -43,13 +43,13 @@
 
 - centos 이미지 pull
 
-  ```
+  ```shell
   $ docker pull centos
   ```
 
 - image 확인
 
-  ```
+  ```shell
   $ docker images
   REPOSITORY               TAG       IMAGE ID       CREATED        SIZE
   centos                   latest    5d0da3dc9764   4 months ago   231MB
@@ -59,7 +59,7 @@
 
 - Ubuntu bionic pull
 
-  ```
+  ```shell
   $ docker pull ubuntu:bionic
   bionic: Pulling from library/ubuntu
   2f94e549220a: Pull complete
@@ -83,7 +83,7 @@
 
 - 컨테이너에서 bash 셸 실행하기
 
-  ```
+  ```shell
   $ docker run -it centos:lastest bash
   [root@588ec8830392 /]#
   ```
@@ -98,7 +98,7 @@
 
 - 실행 후 docker ps 확인
 
-  ```
+  ```shell
   $ docker ps
   CONTAINER ID   IMAGE           COMMAND   CREATED          STATUS          PORTS     NAMES
   6f2e357b1082   centos:latest   "bash"    13 seconds ago   Up 13 seconds             priceless_swartz
@@ -118,9 +118,10 @@
 
 - 셸 종료 후 docker ps -a (종료된 컨테이너 목록까지 확인)
 
-  ```
+  ```shell
   [root@6f2e357b1082 /]# exit
   exit
+  
   $ docker ps -a
   CONTAINER ID   IMAGE        COMMAND     CREATED         STATUS                  PORTS     NAMES
   6f2e357b1082 centos:latest  "bash"   4 minutes ago   Exited (0) 33 seconds ago         priceless_swartz
@@ -138,7 +139,7 @@
 
 - restart 명령어로 이미지 되살리기
 
-  ```
+  ```shell
   $ docker restart 6f2e357b1082
   6f2e357b1082
   $ docker ps
@@ -153,7 +154,7 @@
 
 - attach
 
-  ```
+  ```shell
   $ docker attach 6f2e357b1082
   [root@6f2e357b1082 /]#
   ```
@@ -189,7 +190,7 @@
 
 - Git?
 
-  ```
+  ```shell
   우분투 기본 이미지에는 깃이 설치되어있지 않다.
   root@0439abcf7779:/# git --version
   bash: git: command not found
@@ -203,7 +204,7 @@
 
 - docker diff 명령어 실행해보기(우분투 셸이 실행된 컨테이너를 그대로 두고, 다른 셸에서 docker diff 명령어 실행)
 
-  ```
+  ```shell
   $ docker diff 0439abcf7779
   ```
 
@@ -214,7 +215,7 @@
 
 - Git 설치하기
 
-  ```
+  ```shell
   root@0439abcf7779:/# apt update
   ...
   Reading package lists... Done
@@ -236,3 +237,78 @@
   ```
 
 - 다른 셸에서 diff 실행해보기
+
+  ```shell
+  $ docker diff 0439abcf7779 | head
+  (Powershell)
+  docker diff 0439abcf7779 | select -first 10
+  C /etc
+  C /etc/alternatives
+  C /etc/alternatives/pager
+  A /etc/alternatives/rcp
+  A /etc/alternatives/rlogin
+  A /etc/alternatives/rsh
+  A /etc/ca-certificates
+  A /etc/ca-certificates/update.d
+  A /etc/ssh
+  A /etc/ssh/moduli
+  ```
+
+  ```
+  A는 ADD, C는 Change, D는 Delete를 의미한다.
+  ```
+
+- ubuntu:bionic 이미지에 Git이 설치된 새로운 이미지 생성
+
+  ```shell
+  $ docker commit 0439abcf7779 ubuntu:git
+  sha256:45a07c366cb7e77e67c451809ee99998d5acde7aa805d012976e3a14aef6616d
+  
+  $ docker images
+  REPOSITORY               TAG       IMAGE ID       CREATED          SIZE
+  ubuntu                   git       45a07c366cb7   43 seconds ago   196MB
+  ubuntu                   bionic    886eca19e611   2 weeks ago      63.1MB
+  ```
+
+  ```
+  커밋을 하고 뒤에 이름을 붙여주면 바로 새로운 이미지가 생성된다.
+  이미지로부터 컨테이너를 실행시키고 이 컨테이너의 수정사항을 통해서 새로운 이미지를 만들었다.
+  그렇다면 이 이미지를 통해서 컨테이너를 실행하면 git 명령어가 있을까?
+  ```
+
+  ```shell
+  $ docker run -i -t ubuntu:git bash
+  root@b9cfce1f3105:/# git --version
+  git version 2.17.1
+  root@b9cfce1f3105:/# exit
+  exit
+  ```
+
+  ```
+  다시 이미지를 삭제해보자.
+  하나 알아두어야 할 것은, 이미지에서 파생된 (종료 상태를 포함한) 컨테이너가 하나라도 남아있다면
+  이미지는 삭제할 수 없다. 따라서 먼저 컨테이너를 종료하고, 삭제까지 해주어야 한다.
+  docker rm은 컨테이너를 삭제하는 명령어이고, docker rmi는 이미지를 삭제하는 명령어이다.
+  먼저 컨테이너를 지우고, 이미지를 삭제해보자.
+  ```
+
+  ```shell
+  $ docker ps -a
+  CONTAINER ID   IMAGE        COMMAND    CREATED       STATUS                 PORTS       NAMES
+  b9cfce1f3105   ubuntu:git    "bash" 3 hours ago   Exited (0) 3 hours ago             hungry_shannon
+  0439abcf7779   ubuntu:bionic "bash" 7 hours ago   Up 7 hours                         friendly_spence
+  ```
+
+  ```shell
+  $ docker rm b9cfce1f3105
+  b9cfce1f3105
+  
+  $ docker rmi ubuntu:git
+  Untagged: ubuntu:git
+  Deleted: sha256:45a07c366cb7e77e67c451809ee99998d5acde7aa805d012976e3a14aef6616d
+  Deleted: sha256:30841ff1235d266a74b736dcfed85d4cf857bd8b31150dca5f198ca47f55de75
+  ```
+
+  
+
+  
