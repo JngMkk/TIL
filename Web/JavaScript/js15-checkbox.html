@@ -34,9 +34,11 @@
             for(var i=0; i<chks.length; i++){
                 // console.log(chks[i].checked)
                 // document.getElementById(chks[i].value).style.backgroundColor=null
-                document.getElementById(chks[i].value).style.backgroundColor=''
+                // document.getElementById(chks[i].value).style.backgroundColor=''
                 if(chks[i].checked){
                     document.getElementById(chks[i].value).style.backgroundColor=chks[i].value
+                }else{
+                    document.getElementById(chks[i].value).style.backgroundColor=''
                 }
             }
         }
