@@ -23,9 +23,6 @@
 ## Git & Github
 - [Git & Github](https://github.com/JngMkk/TIL/blob/master/Git%20%26%20Github/Git%26Github.md)
 
-## 정처기
-- [I. 소프트웨어 설계](https://github.com/JngMkk/TIL/blob/main/%EC%A0%95%EC%B2%98%EA%B8%B0/01_%EC%86%8C%ED%94%84%ED%8A%B8%EC%9B%A8%EC%96%B4%20%EC%84%A4%EA%B3%84.md)
-
 ## Web
 - [HTML](https://github.com/JngMkk/TIL/tree/main/Web/HTML)
 - [CSS](https://github.com/JngMkk/TIL/tree/main/Web/CSS)
