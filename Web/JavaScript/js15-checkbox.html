@@ -42,6 +42,22 @@
                 }
             }
         }
+
+        function checkAll(bool){
+            var chks = document.getElementsByName("chk")
+            for(var i=0; i<chks.length; i++){
+                chks[i].checked = bool
+            }
+        }
+
+        function clearDiv(){
+            checkAll(false)
+            var colorBox = document.querySelectorAll("#colorbox>div")
+            for(var i=0; i<colorBox.length; i++){
+                colorBox[i].style.backgroundColor = ''
+            }
+        }
+
     </script>
 </head>
 <body>
@@ -62,7 +78,7 @@
             <input type="checkbox" name="chk" value="magenta">진홍<br>
 
             <input type="button" value="선택" onclick="selectColor()">
-            <input type="button" value="취소" onclick="">
+            <input type="button" value="취소" onclick="clearDiv()">
         </form>
     </div>
 
