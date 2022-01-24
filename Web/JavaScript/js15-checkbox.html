@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #colorbox{
+            width: 320px;
+            height: 320px;
+            position: relative;
+        }
+        #red, #green, #blue, #magenta{
+            width: 150px;
+            height: 150px;
+            border: 1px solid black;
+            position: absolute;
+        }
+        #green{
+            left: 160px;
+        }
+        #blue{
+            top: 160px;
+        }
+        #magenta{
+            left: 160px;
+            top: 160px;
+        }
+    </style>
+    <script>
+        function selectColor(){
+            var chks = document.getElementsByName("chk")
+            for(var i=0; i<chks.length; i++){
+                // console.log(chks[i].checked)
+                // document.getElementById(chks[i].value).style.backgroundColor=null
+                document.getElementById(chks[i].value).style.backgroundColor=''
+                if(chks[i].checked){
+                    document.getElementById(chks[i].value).style.backgroundColor=chks[i].value
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    
+    <div id="colorbox">
+        <div id="red">red</div>
+        <div id="green">green</div>
+        <div id="blue">blue</div>
+        <div id="magenta">magenta</div>
+    </div>
+
+    <div id="base">
+        <form>
+            <input type="checkbox" name="all" onclick="checkAll(this.checked)">전체 선택<br>
+            <input type="checkbox" name="chk" value="red">빨강<br>
+            <input type="checkbox" name="chk" value="green">초록<br>
+            <input type="checkbox" name="chk" value="blue">파랑<br>
+            <input type="checkbox" name="chk" value="magenta">진홍<br>
+
+            <input type="button" value="선택" onclick="selectColor()">
+            <input type="button" value="취소" onclick="">
+        </form>
+    </div>
+
+</body>
+</html>
