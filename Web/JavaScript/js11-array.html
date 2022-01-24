@@ -23,8 +23,57 @@
         function multiArr(){
             var len = 3
             var arr = new Array(len)
+            for(var i=0; i<arr.length; i++){
+                arr[i] = new Array(len)
+            }
+            arr[0][0] = "수박"
+            arr[0][1] = "딸기"
+            arr[0][2] = "키위"
+            arr[1][0] = 1
+            arr[1][1] = 2
+            arr[1][2] = 3
+            arr[2][0] = ['lol', 'wow']
+            arr[2][1] = ['python', 'numpy', 'pandas']
+            arr[2][2] = ['javascript', ['function']]
+
+            arr[1][2] = 9
+            arr[2][2][1][0] = 'jquery'
+            alert(arr)
         }
 
+        function joinTest(){
+            var nums = ['1', '2', 3, 4, '5']
+            var res = nums.join('+')
+            alert(res)
+            alert(eval(res))
+        }
+
+        function sortTest1(){
+            var arr = ['a', 'd', 'b', 'c']
+            alert(arr)
+            arr.sort()      // Ascii code 순으로 정렬
+            alert(arr)
+        }
+        
+        function compareNum(a, b){
+            return a - b
+        }
+
+        function sortTest2(){
+            var arr = [1, 2, 6, 11, 3, 65, 21]
+            alert(arr)
+            arr.sort(compareNum)
+            alert(arr)
+        }
+
+        function reverseTest(){
+            var arr = [19, 2, 3, 6, 22, 100]
+            alert(arr)
+            arr.reverse()
+            alert(arr)
+            arr.sort(function(a, b){return b - a})
+            alert(arr)
+        }
 
     </script>
 </head>
@@ -34,12 +83,12 @@
 
     <ul>
         <li onclick="multiArr()">다중 배열</li>
-        <li>join 함수</li>
+        <li onclick="joinTest()">join 함수</li>
         <li>배열 정렬
             <ul>
-                <li>sort() : 문자 정렬</li>
-                <li>sort() : 숫자 정렬</li>
-                <li>reverse() : 거꾸로 정렬</li>
+                <li onclick="sortTest1()">sort() : 문자 정렬</li>
+                <li onclick="sortTest2()">sort() : 숫자 정렬</li>
+                <li onclick="reverseTest()">reverse() : 거꾸로 정렬</li>
             </ul>
         </li>
         <li>배열 Queue
