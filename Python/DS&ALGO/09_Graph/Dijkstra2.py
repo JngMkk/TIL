@@ -45,7 +45,7 @@ for _ in range(m):
 def dijkstra(start):
     q = []
     heapq.heappush(q, (0, start))                   # 시작 노드로 가기 위한 최단 경로는 0으로 설정하여, 큐에 삽입 (거리, 노드) 튜플 형태
-    distance[start] = 0                             # (거리, 노드) 삽입 이유 : 시간복잡도 문제
+    distance[start] = 0                             # (거리, 노드) 삽입 이유 : 시간복잡도 문제(거리를 비교해야 함)
     while q:                                        # 큐가 비어있지 않다면
         dist, now = heapq.heappop(q)                # 가장 최단 거리가 짧은 노드에 대한 정보 꺼내기
         if distance[now] < dist:                    # 현재 노드가 이미 처리된 적이 있는 노드라면 무시
