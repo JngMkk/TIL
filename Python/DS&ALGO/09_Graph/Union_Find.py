@@ -64,21 +64,22 @@ def union_parent(parent, a, b):
 """
 
 # 테스트
-v, e = map(int, input().split())
-parent_table = [0] * (v+1)
+if __name__ == '__main__':
+    v, e = map(int, input().split())
+    parent_table = [0] * (v+1)
 
-for i in range(1, v+1):
-    parent_table[i] = i
+    for i in range(1, v+1):
+        parent_table[i] = i
 
-for i in range(e):
-    a, b = map(int, input().split())
-    union_parent(parent_table, a, b)
+    for i in range(e):
+        a, b = map(int, input().split())
+        union_parent(parent_table, a, b)
 
-print('각 원소가 속한 집합 : ', end = '')
-for i in range(1, v+1):
-    print(find_parent2(parent_table, i), end = ' ')         # 여기서 parent_table이 한번 더 수정됨
-print()
+    print('각 원소가 속한 집합 : ', end = '')
+    for i in range(1, v+1):
+        print(find_parent2(parent_table, i), end = ' ')         # 여기서 parent_table이 한번 더 수정됨
+    print()
 
-print('부모 테이블 : ', end = '')
-for i in range(1, v+1):
-    print(parent_table[i], end = ' ')
+    print('부모 테이블 : ', end = '')
+    for i in range(1, v+1):
+        print(parent_table[i], end = ' ')

@@ -11,3 +11,26 @@
     2. 그래프에 포함되어 있는 모든 간선에 대해 1번 과정 반복
 
 """
+
+from Union_Find import find_parent2, union_parent
+
+v, e = map(int, input().split())
+parent = [0] * (v+1)
+
+for i in range(1, v+1):
+    parent[i] = i
+
+cycle = False
+
+for i in range(e):
+    a, b = map(int, input().split())
+    if find_parent2(parent, a) == find_parent2(parent, b):
+        cycle = True
+        break
+    else:
+        union_parent(parent, a, b)
+
+if cycle:
+    print("cycle True")
+else:
+    print("cycle False")
