@@ -23,11 +23,11 @@
      -->
     
     <script type="text/javascript">
-        function openWin() {				// iframe에 팝업창 띄우는 함수
+        function openWin() {
             var url = "js13-window-popup.html";
-            var name = "myframe";
+            var target = "myframe";
             var opt = "top=200px,left=600px,width=500px,height=500px";
-            window.open(url, name, opt);
+            window.open(url, target, opt);
         }
     
         function registForm() {				// 회원가입 팝업창
@@ -45,6 +45,7 @@
 			// 로컬 스토리지 찾아보기
 			// if(document.getElementsByName("id")[0].value != '' && document.getElementsByName("pwd")[0] != '')
 			document.getElementsByName("id")[0].value = ''				// id 초기화
+			document.getElementsByName("pwd")[0].value = ''				// pwd 초기화
             document.getElementById("regist").style.display = "none";	// 안보이게
             document.body.style.background = "white";
     
@@ -87,7 +88,7 @@
 				</tr>
 				<tr>
 					<td>패스워드</td>
-					<td><input type="password" name="pwd" alt="" style="color: red;" checked="checked" /></td>
+					<td><input type="password" name="pwd" style="color: red;" checked="checked"/></td>
 				</tr>
 				<tr>
 					<td colspan="2" align="center"><input type="button" value="확인" onclick="closeWin()" /></td>
