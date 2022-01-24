@@ -23,30 +23,31 @@
      -->
     
     <script type="text/javascript">
-        function openWin() {
+        function openWin() {				// iframe에 팝업창 띄우는 함수
             var url = "js13-window-popup.html";
-            var title = "myframe";
-            var prop = "top=200px,left=600px,width=500px,height=500px";
-            window.open(url, title, prop);
+            var name = "myframe";
+            var opt = "top=200px,left=600px,width=500px,height=500px";
+            window.open(url, name, opt);
         }
     
-        function registForm() {
-            document.getElementById("regist").style.display = "block";
+        function registForm() {				// 회원가입 팝업창
+            document.getElementById("regist").style.display = "block";	// 블록 요소로 표시
             document.body.style.background = "gray";
     
-            var btns = document.getElementsByName("btn");
+            var btns = document.getElementsByName("btn");				// 창열기, 회원가입 버튼 비활성화
             for ( var i in btns) {
                 btns[i].disabled = "disabled";
             }
         }
     
-        function closeWin() {
-            document.getElementById("regist").style.display = "none";
+        function closeWin() {		// 회원가입 팝업창에서 확인을 눌렀을 경우
+			document.getElementsByName("id")[0].value = ''				// id 초기화
+            document.getElementById("regist").style.display = "none";	// 안보이게
             document.body.style.background = "white";
     
             var btns = document.getElementsByName("btn");
             for ( var i in btns) {
-                btns[i].disabled = "";
+                btns[i].disabled = "";	// 창열기, 회원가입 버튼 활성화
             }
         }
     
@@ -62,35 +63,7 @@
     
 </head>
 <body>
-    
-    <h1>Window Object</h1>
-	
-	<pre>
-	Property
-	 -document
-	 -history
-	 -location
-	 -navigator
-	 -screen
-	 -frames
-	 -parent
-	 -top
-	 -self
-	Method
-	 -alert()
-	 -confirm()
-	 -prompt()
-	 -back()
-	 -forward()
-	 -setInterval()
-	 -clearInterval()
-	 -setTimeout()
-	 -open()
-	 -close()
-	 -scroll(),scrollBy(), scrollTo() 
-	</pre>
 
-    
 	<div id="f1">
 		<h1>팝업창 만들기</h1>
 		<button onclick="openWin()" name="btn">창열기</button>
@@ -124,6 +97,34 @@
 	<br/><br/><br/>
 	<iframe name="myframe"></iframe>
 
+    
+    <h1>Window Object</h1>
+	
+	<pre>
+	Property
+	 -document
+	 -history
+	 -location
+	 -navigator
+	 -screen
+	 -frames
+	 -parent
+	 -top
+	 -self
+	Method
+	 -alert()
+	 -confirm()
+	 -prompt()
+	 -back()
+	 -forward()
+	 -setInterval()
+	 -clearInterval()
+	 -setTimeout()
+	 -open()
+	 -close()
+	 -scroll(),scrollBy(), scrollTo() 
+	</pre>
 
+    
 </body>
 </html>

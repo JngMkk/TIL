@@ -7,24 +7,23 @@
     <title>Document</title>
     
     <script type="text/javascript">
-        var ids=["multi","java","script"];
+        var ids=["multi","java","script"];  // 전역 변수
         
         function confirmChk(){
-            var id=document.getElementsByName("id")[0].value;
+            var id=document.getElementsByName("id")[0].value;   // 입력한 id값
             var div=document.getElementsByTagName("div")[0];
-            if(ids.indexOf(id)!=-1){
+            if(ids.indexOf(id)!=-1){        // 전역변수 ids에 id가 있으면
                 div.innerHTML="<b>아이디가 존재합니다.</b>";
             }else{
                 var userId="사용할 수 있는 아이디입니다."
-                        +"<input type='button' value='확인'"
-                        +"onclick='insertId(\""+id+"\")'>";
+                        +"<input type='button' value='확인' onclick='insertId(\""+id+"\")'>";
                 div.innerHTML=userId;          
             }
         }
         
         function insertId(id){
             opener.document.getElementsByName("id")[0].value=id;
-            opener.document.getElementsByName("pwd")[0].focus();
+            opener.document.getElementsByName("pwd")[0].focus();        // 선택
             close();
         }
     </script>
@@ -34,7 +33,7 @@
     
 	<table>
 		<tr>
-			<td>ID</td>
+			<td>아이디</td>
 			<td><input type="text" name="id"/></td>
 		</tr>
 		<tr>

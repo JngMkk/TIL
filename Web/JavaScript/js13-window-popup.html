@@ -9,9 +9,10 @@
     <script type="text/javascript">
         function test(){
             var val=document.getElementsByName("test")[0].value;
-            opener.document.getElementsByTagName("h1")[1].innerHTML=val;
-            close();
+            opener.document.getElementsByTagName("h1")[0].innerHTML=val;
+            window.open("about:blank", "_self").close()
         }
+
     </script>
     
 </head>
@@ -19,7 +20,7 @@
     
 	<input type="text" name="test"/>
 	<input type="button" onclick="test()" value="전달"/>
-	<input type="button" onclick="self.close()" value="창닫기">
+	<input type="button" onclick="window.open('about:blank', '_self').close()" value="창닫기">
 
 
 </body>
