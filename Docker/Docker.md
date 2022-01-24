@@ -57,6 +57,20 @@
 
 - [Docker에서 제공하는 공식 이미지](https://index.docker.io/search?q=&type=image)
 
+- Ubuntu bionic pull
+
+  ```
+  $ docker pull ubuntu:bionic
+  bionic: Pulling from library/ubuntu
+  2f94e549220a: Pull complete
+  Digest: sha256:37b7471c1945a2a12e5a57488ee4e3e216a8369d0b9ee1ec2e41db9c2c1e3d22
+  Status: Downloaded newer image for ubuntu:bionic
+  docker.io/library/ubuntu:bionic
+  
+  $ docker run -it ubuntu:bionic bash
+  root@0439abcf7779:/#
+  ```
+
 
 ## Container 이해하기
 
@@ -159,4 +173,66 @@
   - 컨테이너는 가상머신이라기보다는 프로세스이다.
   ```
 
+
+## 도커와 버전 관리 시스템
+
+```
+도커에서 이미지는 불변한 저장 매체이다.
+이미지는 불변이지만, 그 대신 도커에서는 이 이미지 위에 무언가를 더해서 새로운 이미지를 만들어내는 일이 가능하다.
+이미지를 기반으로 만들어진 컨테이너는 변경 가능하기 때문이다.
+도커의 또 하나 중요한 특징은 바로 계층화된 파일 시스템을 사용한다는 점이다.
+특정한 이미지로부터 생성된 컨테이너에 어떤 변경사항을 더하고(파일들을 변경하고),
+이 변경된 상태를 새로운 이미지로 만들어내는 것이 가능하다.
+도커의 모든 이미지는 기본적으로 이 원리로 만들어진다.
+이러한 점 때문에 도커에서는 저장소, 풀, 푸시, 커밋, 차분(diff) 등을 사용 가능하다.
+```
+
+- Git?
+
+  ```
+  우분투 기본 이미지에는 깃이 설치되어있지 않다.
+  root@0439abcf7779:/# git --version
+  bash: git: command not found
+  ```
+
+  ```
+  도커는 마치 VCS(Version Control System)같이 어떤 컨테이너와 컨테이너의 부모 이미지 간 
+  파일 변경사항을 확인할 수 있는 명령어를 제공한다. git diff 명령어로 프로젝트의 변경사항을 확인하듯이,
+  docker diff 명령어로 부모 이미지와 여기서 파생된 컨테이너 파일 시스템 간의 변경사항을 확인할 수 있다.
+  ```
+
+- docker diff 명령어 실행해보기(우분투 셸이 실행된 컨테이너를 그대로 두고, 다른 셸에서 docker diff 명령어 실행)
+
+  ```
+  $ docker diff 0439abcf7779
+  ```
+
+  ```
+  아무것도 출력되지 않았다!!
+  왜냐하면 이 컨테이너는 아직 이미지 파일 시스템 상태 그대로이기 때문이다.
+  ```
+
+- Git 설치하기
+
+  ```
+  root@0439abcf7779:/# apt update
+  ...
+  Reading package lists... Done
+  Building dependency tree
+  Reading state information... Done
+  All packages are up to date.
   
+  root@0439abcf7779:/# apt install -y git
+  ...
+  
+  root@0439abcf7779:/# git --version
+  git version 2.17.1
+  ```
+
+  ```
+  공식 우분투 이미지는 사용자가 루트로 설정되어 있다.
+  따라서 sudo와 같은 명령어 없이도 apt를 직접 사용해 패키지를 설치할 수 있다.
+  우분투 패키지 관리자 apt를 사용해 버전 관리 시스템 Git을 설치했다.
+  ```
+
+- 다른 셸에서 diff 실행해보기
