@@ -52,6 +52,7 @@
 
         function clearDiv(){
             checkAll(false)
+            document.getElementsByName("all")[0].checked = false
             var colorBox = document.querySelectorAll("#colorbox>div")
             for(var i=0; i<colorBox.length; i++){
                 colorBox[i].style.backgroundColor = ''
