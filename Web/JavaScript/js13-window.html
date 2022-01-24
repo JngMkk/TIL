@@ -41,6 +41,9 @@
         }
     
         function closeWin() {		// 회원가입 팝업창에서 확인을 눌렀을 경우
+			// ID data는 어떻게 관리하지??
+			// 로컬 스토리지 찾아보기
+			// if(document.getElementsByName("id")[0].value != '' && document.getElementsByName("pwd")[0] != '')
 			document.getElementsByName("id")[0].value = ''				// id 초기화
             document.getElementById("regist").style.display = "none";	// 안보이게
             document.body.style.background = "white";
