@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img{
+            vertical-align: middle;
+            width: 300px;
+            height: 300px;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            var anchs = document.querySelectorAll("a")
+            var img = document.querySelector("img")
+            var count = 1
+            anchs[0].onclick = function(){
+                var imgAlt = img.getAttribute("alt")
+                if(imgAlt=="img1"){
+                    count = 3
+                    img.setAttribute("alt", "img3")
+                    img.setAttribute("src", "resources/images/img3.jpg")
+                }else{
+                    img.setAttribute("alt", "img"+(--count))
+                    img.setAttribute("src", "resources/images/img"+count+".jpg")
+                }
+
+            }
+            anchs[1].onclick = function(){
+                var imgAlt = img.getAttribute("alt")
+                if(imgAlt=="img3"){
+                    count=0
+                    img.setAttribute("alt", "img1")
+                    img.setAttribute("src", "resources/images/img1.jpg")
+                }else{
+                    img.setAttribute("alt", "img"+(++count))
+                    img.setAttribute("src", "resources/images/img"+count+".jpg")
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    
+    <div>
+        <a href="#" id="lt">◀</a>
+        <img src="resources/images/img1.jpg" alt="img1">
+        <a href="#" id="gt">▶</a>
+    </div>
+
+</body>
+</html>
