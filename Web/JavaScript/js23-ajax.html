@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function ajaxTest(){
+            var xhr = new XMLHttpRequest()
+            xhr.onreadystatechange = function(){
+                // 4 : 요청의 완료
+                if(xhr.readyState == 4){
+                    // 200 : 정상 응답
+                    if(xhr.status == 200){
+                        console.log(xhr.responseText)
+                    }
+                }
+            }
+            // GET방식으로 요청, 해당 경로에
+            xhr.open('GET', 'emplist.xml')
+            xhr.send()
+        }
+    </script>
+</head>
+<body>
+    <!--
+        ajax : Asynchronous Javascript And XML
+        비 동기 통신
+    -->
+    
+    <button onclick="ajaxTest()">ajax</button>
+
+    <table id="tb" border="1"></table>
+
+</body>
+</html>

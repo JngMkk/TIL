@@ -12,7 +12,7 @@
     </style>
     <script>
         function addAppend(){
-            var fieldset = document.getElementById("addele")
+            var fieldset = document.getElementById("addelem")
             var p = document.createElement("p")
             p.textContent = "자식 태그들 중 가장 마지막에 넣어진다"
             fieldset.appendChild(p)
@@ -20,7 +20,7 @@
         var count = 1
         function addInsert(){
             var p = document.createElement("p")
-            var fieldset = document.getElementById("addele")
+            var fieldset = document.getElementById("addelem")
             p.textContent = "엘리멘트의 앞에 넣어진다" + (count++)
             var div = document.querySelector("fieldset > div")
             fieldset.insertBefore(p, div)
@@ -40,7 +40,7 @@
     <button onclick="addInsert()">insertBefore()</button>
     <button onclick="moveElement()">element 이동</button>
 
-    <fieldset id="addele">
+    <fieldset id="addelem">
         <legend>부모태그</legend>
         <div>div</div>
     </fieldset>

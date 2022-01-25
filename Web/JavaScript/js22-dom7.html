@@ -35,6 +35,20 @@
 
             return tr
         }
+
+        function delRow(elem){
+            var delTr = elem.parentNode.parentNode
+            var tbody = document.getElementById("addtr")
+            tbody.removeChild(delTr)
+        }
+
+        function delAll(){
+            var tbody = document.getElementById("addtr")
+            while(tbody.hasChildNodes()){
+                tbody.removeChild(tbody.lastChild)
+            }
+        }
+
     </script>
 </head>
 <body>
@@ -59,7 +73,7 @@
             </tr>
         </table>
         <input type="button" value="추가" onclick="tableVal()">
-        <input type="button" value="삭제" onclick="">
+        <input type="button" value="삭제" onclick="delAll()">
     </form>
 
     <div id="addtable">
