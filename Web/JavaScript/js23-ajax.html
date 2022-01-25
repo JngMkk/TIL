@@ -6,6 +6,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script>
+        // function ajaxTest(){
+        //     var xhr = new XMLHttpRequest()
+        //     xhr.onreadystatechange = function(){
+        //         // 4 : 요청의 완료
+        //         if(xhr.readyState == 4){
+        //             // 200 : 정상 응답
+        //             if(xhr.status == 200){
+        //                 var resXML = xhr.responseXML        // 문자열을 XML 객체로 바꾸어 줌
+        //                 var tbody = document.getElementById("tbody")
+        //                 var row = resXML.getElementsByTagName("ROW")
+        //                 for(i=0; i<row.length; i++){
+        //                     var tr = document.createElement("tr")
+        //                     for(j=0; j<row[i].children.length; j++){
+        //                         var td = document.createElement("td")
+        //                         td.appenndChild(document.createTextNode(row[i].children[j].textContent))
+        //                         tr.appendChild(td)
+        //                     }
+        //                     tbody.appendChild(tr)
+        //                 }
+        //             }
+        //         }
+        //     }
+        //     // GET방식으로 요청, 해당 경로에
+        //     xhr.open('GET', 'emplist.xml')
+        //     xhr.send()
+        // }
+
         function ajaxTest(){
             var xhr = new XMLHttpRequest()
             xhr.onreadystatechange = function(){
@@ -13,7 +40,29 @@
                 if(xhr.readyState == 4){
                     // 200 : 정상 응답
                     if(xhr.status == 200){
-                        console.log(xhr.responseText)
+                        var resXML = xhr.responseXML        // 문자열을 XML 객체로 바꾸어 줌
+                        var table = document.getElementById("tb")
+                        var rows = resXML.getElementsByTagName("ROW")
+
+                        // 컬럼 이름 만들기
+                        var columnTr = document.createElement("tr")
+                        for(i=0; i<rows[0].children.length; i++){
+                            var th = document.createElement("th")
+                            th.appendChild(document.createTextNode(rows[0].children[i].nodeName))
+                            columnTr.appendChild(th)
+                        }
+                        table.appendChild(columnTr)
+
+                        // 데이터 추가
+                        for(var i=0; i<rows.length; i++){
+                            var tr = document.createElement("tr")
+                            for(var j=0; j<rows[i].children.length; j++){
+                                var td = document.createElement("td")
+                                td.appendChild(document.createTextNode(rows[i].children[j].textContent))
+                                tr.appendChild(td)
+                            }
+                            table.appendChild(tr)
+                        }
                     }
                 }
             }
@@ -31,7 +80,7 @@
     
     <button onclick="ajaxTest()">ajax</button>
 
-    <table id="tb" border="1"></table>
+    <table border="1" id="tb"></table>
 
 </body>
 </html>
