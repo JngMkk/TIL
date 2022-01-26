@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img{
+            width: 200px;
+            height: 200px;
+        }
+        button{
+            margin-bottom: 5px;
+            width: 150px;
+        }
+    </style>
+    <script src="resources/js/jquery-3.6.0.min.js"></script>
+    <script>
+        /*
+            jquery 기본 작성법
+                : selector 표현식
+                jQuery("selector").method()
+                $("selector").method()
+            
+            $(function(){
+
+            })
+
+            $(document).ready(function(){
+
+            })
+        */
+
+        $(function(){
+            $("#test-btn").click(function(){
+                alert("클릭했음")
+            })
+            $("img").click(function(){
+                $(this).hide()      // <img style="display:none;">
+            })
+        })
+        function showImg(){
+            $("img").show()
+        }
+        function resizeImg(){
+            // $("img").css("width", "100px").css("height", "100px")
+            $("img").css({"width": "100px", "height":"100px"})
+        }
+        function addImg(){
+            $("img").last().after("<img src='resources/images/img2.jpg' alt='img2'>")
+        }
+        function toggleImg(){
+            $("img").toggle()
+        }
+    </script>
+</head>
+<body>
+    
+    <h1>JQuery : Javascript library</h1>
+    <button id="test-btn">click me</button>
+    <br>
+    <button onclick="showImg()">이미지 보이기</button>
+    <button onclick="resizeImg()">이미지 축소</button>
+    <button onclick="addImg()">이미지 추가</button>
+    <button onclick="toggleImg()">이미지 숨기기/보이기</button>
+    <br>
+    <br>
+    <div>
+        <img src="resources/images/img1.jpg" alt="img1">
+    </div>
+
+</body>
+</html>
