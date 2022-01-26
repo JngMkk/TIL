@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="resources/js/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("div").find("b").css({"font-size":"30px", "color":"red"})
+            $("div").children("#chd").text("2.children()")
+            $("p > b").parent().css("background-color", "yellow")
+            $("p > b").parents("div").css("background-color", "aqua")    // css 우선순위 때문에 안먹힘
+            $("p").eq(0).next().css("color", "red")
+        })
+    </script>
+</head>
+<body>
+    
+    <pre>
+        <b>find("selector") : 선택한 엘리먼트의 자손들 중에 탐색</b>
+        <b>children("selector") : 선택한 엘리먼트의 자식들 중에 탐색</b>
+        <b>parent() / parents("selector") : 선택한 엘리먼트의 부모 / 조상 탐색</b>
+        <b>next("selector") : 선택한 엘리먼트 다음에 따라오는 요소 탐색</b>
+    </pre>
+
+    <div>
+        <p><b>1</b></p>
+        <p id="chd">2</p>
+        <p>3</p>
+        <p>4</p>
+        <p>5</p>
+    </div>
+</body>
+</html>

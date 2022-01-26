@@ -14,6 +14,21 @@
                     return false
                 }
             })
+            $("#confirm").click(function(){
+                $("#result").empty()
+                var total = 0
+                $("input[name=chk]:checked").each(function(i){
+                    // var chk = $(this)
+                    var chk = $("input[name=chk]:checked").eq(i)
+                    
+                    var book = chk.next().text()
+                    var price = chk.val()
+                    $("#result").append(book + " : " + price + "<br>")
+
+                    total += parseInt(price)
+                })
+                $("#result").append("총 가격 : " + total)
+            })
         })
     </script>
 </head>
@@ -26,6 +41,25 @@
             <span class="error" hidden="" style="color:red">반드시 입력하세요</span>
         </div>
         <input type="submit" class="submit" value="입력">
+        <hr>
+        <fieldset style="width:300px">
+            <legend>체크 여부 확인</legend>
+            <input type="checkbox" name="all" onclick="allChk(this.checked)">전체선택
+            <br>
+            <input type="checkbox" name="chk" value="20000"><b>python</b>
+            <br>
+            <input type="checkbox" name="chk" value="25000"><b>pandas</b>
+            <br>
+            <input type="checkbox" name="chk" value="30000"><b>django</b>
+            <br>
+
+            <input type="button" id="confirm" value="확인">
+            <br>
+
+            <span>선택한 책 가격</span>
+            <div id="result"></div>
+
+        </fieldset>
     </form>
 
 </body>
