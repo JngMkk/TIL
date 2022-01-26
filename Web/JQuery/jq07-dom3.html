@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="resources/js/jquery-3.6.0.min.js"></script>
+    <script>
+        $(function(){
+            $("p:eq(0)").add("span").css("color", "red")
+            $("div").children().click(function(){
+                if($(this).prop("tagName") == "SPAN"){
+                    alert("span tag click!!!")
+                    $(this).css("color", "aqua")
+                }
+                if($(this).is("p")){
+                    $(this).css("background-color", "violet")
+                }
+                $("b").click(function(){
+                    $("div").children().css("background-color", "")
+                    $("p:eq(0)").add("span").css("color", "red")
+                })
+            })
+        })
+        /*
+            attr() : HTML의 속성(attribute)
+            prop() : JS의 속성(property)
+        */
+    </script>
+</head>
+<body>
+
+    <div>
+        <p>add()</p>
+        <span>add() : 선택한 엘리먼트에 추가적으로 selector 표현식을 작성할 때 사용</span>
+        <p>is()</p>
+        <b>선택한 엘리먼트들 중에 구하는 엘리먼트가 있는지 확일할 때 사용</b>
+
+    </div>
+
+</body>
+</html>

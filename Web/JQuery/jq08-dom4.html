@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 20px;
+        }
+    </style>
+    <script src="resources/js/jquery-3.6.0.min.js"></script>
+    <script>
+        $(function(){
+            $(".menu div").css("display", "none")
+            // $(".menu").hover(
+            //     function(){
+            //         $(this).children("div").show()
+            //     },
+            //     function(){
+            //         $(this).children("div").hide()
+            //     }
+            // )
+            $(".menu").hover(function(){
+                $(this).children("div").toggle()
+            })
+        })
+    </script>
+</head>
+<body>
+    
+    <b>DOM 탐색 메서드</b>
+    <br>
+
+    <div id="menu1" class="menu">
+        <a href="jq05-dom1.html">필터링 메서드</a>
+        <div>.eq()</div>
+        <div>.slice()</div>
+        <div>.first()</div>
+        <div>.last()</div>
+    </div>
+
+    <div id="menu2" class="menu">
+        <a href="jq06-dom2.html">트리 탐색 메서드</a>
+        <div>.find()</div>
+        <div>.children()</div>
+        <div>.parent()</div>
+        <div>.next()</div>
+    </div>
+
+    <div id="menu3" class="menu">
+        <a href="jq07-dom3.html">탐색 메서드</a>
+        <div>.add()</div>
+        <div>.is()</div>
+    </div>
+</body>
+</html>
