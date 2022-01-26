@@ -5,6 +5,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        div{
+            width: 400px;
+            height: 200px;
+            border: 2px solid red;
+            padding: 20px;
+            overflow: auto;
+        }
+        div p:first-child{
+            float: left;
+            width: 150px;
+            height: 150px;
+            border: 1px solid blue;
+            text-align: center;
+
+        }
+    </style>
+    <script src="resources/js/jquery-3.6.0.min.js"></script>
+    <script>
+        /*
+            이벤트 전파 : 각 요소가 서로 포함관계(중첩)인 경우
+                        요소 중 하나에 이벤트가 발생하면 중첩된 요소들도 이벤트가 전파됨
+            이벤트 전파 막기
+                - stopPropagation() : 이벤트 요소의 전파 막기
+                - preventDefault() : 이벤트에 의한 기본 동작 막기
+                - return false : 위의 기능 두개 모두 적용
+        */
+    </script>
 </head>
 <body>
     
