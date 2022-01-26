@@ -19,7 +19,18 @@
             height: 150px;
             border: 1px solid blue;
             text-align: center;
-
+            line-height: 150px;
+        }
+        div p:last-child{
+            float: right;
+            border: 1px solid blue;
+            width: 150px;
+            height: 150px;
+            text-align: center;
+            line-height: 150px;
+        }
+        button{
+            margin-top: 10px;
         }
     </style>
     <script src="resources/js/jquery-3.6.0.min.js"></script>
@@ -32,6 +43,46 @@
                 - preventDefault() : 이벤트에 의한 기본 동작 막기
                 - return false : 위의 기능 두개 모두 적용
         */
+       $(function(){
+           $("a:eq(0)").click(function(e){
+               alert("a 클릭!")
+               // e.stopPropagation()
+               // e.preventDefault()
+               return false
+           })
+           $("p").click(function(e){
+               alert("p 클릭!")
+               e.preventDefault()
+           })
+           $("div").click(function(){
+               alert("div 클릭!")
+           })
+        //    $("a:eq(1)").bind("mouseover mouseout", function(e){
+        //        if(e.type == "mouseover"){
+        //            $(this).css("background-color", "hotpink")
+        //        }
+        //        if(e.type == "mouseout"){
+        //            $(this).css("background-color", "")
+        //        }
+        //    })
+            $("a:eq(1)").bind({
+                "mouseover":function(){
+                    $(this).css("color", "gold")
+                },
+                "mouseout":function(){
+                    $(this).css("color", "")
+                }
+            })
+            $("span").click(function(){
+                $("a:eq(1)").unbind()
+            })
+            $("button").click(function(){
+                $("body").append("<p style='color:red'>새로 추가된 p</p>")
+            })
+            $("body").on("click", "p", function(){  // JS : addEventListener 사용
+                alert("새로 추가되는 요소도 이벤트 적용")
+            })
+       })
     </script>
 </head>
 <body>
@@ -39,15 +90,19 @@
     <span>unbind() : 이벤트 해제</span>
     <div>
         <p>
-            <a href="https://www.naver.com">클릭</a>
+            <a href="https://www.naver.com">클릭!!</a>
         </p>
         <p>클릭</p>
     </div>
     <div>
         <p>
-            <a href="https://www.google.com">클릭</a>
+            <a href="https://www.google.com">클릭!!</a>
         </p>
         <p>클릭</p>
     </div>
+
+    <button>요소 추가</button>
+
+
 </body>
 </html>
