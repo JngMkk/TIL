@@ -4,29 +4,28 @@
 
 - Linux에서 Docker 설치하기
 
-  ```shell
+  ```
   $ curl -s https://get.docker.com | sudo sh
   ```
 
 - 설치 후 Docker version 확인
 
-  ```shell
+  ```
   $ docker -v
   Docker version 20.10.11, build dea9396
   ```
 
 - 현재 실행중인 모든 컨테이너 목록 출력
 
-  ```shell
+  ```
   $ docker ps
   (permission denied)
-  (Window) Powershell 관리자 권한으로 실행
   (Linux) $ sudo docker ps
   ```
-
+  
 - Linux에서 사용자 계정에서 도커를 직접 사용할 수 있게 docker 그룹에 사용자 추가하기
 
-  ```shell
+  ```
   $ sudo usermod -aG docker $USER
   $ sudo su - $USER
   ```
@@ -44,13 +43,13 @@
 
 - centos 이미지 pull
 
-  ```shell
+  ```
   $ docker pull centos
   ```
 
 - image 확인
 
-  ```shell
+  ```
   $ docker images
   REPOSITORY               TAG       IMAGE ID       CREATED        SIZE
   centos                   latest    5d0da3dc9764   4 months ago   231MB
@@ -60,7 +59,7 @@
 
 - Ubuntu bionic pull
 
-  ```shell
+  ```
   $ docker pull ubuntu:bionic
   bionic: Pulling from library/ubuntu
   2f94e549220a: Pull complete
@@ -85,7 +84,7 @@
 
 - 컨테이너에서 bash 셸 실행하기
 
-  ```shell
+  ```
   $ docker run -it centos:lastest bash
   [root@588ec8830392 /]#
   ```
@@ -100,7 +99,7 @@
 
 - 실행 후 docker ps 확인
 
-  ```shell
+  ```
   $ docker ps
   CONTAINER ID   IMAGE           COMMAND   CREATED          STATUS          PORTS     NAMES
   6f2e357b1082   centos:latest   "bash"    13 seconds ago   Up 13 seconds             priceless_swartz
@@ -120,7 +119,7 @@
 
 - 셸 종료 후 docker ps -a (종료된 컨테이너 목록까지 확인)
 
-  ```shell
+  ```
   [root@6f2e357b1082 /]# exit
   exit
   
@@ -141,7 +140,7 @@
 
 - restart 명령어로 이미지 되살리기
 
-  ```shell
+  ```
   $ docker restart 6f2e357b1082
   6f2e357b1082
   $ docker ps
@@ -156,7 +155,7 @@
 
 - attach
 
-  ```shell
+  ```
   $ docker attach 6f2e357b1082
   [root@6f2e357b1082 /]#
   ```
@@ -194,7 +193,7 @@
 
 - Git?
 
-  ```shell
+  ```
   우분투 기본 이미지에는 깃이 설치되어있지 않다.
   root@0439abcf7779:/# git --version
   bash: git: command not found
@@ -208,7 +207,7 @@
 
 - docker diff 명령어 실행해보기(우분투 셸이 실행된 컨테이너를 그대로 두고, 다른 셸에서 docker diff 명령어 실행)
 
-  ```shell
+  ```
   $ docker diff 0439abcf7779
   ```
 
@@ -219,7 +218,7 @@
 
 - Git 설치하기
 
-  ```shell
+  ```
   root@0439abcf7779:/# apt update
   ...
   Reading package lists... Done
@@ -242,10 +241,8 @@
 
 - 다른 셸에서 diff 실행해보기
 
-  ```shell
+  ```
   $ docker diff 0439abcf7779 | head
-  (Powershell)
-  docker diff 0439abcf7779 | select -first 10
   C /etc
   C /etc/alternatives
   C /etc/alternatives/pager
@@ -257,14 +254,14 @@
   A /etc/ssh
   A /etc/ssh/moduli
   ```
-
+  
   ```
   A는 ADD, C는 Change, D는 Delete를 의미한다.
   ```
-
+  
 - ubuntu:bionic 이미지에 Git이 설치된 새로운 이미지 생성
 
-  ```shell
+  ```
   $ docker commit 0439abcf7779 ubuntu:git
   sha256:45a07c366cb7e77e67c451809ee99998d5acde7aa805d012976e3a14aef6616d
   
@@ -280,7 +277,7 @@
   그렇다면 이 이미지를 통해서 컨테이너를 실행하면 git 명령어가 있을까?
   ```
 
-  ```shell
+  ```
   $ docker run -i -t ubuntu:git bash
   root@b9cfce1f3105:/# git --version
   git version 2.17.1
@@ -296,14 +293,14 @@
   먼저 컨테이너를 지우고, 이미지를 삭제해보자.
   ```
 
-  ```shell
+  ```
   $ docker ps -a
   CONTAINER ID   IMAGE        COMMAND    CREATED       STATUS                 PORTS       NAMES
   b9cfce1f3105   ubuntu:git    "bash" 3 hours ago   Exited (0) 3 hours ago             hungry_shannon
   0439abcf7779   ubuntu:bionic "bash" 7 hours ago   Up 7 hours                         friendly_spence
   ```
 
-  ```shell
+  ```
   $ docker rm b9cfce1f3105
   b9cfce1f3105
   
@@ -325,4 +322,162 @@ Docker image를 추가하는 방법은 크게 세 가지가 있다.
 세 번째 방법은 DockerFile을 빌드하는 방법이다. DockerFile은 도커만의 특별한 DSL로 이미지를 정의하는 파일이다.
 ```
 
-- DockerFile로 Git이 설치된 우분투 이미지 정의
+### Dockerfile로 Git이 설치된 우분투 이미지 정의
+
+- DockerFile을 저장해놓기 위한 디렉터리 만들기
+
+  ```
+  $ mkdir git-from-dockerfile
+  $ cd git-from-dockerfile
+  ```
+
+- Git이 설치된 우분투 이미지 정의
+
+  ```
+  FROM ubuntu:bionic
+  RUN apt-get update
+  RUN apt-get install -y git
+  ```
+
+  ```
+  FROM : 어떤 이미지로부터? (필수 항목)
+  RUN : 명령어 실행하라는 의미
+  ```
+
+- dockerfile로 이미지 빌드
+
+  ```
+  $ docker build -t ubuntu:git-from-dockerfile .
+  ...
+  ...
+  Successfully built eab0dcfa39c9
+  Successfully tagged ubuntu:git-from-dockerfile
+  ```
+
+- 새로 만든 이미지에 Git이 설치되었는지 확인
+
+  ```
+  $ docker run -it ubuntu:git-from-dockerfile bash
+  root@aed54ed376aa:/# git --version
+  git version 2.17.1
+  ```
+
+### 모니위키 도커 파일 작성하기
+
+```
+웹 애플리케이션 서버를 실행하기 위한 도커 이미지를 작성해보자.
+예제로 사용해 볼 웹 애플리케이션은 PHP와 아파치 서버를 기반으로 동작하는 모니위키이다.
+애플리케이션 실행을 위해 도커 이미지를 만드는 작업을 도커라이징이라고도 한다.
+```
+
+- 예제 도커파일 저장소 클론 받기
+
+  ```
+  $ git clone https://github.com/nacyot/docker-moniwiki.git
+  $ cd docker-moniwiki/moniwiki
+  ```
+
+- 이 디렉터리에 포함된 Dockerfile 내용 살펴보기
+
+  ```
+  $ ls
+  Dockerfile  LICENSE  README.md
+  
+  $ vim Dockerfile
+  EXPOSE 80
+  CMD bash -c "source /etc/apache2/envvars && /usr/sbin/apache2 -D FOREGROUND"
+  ```
+
+  ```
+  FROM ubuntu:14.04 
+  어떤 이미지로부터 새로운 이미지를 생성할 지 지정
+  ```
+
+  ```
+  RUN apt-get update &&\
+    apt-get -qq -y install git curl build-essential apache2 php5 libapache2-mod-php5 rcs
+  ```
+
+  ```
+  RUN은 직접 명령어를 실행하는 지시자. RUN 바로 뒤에 명령어 실행
+  위의 두 줄은 모니위키 실행을 위한 우분투 패키지들을 설치하는 명령어.
+  RUN 명령어를 두 개로 명령어를 하나씩 실행해도 무방
+  Dockerfile의 한 줄 한 줄은 레이어라는 형태로 저장되기 때문에 RUN을 줄이면 레이어가 줄어들고,
+  캐시도 효율적으로 관리할 수 있다. 여기서 &&은 여러 명령어를 이어서 실행하기 위한 연산자이고,
+  \은 명령어를 여러줄에 작성하기 위한 문자이다.
+  ```
+
+  ```
+  WORKDIR /tmp 
+  이후에 실행되는 모든 작업의 실행 디렉터리를 변경. 매번 실행 위치가 초기화되기 때문에
+  ```
+
+  ```
+  RUN \
+    curl -L -O https://github.com/wkpark/moniwiki/archive/v1.2.5p1.tar.gz &&\
+    tar xf /tmp/v1.2.5p1.tar.gz &&\
+    mv moniwiki-1.2.5p1 /var/www/html/moniwiki &&\
+    chown -R www-data:www-data /var/www/html/moniwiki &&\
+    chmod 777 /var/www/html/moniwiki/data/ /var/www/html/moniwiki/ &&\
+    chmod +x /var/www/html/moniwiki/secure.sh &&\
+    /var/www/html/moniwiki/secure.sh
+  RUN a2enmod rewrite
+  ```
+
+  ```
+  모니위키 설치. 여기서는 깃허브 저장소에 릴리스되어 있는 모니위키를 다운로드 받아 아파치2로 동작하도록 셋업한다.
+  첫 번째 RUN은 모니위키를 셋업하는 내용이다. 여기서도 RUN 하나에 여러 명령어들을 &&로 연결해주었다.
+  PHP 코드의 압축을 풀고, 아파치가 접근하는 디렉터리로 복사하고 접근 권한을 설정한다.
+  두 번째 RUN은 아파치2의 모듈을 활성화하는 내용이다.
+  ```
+
+  ```
+  ENV APACHE_RUN_USER www-data
+  ENV APACHE_RUN_GROUP www-data
+  ENV APACHE_LOG_DIR /var/log/apache2
+  ENV는 컨테이너 실행 환경에 적용되는 환경변수의 기본값을 지정하는 지시자이다.
+  ```
+
+  ```
+  EXPOSE 80
+  CMD bash -c "source /etc/apache2/envvars && /usr/sbin/apache2 -D FOREGROUND"
+  ```
+
+  ```
+  EXPOSE는 가상머신에 오픈할 포트를 지정해준다.
+  마지막 줄의 CMD에는 컨테이너에서 실행될 명령어를 지정해준다.
+  이 글의 앞선 예에서는 docker run을 통해서 bash를 실행했지만,
+  여기서는 아파치 서버를 FOREGROUND에 실행한다. 이 명령어는 기본값이고 컨테이너 실행 시에 덮어쓸 수 있다.
+  ```
+
+- Dockerfile 빌드하기
+
+  ```
+  $ docker build -t nacyot/moniwiki:latest .
+  Successfully built 6f8bf08497a9
+  Successfully tagged nacyou/moniwiki:latest
+  ```
+
+- 모니위키 실행
+
+  ```
+  $ docker run -d -p 9999:80 nacyot/moniwiki:latest
+  9256077a12b69648d549f7f58ecb65f47166af4be9eeb49a5f756b007e7b51cb
+  ```
+
+  ```
+  -d 플래그는 -i의 반대 역할을 하는 옵션으로, 컨테이너를 백그라운드에서 실행한다.
+  -p는 포트포워딩을 지정하는 옵션이다. :을 경계로 앞에는 외부 포트, 뒤에는 컨테이너 내부 포트를 지정한다.
+  참고로 컨테이너 안에서 아파치가 80포트로 실행된다.
+  따라서 여기서는 9999로 들어오는 연결을 컨테이너에서 실행된 서버의 80포트로 보낸다.
+  ```
+
+- 로컬 머신의 9999 포트에 접근해 모니위키 서버가 잘 실행중인지 확인
+
+  ```
+  http://127.0.0.1:9999/moniwiki/monisetup.php
+  ```
+
+  ![1](https://user-images.githubusercontent.com/87686562/151130473-916764e8-0ae9-4606-900d-5d2b0e010363.PNG)
+
+  
