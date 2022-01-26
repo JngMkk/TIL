@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="resources/js/jquery-3.6.0.min.js"></script>
+    <script>
+        $(function(){
+            $("#signal").submit(function(){
+                if($(".infobox").val() == null || $(".infobox").val() == ""){
+                    $(".error").show()
+                    return false
+                }
+            })
+        })
+    </script>
+</head>
+<body>
+    
+    <form id="signal">
+        <div>
+            <span class="label">User ID</span>
+            <input type="text" class="infobox" name="userid">
+            <span class="error" hidden="" style="color:red">반드시 입력하세요</span>
+        </div>
+        <input type="submit" class="submit" value="입력">
+    </form>
+
+</body>
+</html>

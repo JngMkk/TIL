@@ -5,6 +5,50 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("div:eq(0)").css({"border":"1px solid red", "width":"400px", "height":"200px"})
+            $("view").css({"border":"1px solid red", "width":"400px", "height":"100px"})
+        })
+
+        function selector01(){
+            $("span").css("color", "red")
+            $("#view").text("$('span').css('color','red')")
+        }
+        function selector02(){
+            $("#t1").css("color", "green")
+            $("#view").text('$("t1").css("color", "green")')
+        }
+        function selector03(){
+            $(".t2").css("color", "violet")
+            $("#view").text('$(".t2").css("color", "violet")')
+        }
+        function selector04(){
+            $("li span").css("background-color", "blue")
+            $("#view").text('$("li span").css("background-color", "blue")')
+        }
+        function selector05(){
+            $("li > span").css("color", "yellow")
+            $("#view").text('$("li > span").css("color", "yellow")')
+        }
+        function selector06(){
+            $("li:nth-child(6)").css("color", "aqua")
+            $("#view").text('$("li:nth-child(6)").css("color", "aqua")')
+        }
+        function selector07(){
+            $("li:first-child").css("color", "yellowgreen")
+            $("#view").text('$("li:first-child").css("color", "yellowgreen")')
+        }
+        function selector08(){
+            $("li:last-child").css("color", "orange")
+            $("#view").text('$("li:last-child").css("color", "orange")')
+        }
+        function cls(){
+            $("*").css({"color":"", "background-color":""})
+            $("#view").text('')
+        }
+    </script>
 </head>
 <body>
     
@@ -22,6 +66,22 @@
             <li>:last-child로 선택</li>
         </ul>
     </div>
+    <br>
+    <div>
+        <button onclick="selector01()">태그 선택(span)</button>
+        <button onclick="selector02()">id 선택(t1)</button>
+        <button onclick="selector03()">class 선택(t2)</button>
+        <button onclick="selector04()">p c 선택</button>
+        <button onclick="selector05()">p &gt; c 선택</button>
+        <button onclick="selector06()">nth-child 선택</button>
+        <button onclick="selector07()">first-child 선택</button>
+        <button onclick="selector08()">last-child 선택</button>
+        <br>
+        <button onclick="cls()">reset</button>
+    </div>
+
+    <h2>코드 내용</h2>
+    <div id="view"></div>
 
 </body>
 </html>
