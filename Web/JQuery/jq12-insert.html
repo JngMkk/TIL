@@ -21,10 +21,10 @@
         $(function(){
             var cnt = 0
             $("button:eq(0)").click(function(){
-                $("div").prepend($("<p>")).addClass("prepend").text("prepend")
+                $("div").prepend($("<p>").addClass("prepend").text("prepend"))
             })
             $("button:eq(1)").click(function(){ 
-                $("div").append($("<p>")).addClass("append").text("append")
+                $("div").append($("<p>").addClass("append").text("append"))
             })
             $("button:eq(2)").click(function(){
                 $("div").html("<b>html change</b>")

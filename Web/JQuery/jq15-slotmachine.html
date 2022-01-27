@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img{
+            width: 150px;
+            height: 150px;
+            float: left;
+        }
+        #menubox{
+            position: relative;
+        }
+        #menu{
+            overflow: auto;
+        }
+        .sel{
+            width: 140px;
+            height: 140px;
+            border: 5px dotted red;
+            position: absolute;
+            left: 300px;
+        }
+        button{
+            width: 150px;
+            height: 50px;
+            margin-left: 300px;
+        }
+    </style>
+    <script src="resources/js/jquery-3.6.0.min.js"></script>
+    <script>
+        $(function(){
+            setInterval(function(){
+                var div = $("#menu")
+                $(".active").first().appendTo(div)
+            }, 100)
+            $("button").click(function(){
+                $("img").toggleClass("active")
+                if($("button").text() == "start"){
+                    $("button").text("stop")
+                }else{
+                    $("button").text("start")
+                }
+            })
+        })
+    </script>
+</head>
+<body>
+    
+    <h1>Slotmachine</h1>
+
+    <div id="menubox">
+        <div class="sel"></div>
+        <div id="menu">
+            <img src="resources/images/img1.jpeg" alt="img1">
+            <img src="resources/images/img2.jpeg" alt="img2">
+            <img src="resources/images/img3.jpeg" alt="img3">
+            <img src="resources/images/img4.jpg" alt="img4">
+        </div>
+        <button>start</button>
+    </div>
+
+</body>
+</html>

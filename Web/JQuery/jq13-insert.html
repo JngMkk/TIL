@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{border: 1px solid red}
+    </style>
+    <script src="resources/js/jquery-3.6.0.min.js"></script>
+    <script>
+        $(function(){
+            $("button:eq(0)").click(function(){
+                $("#base").after("<div>new element(after)</div>")
+            })
+            $("button:eq(1)").click(function(){
+                $("<div>new element(insertAfter)</div>").insertAfter("#base")
+            })
+            $("button:eq(2)").click(function(){
+                $("#base").before("<div>new element(before)</div>")
+            })
+            $("button:eq(3)").click(function(){
+                $("<div>new element(insertBefore)</div>").insertBefore("#base")
+            })
+        })
+
+    </script>
+</head>
+<body>
+    
+    <button>after()</button>
+    <button>insertAfter()</button>
+    <button>before()</button>
+    <button>insertBefore()</button>
+
+    <div id="base">
+        <p>insert</p>
+    </div>
+
+</body>
+</html>
