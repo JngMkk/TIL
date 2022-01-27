@@ -449,4 +449,54 @@
   dr--r--r-- : 읽기 권한만 가짐.
   ```
 
+- alias
+
+  ```
+  명령 또는 명령 조합에 이름을 지정하는 데 사용됨.
+  시스템 재부팅 후 초기화됨.
+  홈디렉터리에 있는 .bashrc 또는 .bash_aliases 파일에 직접 등록해서 바꾸는 방법도 있음
+  alias만 입력하면 등록된 별칭을 모두 보여줌
+  
+  alias [-p] [name[=value]...]
+  ex) $ alias mv=move
+  
+  unalias [alias name]
+  별칭 삭제
+  ```
+
+- cat
+
+  ```
+  concatenate.
+  파일에서 데이터를 읽고 그 내용을 터미널 창에 출력.
+  
+  cat [file1] [file2] ...
+  입력받은 파일들의 내용을 연결하고 출력
+  
+  cat -n [file name]
+  줄 번호와 함께 파일 내용 출력
+  
+  cat > [newfilename]
+  새 파일을 만드는 데 사용
+  내용 입력 후 ctrl+d로 저장
+  
+  cat [source_file]>[destination_file]
+  한 파일의 내용을 다른 파일로 복사하는 데 사용.
+  대상 파일의 내용을 원본 파일의 내용으로 바꿈
+  
+  cat >> [file]
+  내용 입력 후 ctrl+d로 저장
+  > 기호는 기존에 있는 파일 내용을 지우고 저장
+  >> 기호는 사용하던 기존 파일 내용 뒤에 연속해서 기록
+  
+  cat [file1]>>[file2]
+  file1의 내용을 file2의 내용 끝에 추가
+  
+  tac [file name]
+  파일의 내용을 역순으로 출력
+  
+  cat -E [file name]
+  줄 끝을 강조 표시하는 데 사용
+  ```
+
   
