@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            border: 2px solid red;
+            width: 200px;
+            padding: 10px 10px;
+        }
+        p{
+            background-color: yellow;
+        }
+        h1{
+            border: 1px solid blue;
+        }
+    </style>
+    <script src="resources/js/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("p:eq(0)").click(function(){
+                $(this).remove()
+            })
+            $("p:eq(1)").click(function(){
+                var elem = $(this).detach()
+                $("h1").append(elem)
+            })
+            $("p:eq(2)").click(function(){
+                $(this).parent().empty()
+            })
+        })
+    </script>
+</head>
+<body>
+    
+    <h1>Delete element</h1>
+
+    <div>
+        <p>remove()</p>
+        <p>detach()</p>
+        <p>empty()</p>
+    </div>
+
+</body>
+</html>

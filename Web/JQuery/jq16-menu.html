@@ -25,6 +25,8 @@
                 })
                 $(this).wrap($box)
             })
+            $("a").wrapInner("<span></span>")
+            $("pre").wrapAll("<b></b>")
         })
     </script>
 </head>
@@ -46,5 +48,10 @@
             <a href="#">과정후기</a>
         </div>
     </div>
+
+    <pre>1</pre>
+    <pre>2</pre>
+    <pre>3</pre>
+
 </body>
 </html>
