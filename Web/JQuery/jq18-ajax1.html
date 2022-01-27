@@ -28,7 +28,15 @@
                         dataType:"xml",                 // 전송받을 데이터의 타입(xml, json, html, script, ...)
                         //data:{"key":value}.           // 전송할 데이터
                         success:function(data){         // 성공했을 때
-                            alert(data)
+                            // alert(data)
+                            var empInfo = $(data).find("EMPLOYEE_ID:contains("+id+")").parent()
+                            if(empInfo.is("ROW")){
+                                $("table input").each(function(i){
+                                    $(this).val($(empInfo).children().eq(i).text())
+                                })
+                            }else{
+                                alert("not exists")
+                            }
                         },
                         error:function(request,error){  // 실패했을 때
                             alert("code : "+request.status+"\n"+

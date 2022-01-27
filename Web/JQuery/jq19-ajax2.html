@@ -5,8 +5,49 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <style type="text/css">
+        *{margin:0px;padding:0px;}
+        table{width: 900px;}
+        table tr:nth-child(1){background: orange;}
+        fieldset{width: 400px;}
+        body {width: 1000px; margin: 50px auto;}
+    </style>
+    
+    <script type="text/javascript" src="resources/js/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="resources/js/create-table.js"></script>
+    
+    <script type="text/javascript">
+    
+        $(function(){
+            $("#emp_search").click(function(){
+                
+                $.ajax({
+                    url:"emplist.xml",
+                    dataType:"xml",
+                    success:function(data){
+                        var empRowList=$(data).find("ROW");
+                        $("body").append(makeTable(empRowList));
+                    },
+                    error:function(){
+                        alert("통신 실패");	
+                    }
+                });
+                
+            });
+        });
+    
+    </script>
+    
 </head>
 <body>
     
+	<h1>데이터 가져오기</h1>
+
+	<fieldset>
+		<legend>사원 전체 조회</legend>
+		<input type="button" value="조회" id="emp_search"/>
+	</fieldset>
+
 </body>
 </html>
