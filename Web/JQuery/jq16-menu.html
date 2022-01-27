@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{border: 2px solid red;}
+        #menu{background-color: yellow; text-align: right;}
+        a{text-decoration: none; font-size: 20px;}
+        #menu div{display: inline-block; margin-right: 10px;}
+    </style>
+    <script src="resources/js/jquery-3.6.0.min.js"></script>
+    <script>
+        $(function(){
+            var $box = $("<div>").addClass("box")
+            $(".sub_menu:first").wrap($box)
+
+            $(".sub_menu").click(function(){
+                $(".sub_menu").each(function(){
+                    if($(this).parent().is(".box")){
+                        $(this).unwrap(".box")
+                    }
+                })
+                $(this).wrap($box)
+            })
+        })
+    </script>
+</head>
+<body>
+    <div id="menu">
+        <div class="sub_menu">
+            <a href="#"><span>국비지원</span></a>
+        </div>
+        <div class="sub_menu">
+            <a href="#">훈련검색</a>
+        </div>
+        <div class="sub_menu">
+            <a href="#">기관검색</a>
+        </div>
+        <div class="sub_menu">
+            <a href="#">질문답변</a>
+        </div>
+        <div class="sub_menu">
+            <a href="#">과정후기</a>
+        </div>
+    </div>
+</body>
+</html>
