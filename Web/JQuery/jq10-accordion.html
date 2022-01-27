@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .main_menu{width: 300;}
+        .sub_menu1{cursor: pointer;}
+        .sub_menu2{display: none; cursor: default;}
+    </style>
+    <script src="resources/js/jquery-3.6.0.min.js"></script>
+    <script>
+        // $(function(){
+        //     $("b").click(function(){
+        //         if($(this).next().css("display")=="none"){
+        //             $("b").next().slideUp("slow")
+        //             // $("b").not($(this)).next().slideUp("slow")
+        //             $(this).next().slideDown("slow")
+        //         }else{
+        //             $(this).next().slideUp("slow")
+        //         }
+        //     })
+        // })
+        $(function(){
+            $("b").click(function(){
+            // $(this).next().slideToggle()
+            // $(this).parent().siblings().find("ul").slideUp()
+            $(this).next().slideToggle().end().parent().siblings().find("ul").slideUp()
+            })
+        })
+    </script>
+</head>
+<body>
+    
+    <p>menu</p>
+    <ul type="square" class="main_menu">
+        <li class="sub_menu1"><b>1)css selector</b>
+            <ul type="circle" class="sub_menu2">
+                <li>tag</li>
+                <li>id</li>
+                <li>class</li>
+                <li>parent child</li>
+                <li>parent &gt; child</li>
+                <li>:nth-child</li>
+                <li>:first-child</li>
+                <li>:last-child</li>
+            </ul>
+        </li>
+        <li class="sub_menu1"><b>2)attr selector</b>
+            <ul type="circle" class="sub_menu2">
+                <li>[attr]</li>
+                <li>[attr=value]</li>
+                <li>[attr!=value]</li>
+            </ul>
+        </li>
+        <li class="sub_menu1"><b>3)form selector</b>
+            <ul type="circle" class="sub_menu2">
+                <li>input:type</li>
+            </ul>
+        </li>
+        <li class="sub_menu1"><b>4)User define</b>
+            <ul type="circle" class="sub_menu2">
+                <li>:eq</li>
+                <li>:first</li>
+                <li>:last</li>
+                <li>:even</li>
+                <li>:odd</li>
+                <li>:parent</li>
+            </ul>
+        </li>
+    </ul>
+
+</body>
+</html>
