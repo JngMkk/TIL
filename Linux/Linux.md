@@ -191,4 +191,185 @@
   다른 많은 파일로 구성된 아카이브 파일을 만드는 데 사용되거나 아카이브 파일에서 파일을 추출하는 데 사용.
   ```
 
+  ```
+  $ tar -cvf [name].tar [directory name]/
+  
+  -c : 아카이브 파일을 만드는 데 사용되는 만들기 옵션
+  -v : 아카이브 창에 추가된 파일을 터미널 창에 나열하는 옵션
+  -f : 아카이브 파일에 원하는 이름을 제공하는 데 사용. 파일 이름은 -f 옵션 바로 뒤에 와야한다.
+  위에서는 아카이브 파일이 생성되었지만 압축되지는 않음.
+  ```
+  
+  ```
+  $ tar -cvzf [name].tar.gz [directory name]/
+  
+  -z : gzip 옵션. tar가 gzip 유틸리티를 사용하여 아카이브 파일을 압축하도록 지시함.
+  	 적절한 압축과 합리적인 속도 제공.
+  	 아카이브에서 파일을 추출하려고 할 때 압축 유형을 쉽게 알 수 있도록 파일 이름 뒤에 '.gz'를 추가
+  ```
+  
+  ```
+  $ tar -cvjf [name].tar.gz2 [directory name]/
+  
+  -j : bzip2 옵션. 압축을 위해 우수한 압축 알고리즘을 사용.
+  	 더 나은 압축과 느린 속도를 제공.
+  	 아카이브에서 파일을 추출하려고 할 때 압축 유형을 쉽게 알 수 있도록 파일 이름 뒤에 '.bz2'를 추가
+  ```
+  
+  ```
+  $ tar -xvf [name].tar
+  
+  - x : 추출 옵션
+  ```
+  
+  ```
+  $ tar -xvzf [name].tar.gz
+  $ tar -xvjf [name].tar.bz2
+  
+  - 각 압축 유형에 대한 명령어
+  ```
+  
+- tail
+
+  ```
+  파일의 마지막 10줄을 등록하는 데 사용.
+  기본적으로 마지막 10줄을 표시하지만 -n 옵션으로 수를 지정할 수 있음
+  ```
+
+  ```
+  $ tail test.txt
+  HTML
+  CSS
+  JavaScript
+  JQuery
+  SQL
+  Linux
+  Docker
+  Kubernetes
+  AWS
+  Ubuntu
+  ```
+
+  ```
+  $ tail -n test.txt
+  Kubernetes
+  AWS
+  Ubuntu
+  ```
+
+- sudo
+
+  ```
+  super user do의 줄임말.
+  다른 사용자의 암호 변경 등과 같이 root 또는 super user 권한이 필요한 작업을 수행하는 데 사용.
+  ```
+
+- ps
+
+  ```
+  현재 shell에서 실행중인 프로세스를 보여줌.
+  특정 사용자에 대해 실행중인 프로세스를 보려면 -u 옵션을 사용.
+  실행중인 모든 프로세스를 표시하려면 -e 옵션 사용
+  ```
+
+  ```
+  $ ps -u [name]
+      PID TTY          TIME CMD
+     8043 ?        00:00:00 systemd
+     8044 ?        00:00:00 (sd-pam)
+     8234 ?        00:00:02 fcitx
+     9084 ?        00:00:00 code
+  	...
+  ```
+
+  ```
+  $ ps -e
+      PID TTY          TIME CMD
+        1 ?        00:00:02 systemd
+        2 ?        00:00:00 kthreadd
+        3 ?        00:00:00 rcu_gp
+        4 ?        00:00:00 rcu_par_gp
+        6 ?        00:00:00 kworker/0:0H-events_highpri
+        9 ?        00:00:00 mm_percpu_wq
+       10 ?        00:00:00 rcu_tasks_rude_
+       11 ?        00:00:00 rcu_tasks_trace
+       12 ?        00:00:00 ksoftirqd/0
+       13 ?        00:00:10 rcu_sched
+       ...
+  ```
+
+- ping
+
+  ```
+  네트워크 문제를 해결하는 데 매우 유용한 명령.
+  다른 네트워크 컴퓨터와 네트워크 연결이 있는지 확인할 수 있음.
+  대상 컴퓨터를 향해 일정 크기의 패킷을 보낸 후,
+  대상 컴퓨터가 이에 대한 응답 메세지를 보내면 이를 수신하여 대상 컴퓨터 동작 여부 혹은 네트워크 상태 파악.
+  TCP/IP 프로토콜 중에 ICMP 프로토콜을 통해 동작함.
+  ICMP 프로토콜을 지원하지 않는 기기(흔히 IP주소를 갖지 않는 일부 스위치, 허브 등)을 대상으로는 실행할 수 없음.
+  ping 명령의 출력을 중지하려면 ctrl+c
+  ```
+
+  ```
+  $ ping www.google.com
+  64 bytes from nrt12s28-in-f4.1e100.net (172.217.174.100): icmp_seq=12 ttl=56 time=32.4 ms
+  64 bytes from nrt12s28-in-f4.1e100.net (172.217.174.100): icmp_seq=13 ttl=56 time=32.9 ms
+  ^C
+  --- www.google.com ping statistics ---
+  13 packets transmitted, 13 received, 0% packet loss, time 12013ms
+  rtt min/avg/max/mdev = 32.237/33.679/34.913/0.923 ms
+  
+  ttl : Time To Live 패킷이 영원히 네트워크 상에서 돌아다니는 것을 방지하기 위해 만들어 놓은 패킷 생존값
+  ```
+
+  ```
+  Google IP 주소 172.217.174.100이 ping 요청에 응답하고 64 바이트의 패킷을 보내기 시작했음을 알 수 있음
+  ```
+
+  ```
+  $ ping -c 1 google.com
+  PING google.com (216.58.197.206) 56(84) bytes of data.
+  64 bytes from nrt13s48-in-f206.1e100.net (216.58.197.206): icmp_seq=1 ttl=56 time=35.8 ms
+  
+  --- google.com ping statistics ---
+  1 packets transmitted, 1 received, 0% packet loss, time 0ms
+  rtt min/avg/max/mdev = 35.775/35.775/35.775/0.000 ms
+  
+  -c : 전송할 요청 패킷의 횟수를 정하는 옵션
+  ```
+
+  ```
+  $ nslookup google.com
+  Server:		127.0.0.53
+  Address:	127.0.0.53#53
+  
+  Non-authoritative answer:
+  Name:	google.com
+  Address: 216.58.197.206
+  Name:	google.com
+  Address: 2404:6800:4004:801::200e
+  ```
+
+  ```
+  $ dig google.com
+  ; <<>> DiG 9.16.1-Ubuntu <<>> google.com
+  ;; global options: +cmd
+  ;; Got answer:
+  ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 11406
+  ;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+  
+  ;; OPT PSEUDOSECTION:
+  ; EDNS: version: 0, flags:; udp: 65494
+  ;; QUESTION SECTION:
+  ;google.com.			IN	A
+  
+  ;; ANSWER SECTION:
+  google.com.		59	IN	A	142.251.42.206
+  
+  ;; Query time: 3 msec
+  ;; SERVER: 127.0.0.53#53(127.0.0.53)
+  ;; WHEN: 목  1월 27 15:20:52 KST 2022
+  ;; MSG SIZE  rcvd: 55
+  ```
+
   
