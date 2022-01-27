@@ -27,3 +27,7 @@
 - [HTML](https://github.com/JngMkk/TIL/tree/main/Web/HTML)
 - [CSS](https://github.com/JngMkk/TIL/tree/main/Web/CSS)
 - [JavaScript](https://github.com/JngMkk/TIL/tree/main/Web/JavaScript)
+- [JQuery](https://github.com/JngMkk/TIL/tree/main/Web/JQuery)
+
+## Linux
+- [Linux](https://github.com/JngMkk/TIL/blob/main/Linux/Linux.md)
