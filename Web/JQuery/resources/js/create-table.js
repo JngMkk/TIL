@@ -12,7 +12,6 @@ function makeTable(elem){
 		}
 		$table.append($tr);
 	}
-	
 	//데이터 넣기
 	for(var i =0; i<elem.length;i++){
 		var $tr=$("<tr>");
@@ -26,6 +25,3 @@ function makeTable(elem){
 	//만들어진 테이블 반환
 	return $table;
 }
-
-
-
