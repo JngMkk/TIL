@@ -5,10 +5,41 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        div{border: 1px solid red;}
+        .prepend{border: 1px dotted green;}
+        .append{border: 1px dotted blue;}
+    </style>
+    <script src="resources/js/jquery-3.6.0.min.js"></script>
+    <script>
+        $(function(){
+            var cnt = 0
+            $("button:eq(0)").click(function(){
+                $("div").prepend($("<p>")).addClass("prepend").text("prepend")
+            })
+            $("button:eq(1)").click(function(){ 
+                $("div").append($("<p>")).addClass("append").text("append")
+            })
+            $("button:eq(2)").click(function(){
+                $("div").html("<b>html change</b>")
+            })
+            $("button:eq(3)").click(function(){
+                $("div").text("<b>text change</b>")
+            })
+        })
+    </script>
 </head>
 <body>
     
-    
+    <button>prepend</button>
+    <button>append</button>
+    <button>html</button>
+    <button>txt</button>
+
+    <div>
+        <p>inner insert1</p>
+        <p>inner insert2</p>
+    </div>
 
 </body>
 </html>
