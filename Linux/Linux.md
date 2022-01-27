@@ -2,6 +2,8 @@
 
 ## 기본 Linux 명령
 
+>Ubuntu 21.04 LTS
+
 - pwd
 
   ```
@@ -319,23 +321,25 @@
   13 packets transmitted, 13 received, 0% packet loss, time 12013ms
   rtt min/avg/max/mdev = 32.237/33.679/34.913/0.923 ms
   
-  ttl : Time To Live 패킷이 영원히 네트워크 상에서 돌아다니는 것을 방지하기 위해 만들어 놓은 패킷 생존값
-  ```
-
-  ```
   Google IP 주소 172.217.174.100이 ping 요청에 응답하고 64 바이트의 패킷을 보내기 시작했음을 알 수 있음
+  ttl : Time To Live 패킷이 영원히 네트워크 상에서 돌아다니는 것을 방지하기 위해 만들어 놓은 패킷 생존값
+  icmp_seq : 누락된 응답이나 패킷 손실이 없음을 알려줌.
+  time : 요청이 컴퓨터에서 Google에 도달한 다음 다시 컴퓨터로 전달되는 데 걸리는 시간.
   ```
 
   ```
-  $ ping -c 1 google.com
-  PING google.com (216.58.197.206) 56(84) bytes of data.
-  64 bytes from nrt13s48-in-f206.1e100.net (216.58.197.206): icmp_seq=1 ttl=56 time=35.8 ms
+  $ ping -c 3 -D google.com
+  PING google.com (142.250.196.110) 56(84) bytes of data.
+  [1643264839.301279] 64 bytes from nrt12s35-in-f14.1e100.net (142.250.196.110): icmp_seq=1 ttl=113 time=35.5 ms
+  [1643264840.298714] 64 bytes from nrt12s35-in-f14.1e100.net (142.250.196.110): icmp_seq=2 ttl=113 time=37.3 ms
+  [1643264841.300028] 64 bytes from nrt12s35-in-f14.1e100.net (142.250.196.110): icmp_seq=3 ttl=113 time=37.3 ms
   
   --- google.com ping statistics ---
-  1 packets transmitted, 1 received, 0% packet loss, time 0ms
-  rtt min/avg/max/mdev = 35.775/35.775/35.775/0.000 ms
+  3 packets transmitted, 3 received, 0% packet loss, time 2003ms
+  rtt min/avg/max/mdev = 35.522/36.680/37.261/0.819 ms
   
   -c : 전송할 요청 패킷의 횟수를 정하는 옵션
+  -D : 타임스탬프([1643264 ...])
   ```
 
   ```
@@ -370,6 +374,79 @@
   ;; SERVER: 127.0.0.53#53(127.0.0.53)
   ;; WHEN: 목  1월 27 15:20:52 KST 2022
   ;; MSG SIZE  rcvd: 55
+  ```
+
+  ```
+  $ host google.com
+  google.com has address 142.251.42.174
+  google.com has IPv6 address 2404:6800:4004:81d::200e
+  google.com mail is handled by 20 alt1.aspmx.l.google.com.
+  google.com mail is handled by 50 alt4.aspmx.l.google.com.
+  google.com mail is handled by 40 alt3.aspmx.l.google.com.
+  google.com mail is handled by 30 alt2.aspmx.l.google.com.
+  google.com mail is handled by 10 aspmx.l.google.com.
+  ```
+
+- passwd
+
+  ```
+  암호 변경 명령어.
+  직접 변경하는 경우 passwd 명령만 입력하면 됨.
+  다른 사용자 암호 변경인 경우 sudo passwd
+  ```
+
+- mv
+
+  ```
+  이동 명령어.
+  이 명령을 사용하면 한 디렉터리에서 다른 디렉터리로 파일과 폴더를 이동할 수 있음.
+  이 명령을 사용하여 파일의 이름을 바꿀 수도 있음
+  
+  $ mv [filename] [target directory]
+  file을 target directory로 이동
+  
+  $ mv [filename] [new_filename]
+  change name
+  
+  $ mv [filename] [target directory]/[new_filename]
+  move & change name
+  ```
+
+- mkdir
+
+  ```
+  make directory
+  mkdir [option] [directory]
+  ```
+
+  ```
+  $ mkdir -v testDir
+  mkdir: 'testDir' 디렉터리를 생성함
+  
+  -v : 생성된 디렉터리에 대한 메시지 표시
+  ```
+
+  ```
+  $ mkdir -vp test/test1
+  mkdir: 'test' 디렉터리를 생성함
+  mkdir: 'test/test1' 디렉터리를 생성함
+  
+  -p : 새로 생성된 디렉터리에 대해 부모 디렉터리가 없는 경우 부모 디렉터리를 생성하는 데 사용
+  ```
+
+  ```
+  $ mkdir -m a=rwx [directory]
+  -m : 디렉터리에 대한 권한을 설정하는 데 사용
+  
+  $ mkdir -vm a=r test2
+  mkdir: 'test2' 디렉터리를 생성함
+  
+  a=r : 디렉터리에 대해 읽기 권한만 부여함
+  
+  $ ls -l
+  dr--r--r--  2 joongmo joongmo     4096  1월 27 15:57 test2
+  
+  dr--r--r-- : 읽기 권한만 가짐.
   ```
 
   
