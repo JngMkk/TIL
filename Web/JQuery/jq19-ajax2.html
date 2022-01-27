@@ -10,8 +10,7 @@
         *{margin:0px;padding:0px;}
         table{width: 800px; margin-top: 20px;}
         table tr:nth-child(1){background: orange;}
-        legend + input{margin-left: 10px;}
-        input{margin-bottom: 5px; width: 50px;}
+        input{margin: 10px; width: 50px;}
         fieldset{width: 400px; margin-top: 10px;}
         body {width: 1000px; margin: 50px;}
     </style>
@@ -27,16 +26,16 @@
                     $("table").css("display", "")
                 }else{
                     $.ajax({
-                    url:"emplist.xml",
-                    dataType:"xml",
-                    success:function(data){
-                        var empRowList=$(data).find("ROW");
-                        $("body").append(makeTable(empRowList));
-                    },
-                    error:function(){
-                        alert("통신 실패");	
-                    }
-                });
+                        url:"emplist.xml",
+                        dataType:"xml",
+                        success:function(data){
+                            var empRowList=$(data).find("ROW");
+                            $("body").append(makeTable(empRowList));
+                            },
+                        error:function(){
+                            alert("통신 실패");	
+                            }
+                    });
                 }
             });
             $("#hide_table").click(function(){
