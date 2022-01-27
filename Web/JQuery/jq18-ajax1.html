@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{margin: 5px; padding: 0px;}
+        table{width: 400px;}
+        table tr:nth-child(odd) th{background-color: yellow;}
+        fieldset{width: 400px; margin-bottom: 20px;}
+        fieldset input{margin-bottom: 10px;}
+        body{width: 1000px; margin: 50px auto;}
+        legend{font-size: 20px;}
+    </style>
+    <script src="resources/js/jquery-3.6.0.min.js"></script>
+    <script>
+        $(function(){
+            $("#emp_search").click(function(){
+                var id = $("input[name=empid]").val()
+                if(!isNaN(id) && (id>=100) && (id<=206)){
+                    // alert(id)
+                    $.ajax({
+                        url:"emplist.xml",              // 통신할 경로(주소)
+                        method:"get",                   // 전송 방식(get(default)/post)
+                        async:true,                     // 비동기(default)/동기
+                        dataType:"xml",                 // 전송받을 데이터의 타입(xml, json, html, script, ...)
+                        //data:{"key":value}.           // 전송할 데이터
+                        success:function(data){         // 성공했을 때
+                            alert(data)
+                        },
+                        error:function(request,error){  // 실패했을 때
+                            alert("code : "+request.status+"\n"+
+                                "message : "+request.responseText+"\n"+
+                                "error : "+error)
+                        }
+                    })
+                }else{
+                    alert("retry")
+                }
+            })
+        })
+    </script>
+</head>
+<body>
+    
+    <h1>pull data</h1>
+    <fieldset>
+        <legend>search empinfo</legend>
+        <input type="text" name="empid">
+        <input type="button" id="emp_search" value="search">
+    </fieldset>
+    <table>
+        <tr>
+            <th>Employee ID</th>
+            <td><input type="text" name="empnum"></td>
+        </tr>
+        <tr>
+            <th>N A M E</th>
+            <td><input type="text" name="lastname"></td>
+        </tr>
+        <tr>
+            <th>E M A I L</th>
+            <td><input type="text" name="email"></td>
+        </tr>
+        <tr>
+            <th>Phone Number</th>
+            <td><input type="text" name="phone"></td>
+        </tr>
+        <tr>
+            <th>Hire Date</th>
+            <td><input type="text" name="hiredate"></td>
+        </tr>
+    </table>
+
+</body>
+</html>

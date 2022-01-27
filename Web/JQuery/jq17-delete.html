@@ -25,8 +25,9 @@
                 $(this).remove()
             })
             $("p:eq(1)").click(function(){
-                var elem = $(this).detach()
-                $("h1").append(elem)
+                // var elem = $(this).detach()
+                // $("h1").append(elem)
+                $(this).detach().appendTo("h1")
             })
             $("p:eq(2)").click(function(){
                 $(this).parent().empty()
