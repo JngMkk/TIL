@@ -1,0 +1,237 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>화이팅!</title>
+
+<style type="text/css">
+
+	.box{
+		width: 150px;
+		height: 150px;
+		border: 1px solid pink;
+		padding: 20px;
+	}
+	.bgSpan{
+		width: 20px;
+		height: 20px;
+		background: yellow;
+	}
+	
+	.bgBox{
+		width: 30px;
+		height: 20px;
+		background: pink;
+		margin:20px;
+		float: left;
+	}
+
+	#cellTable{
+		border-collapse: collapse;
+	}
+	#cellTable tr,#cellTable td{
+		padding: 30px;
+		text-align: center;
+	}
+
+</style>
+
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
+
+<script>
+
+	$(function(){
+		$("button").eq(0).click(function(){
+			$(this).siblings("div").children().append("DEF")
+		})
+		$("button").eq(1).click(function(){
+			$(this).siblings("div").find("span").eq(1).css("background-color", "skyblue")
+		})
+		$("button").eq(2).click(function(){
+			$(this).siblings("div").children().each(function(){
+				$(this).prop("checked", false)
+			})
+		})
+		$("button").eq(3).click(function(){
+			$(this).siblings("select").children().eq(1).prop("selected",true)
+		})
+		$("button").eq(4).click(function(){
+			$(this).siblings("select").children(":nth-child(even)").css("background-color", "yellow")
+		})
+		$("button").eq(5).click(function(){
+			$(this).siblings("div").children().each(function(){
+				if($(this).children().length){
+					$(this).remove()
+				}
+			})
+		})
+		$("button").eq(6).click(function(){
+			$(this).siblings("table").find("tr").eq(0).detach().appendTo($(this).siblings("table"))
+		})
+		$("button").eq(7).click(function(){
+			$(this).parent().find("td").each(function(){
+				if(parseInt($(this).text()) > 10){
+					$(this).css("background-color", "yellow")
+				}
+			})
+		})
+		$("button").eq(8).click(function(){
+			$(this).siblings("div").children().each(function(){
+				if($(this).text() == "bold"){
+					$(this).wrap($("<b>"))
+				}
+			})
+		})
+		$("button").eq(9).click(function(){
+			$("#lastQuestion").attr("readonly", "readonly").css("color", "red")
+		})	
+	})
+
+</script>
+
+</head>
+<body>
+	<h1>주의사항</h1>
+	<h2>1. jQuery를 사용해 주세요.</h2>
+	
+
+	<!--------------------------------------------------------------------------------------------------------->
+	<fieldset>
+		<legend>문제 1</legend>
+		<h3>div 안의 "ABC"를 "ABCDEF"로 변경해 주세요.</h3>
+		<div class="box">
+			<span class="bgSpan">ABC</span>
+		</div>
+		<br/>
+		<button>버튼</button>
+	</fieldset>
+	
+	<!--------------------------------------------------------------------------------------------------------->
+	<fieldset>
+		<legend>문제 2</legend>
+		<h3>div 안의 span 중 두번째 span의 배경색을 skyblue로 변경해 주세요.</h3>
+		<div class="box">
+			<span class="bgSpan">1st</span><br/><br/>
+			<span class="bgSpan">2nd</span><br/><br/>
+			<span class="bgSpan">3rd</span><br/><br/>
+		</div>
+		<br/>
+		<button>버튼</button>
+	</fieldset>
+	
+	<!--------------------------------------------------------------------------------------------------------->
+	<fieldset>
+		<legend>문제 3</legend>
+		<h3>모든 체크박스가 한번에 해제되게 해주세요.</h3>
+		<div id="allChk">
+			<input type="checkbox" value="1" checked="checked"/>uncheck!<br/>
+			<input type="checkbox" value="2" checked="checked"/>uncheck!<br/>
+			<input type="checkbox" value="3" checked="checked"/>uncheck!<br/>
+			<input type="checkbox" value="4" checked="checked"/>uncheck!<br/>
+		</div>
+		<br/>
+		<button>버튼</button>
+	</fieldset>
+	
+	<!--------------------------------------------------------------------------------------------------------->
+	<fieldset>
+		<legend>문제 4</legend>
+		<h3>다음 옵션 중, 두번째 옵션을 선택해 주세요.</h3>
+		<select multiple="multiple">
+			<option>1st</option>
+			<option>2nd</option>
+			<option>3rd</option>
+		</select>
+		<br/>
+		<button>버튼</button>
+	</fieldset>
+	
+	<!--------------------------------------------------------------------------------------------------------->
+	<fieldset>
+		<legend>문제 5</legend>
+		<h3>다음 옵션 중, 짝수번째 옵션에 배경색을 yellow로 넣어주세요.</h3>
+		<select multiple="multiple">
+			<option>option1(odd)</option>
+			<option>option2(even)</option>
+			<option>option3(odd)</option>
+			<option>option4(even)</option>
+		</select>
+		<br/>
+		<button>버튼</button>
+	</fieldset>
+	
+	<!--------------------------------------------------------------------------------------------------------->
+	<fieldset>
+		<legend>문제 6</legend>
+		<h3>다음 div 태그 중, 자식노드가 있는 div를 삭제해 주세요.</h3>
+		<div class="box" id="isChild">
+			<div class="bgBox"><span>1</span></div>
+			<div class="bgBox"></div><br/>
+			<div class="bgBox"></div>
+			<div class="bgBox"><span>4</span></div><br/>
+		</div>
+		<button>버튼</button>
+	</fieldset>
+	
+	<!--------------------------------------------------------------------------------------------------------->
+	<fieldset>
+		<legend>문제 7</legend>
+		<h3>table의 row1(첫번째 tr)과 row2(두번째 tr) 의 위치를 바꿔주세요.</h3>
+		<table border="1">
+			<tr>
+				<td>ROW1</td>
+				<td>아래로!</td>
+			</tr>
+			<tr>
+				<td>ROW2</td>
+				<td>위로!</td>
+			</tr>
+		</table>
+		<br/>
+		<button>버튼</button>
+	</fieldset>
+	
+	<!--------------------------------------------------------------------------------------------------------->
+	<fieldset>
+		<legend>문제 8</legend>
+		<h3>Cell안에 있는 숫자가 10보다 클 때, 배경색을 yellow로 넣어주세요.</h3>
+		<table id="cellTable" border="1">
+			<tr>
+				<td>15</td><td>24</td><td>9</td>
+			</tr>
+			<tr>
+				<td>4</td><td>78</td><td>2</td>
+			</tr>
+			<tr>
+				<td>7</td><td>51</td><td>63</td>
+			</tr>
+		</table>
+		<br/>
+		<button>버튼</button>
+	</fieldset>
+	
+	<!--------------------------------------------------------------------------------------------------------->
+	<fieldset>
+		<legend>문제 9</legend>
+		<h3>"bold" 라는 텍스트가 포함되어 있는 엘리먼트의 텍스트에 bold효과를 적용해주세요.</h3>
+		<div class="box">
+			<span>bold</span><br/>
+			<span>strike</span><br/>
+			<span>blink</span>
+		</div>
+		<br/>
+		<button>버튼</button>
+	</fieldset>
+	
+	<!--------------------------------------------------------------------------------------------------------->
+	<fieldset>
+		<legend>문제 10</legend>
+		<h3>input 태그의 내용을 읽기전용으로 바꾸고, 폰트 색을 red로 적용해주세요.</h3>
+		<input type="text" value="읽기전용으로 바꿔주세요." id="lastQuestion"/>
+		<br/>
+		<button>버튼</button>
+	</fieldset>
+
+</body>
+</html>
