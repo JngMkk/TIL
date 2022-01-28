@@ -15,7 +15,7 @@
 	}
 	function answer02(){
 		var names = document.getElementById("nameList").textContent
-		var inp = document.getElementsByTagName("input")[0].value
+		var inp = document.getElementsByTagName("input")[1].value
 		if(names.indexOf(inp) == -1){
 			alert("not exists")
 		}else{
@@ -26,13 +26,8 @@
 		var rdos = document.getElementsByName("rdo")
 		for(i=0;i<rdos.length;i++){
 			if(rdos[i].checked){
-				if(i==0){
-					window.open("http://www.naver.com")
-				}else if(i==1){
-					window.open("http://google.com")
-				}else{
-					window.open("http://w3schools.com")
-				}
+				url = "http://www." + rdos[i].value + ".com"
+				open(url)
 			}
 		}
 	}
@@ -45,6 +40,43 @@
 	function answer05(){
 		var num = Math.floor(Math.random() * 20 + 1)
 		document.getElementById("randomInput").value = num
+	}
+	function answer06(){
+		var options = document.getElementById("locationSelect")
+		var url = ""
+		for(i=0;i<options.length;i++){
+			if(options[i].selected){
+				url = options[i].value
+			}
+		}
+		location.href="http://www." + url + ".com"
+	}
+	function answer07(){
+		var arr = document.getElementById("numVal").innerHTML.split(",")
+		alert(arr.sort(function(a, b){return a - b}))
+	}
+	function answer08(){
+
+	}
+	function answer09(){
+		var doc = document.forms[0]
+		var vals = [doc.name.value, doc.age.value, doc.gender.value]
+		var tbody = document.getElementById("createTable")
+		var tr = document.createElement("tr")
+		for(i=0; i<arr.length; i++){
+			var td = document.createElement("td")
+			td.textContent = arr[i]
+			tr.append(td)
+		}
+		tbody.append(tr)
+	}
+	function answer10(){
+		var dan = document.getElementById("gugudan").value
+		var arr = new Array()
+		for(i=1;i<10;i++){
+			arr[i] = dan + " * " + i + " = " + (dan*i)
+		}
+		alert((dan + " -> " + arr).replaceAll(",", " "))
 	}
 
 </script>

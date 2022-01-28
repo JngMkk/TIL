@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img{
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            left: 200px;
+            top: 100px;
+        }
+        p{
+            width: 100px;
+            border: 1px solid red;
+            position: absolute;
+            left: 10px;
+            display: none;
+        }
+    </style>
+    <script src="resources/js/jquery-3.6.0.min.js"></script>
+    <script>
+        $(function(){
+            $("b").click(function(){
+                $("p").toggle()
+                $("p").each(function(i){
+                    $(this).animate({
+                        "top" : 50*(i+1)+"px"
+                    }, 1000)
+                })
+            })
+            $("p").on("click", function(){
+                var elem=$(this)
+                elem.css("background", "hotpink")
+                elem.siblings("p").css("background-color", "")
+                if(elem.is("p:contains(hide)")){
+                    $("img").hide()
+                }
+                if(elem.is("p:contains(show)")){
+                    $("img").show()
+                }
+                if(elem.is("p:contains(toggle)")){
+                    $("img").toggle()
+                }
+                if(elem.is("p:contains(slideUp)")){
+                    $("img").slideUp()
+                }
+                if(elem.is("p:contains(slideDown)")){
+                    $("img").slideDown()
+                }
+                if(elem.is("p:contains(slideToggle")){
+                    $("img").slideToggle()
+                }
+                if(elem.is("p:contains(fadeOut)")){
+                    $("img").fadeOut()
+                }
+                if(elem.is("p:contains(fadeIn)")){
+                    $("img").fadeIn()
+                }
+                if(elem.is("p:contains(fadeTo)")){
+                    $("img").fadeTo(4000, 0.2)
+                }
+                if(elem.is("p:contains(fadeToggle)")){
+                    $("img").fadeToggle()
+                }
+                if(elem.is("p:contains(animate)")){
+                    $("img").animate({
+                        "width":"500px",
+                        "height":"500px",
+                        "left":"600px",
+                        "top":"0px"
+                    }, 2000)
+                }
+            })
+        })    
+    </script>
+</head>
+
+<body>
+    
+    <b>Menu</b>
+    <div>
+        <p>hide()</p>
+        <p>show()</p>
+        <p>toggle()</p>
+        <p>slideUp()</p>
+        <p>slideDown()</p>
+        <p>slideToggle()</p>
+        <p>fadeOut()</p>
+        <p>fadeIn()</p>
+        <p>fadeTo()</p>
+        <p>fadeToggle()</p>
+        <p>animate()</p>
+    </div>
+    <img src="resources/images/img1.jpeg" alt="img1" id="img1">
+</body>
+</html>

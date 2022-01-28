@@ -49,17 +49,20 @@
 			$(this).siblings("div").find("span").eq(1).css("background-color", "skyblue")
 		})
 		$("button").eq(2).click(function(){
+			// $("#allchk input:checkbox").removeAttr("checked")
 			$(this).siblings("div").children().each(function(){
 				$(this).prop("checked", false)
 			})
 		})
 		$("button").eq(3).click(function(){
+			// $("select:eq(0) option").eq(1).attr("selected", "selected")
 			$(this).siblings("select").children().eq(1).prop("selected",true)
 		})
 		$("button").eq(4).click(function(){
 			$(this).siblings("select").children(":nth-child(even)").css("background-color", "yellow")
 		})
 		$("button").eq(5).click(function(){
+			// $("#isChild").children().children().parent().remove()
 			$(this).siblings("div").children().each(function(){
 				if($(this).children().length){
 					$(this).remove()
@@ -67,7 +70,7 @@
 			})
 		})
 		$("button").eq(6).click(function(){
-			$(this).siblings("table").find("tr").eq(0).detach().appendTo($(this).siblings("table"))
+			$(this).siblings("table").find("tr").eq(0).appendTo("table:eq(0)")
 		})
 		$("button").eq(7).click(function(){
 			$(this).parent().find("td").each(function(){
@@ -77,6 +80,7 @@
 			})
 		})
 		$("button").eq(8).click(function(){
+			// $("div:eq(8)").children(":contains(bold)").css("font-weight", "bold")
 			$(this).siblings("div").children().each(function(){
 				if($(this).text() == "bold"){
 					$(this).wrap($("<b>"))
@@ -84,7 +88,8 @@
 			})
 		})
 		$("button").eq(9).click(function(){
-			$("#lastQuestion").attr("readonly", "readonly").css("color", "red")
+			// $("#lastQuestion").attr("readonly", "readonly").css("color", "red")
+			$("#lastQuestion").prop("readonly", true).css("color", "red")
 		})	
 	})
 
