@@ -112,7 +112,9 @@
   
   /는 루트 디렉토리를 나타내므로 이 명령은 루트 디렉토리에 있는 모든 파일과 폴더를 표시함
   ```
-  
+
+## 기타 유용한 Linux 명령어
+
 - w
 
   ```
@@ -201,7 +203,7 @@
   -f : 아카이브 파일에 원하는 이름을 제공하는 데 사용. 파일 이름은 -f 옵션 바로 뒤에 와야한다.
   위에서는 아카이브 파일이 생성되었지만 압축되지는 않음.
   ```
-  
+
   ```
   $ tar -cvzf [name].tar.gz [directory name]/
   
@@ -209,7 +211,7 @@
   	 적절한 압축과 합리적인 속도 제공.
   	 아카이브에서 파일을 추출하려고 할 때 압축 유형을 쉽게 알 수 있도록 파일 이름 뒤에 '.gz'를 추가
   ```
-  
+
   ```
   $ tar -cvjf [name].tar.gz2 [directory name]/
   
@@ -217,20 +219,20 @@
   	 더 나은 압축과 느린 속도를 제공.
   	 아카이브에서 파일을 추출하려고 할 때 압축 유형을 쉽게 알 수 있도록 파일 이름 뒤에 '.bz2'를 추가
   ```
-  
+
   ```
   $ tar -xvf [name].tar
   
   - x : 추출 옵션
   ```
-  
+
   ```
   $ tar -xvzf [name].tar.gz
   $ tar -xvjf [name].tar.bz2
   
   - 각 압축 유형에 대한 명령어
   ```
-  
+
 - tail
 
   ```
@@ -497,6 +499,67 @@
   
   cat -E [file name]
   줄 끝을 강조 표시하는 데 사용
+  ```
+
+- chmod
+
+  ```
+  chmod [option] [mode] [file]
+  파일 또는 디렉터리에 대한 권한을 설정하는 데 사용.
+  파일이나 디렉터리에서 ls -l을 수행하면 출력이 -rwxrwxrwx와 같은 문자가 표시됨.
+  r은 읽기(read), w는 쓰기(write), x는 실행(execute)을 의미.
+  rwx대신 -가 표시되면 파일 권한이 부여되지 않았음을 의미.
+  
+  [option]
+  -v : 모든 파일에 대해 모드가 적용되는 진단(diagnostic) 메시지 출력
+  -f : 에러 메시지를 출력하지 않음
+  -c : 기존 파일 모드가 변경되는 경우만 진단(diagnostic) 메시지 출력
+  -R : 지정한 모드를 파일과 디렉토리에 대해 재귀적으로 적용
+  
+  [mode]
+  u, g, o, a : 소유자(u), 그룹(g), 그 외 사용자(o), 모든 사용자(a) 지정
+  +, -, = : 현재 모드에 권한 추가(+), 현재 모드에서 권한 제거(-), 현재 모드로 권한 지정(=)
+  r, w, x : r은 읽기(read), w는 쓰기(write), x는 실행(execute)을 의미
+  X : 디렉터리 또는 실행 권한이 있는 파일에 실행 권한 적용
+  s : 실행 시 사용자 또는 그룹 ID 지정
+  t : 공유모드에서의 제한된 삭제 플래그를 나타내는 sticky(t) bit
+  0 : 비허가
+  1 : 실행
+  2 : 쓰기
+  3 : 작성 및 실행
+  4 : 읽기
+  5 : 읽고 실행
+  6 : 읽고 쓰기
+  7 : 읽기, 쓰기 및 실행
+  나 자신에 대한 권한 - 그룹에 대한 권한 - 다른 사용자에 대한 권한
+  ```
+
+  ```
+  $ ls -l test.txt
+  -rw-rw-r-- 1 joongmo joongmo 139  1월 27 13:56 test.txt
+  
+  $ chmod -R 745 test.txt
+  $ ls -l test.txt
+  -rwxr--r-x 1 joongmo joongmo 139  1월 27 13:56 test.txt
+  
+  rwx : user read, write, execute
+  r-- : group read
+  r-x : other read, execute
+  ```
+
+- chown
+
+  ```
+  chown [option] [owner][:[group]] file/directory ...
+  파일이나 디렉터리의 소유자를 변경하는 명령어
+  
+  chown [user name] file/directory
+  
+  sudo chown [owner name]:[group name] file/directory
+  그룹 소유자를 변경하려면 sudo 명령과 함께 사용
+  
+  -R, --recursive : 하위 디렉터리까지 변경할 경우
+  -h, --no-dereference : symbolic link도 변경
   ```
 
   
