@@ -25,3 +25,5 @@ for i in range(n):
             print(stk[-1])
     else:
         continue
+
+    
