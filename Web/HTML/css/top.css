@@ -8,18 +8,20 @@
     font-weight: 400;
     src: url(https://fonts.gstatic.com/s/googlematerialicons/v99/Gw6kwdfw6UnXLJCcmafZyFRXb3BL9rvi0QZG3Q.woff2) format('woff2');
 }
-header{
+#header{
     position: fixed;
     width: 100%;
     height: 64px;
     display: flex;
-    justify-content: center;
+    align-items: center;
+    /* justify-content: center; */
+    box-sizing: border-box;
+    z-index: 999;
+    padding-left: 64px;
 }
 #header-left{
     display: flex;
-    margin-left: 32px;
     width: 50%;
-    height: 64px;
     align-items: center;
     justify-content: center;
 }
@@ -39,5 +41,45 @@ a:visited{color:inherit;}
     border: none;
     border-radius: 50%;
     background-color: transparent;
-    }
-#icon:hover{background: gray;cursor:pointer;}
+}
+#icon:hover{background: rgb(232, 234, 237);cursor:pointer;}
+#header-right{display: flex; align-items: center;}
+#searchWrap{height: 32px;width: 200px;display: flex;margin-right:12px; align-items: center;}
+#search{height: 48px;position: relative;}
+#searchIcon{
+    font-family: "Google Material Icons";
+    font-size: 24px;
+    display:inline-block;
+    top: 12px;
+    left: 24px;
+    position: absolute;
+}
+input{
+    font-size: 14px;
+    border: 1px solid rgb(218, 220, 224);
+    padding-left: 64px;
+    padding-right: 24px;
+    border-radius: 24px;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    /* transition: border 0.3s ease 0s; */
+}
+#SR{
+    display: flex;
+    align-items: center;
+}
+#login{margin-right: 16px;}
+#sib{
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    height: 36px;
+    width: fit-content;
+    display: inline-flex;
+    align-items: center;
+    padding: 0px 24px;
+    background-color: transparent;
+}
+#sib:hover{background-color: rgb(241, 243, 244);}
+span{color: rgb(32, 33, 36); font-size: 14px;line-height: 20px;font-weight: bold;}
