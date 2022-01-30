@@ -14,19 +14,18 @@
     height: 64px;
     display: flex;
     align-items: center;
-    /* justify-content: center; */
     box-sizing: border-box;
     z-index: 999;
     padding-left: 64px;
+    justify-content: space-between;
 }
 #header-left{
     display: flex;
-    width: 50%;
     align-items: center;
     justify-content: center;
 }
 #header-left:last-child:hover{cursor: pointer;background: gray;}
-.menu:not(:nth-child(1)), .menu:not(:nth-child(7)){margin-left: 20px;}
+.menu:not(:nth-child(1)){margin-left: 20px;}
 .menu:nth-child(7){margin-left: 10px;}
 a{text-decoration-line: none;}
 #logo{font-family:"Inter";font-size:30px;font-weight:bold;color:skyblue;}
@@ -47,9 +46,11 @@ a:visited{color:inherit;}
 #searchWrap{height: 32px;width: 200px;display: flex;margin-right:12px; align-items: center;}
 #search{height: 48px;position: relative;}
 #searchIcon{
-    font-family: "Google Material Icons";
+    font-family: 'Google Material Icons';
+    font-weight: normal;
+    font-style: normal;
     font-size: 24px;
-    display:inline-block;
+    color:rgb(32, 33, 36);
     top: 12px;
     left: 24px;
     position: absolute;
@@ -70,6 +71,7 @@ input{
     align-items: center;
 }
 #login{margin-right: 16px;}
+#regis{margin-right: 16px;}
 #sib{
     border: none;
     border-radius: 20px;
@@ -79,7 +81,19 @@ input{
     display: inline-flex;
     align-items: center;
     padding: 0px 24px;
-    background-color: transparent;
+    background-color: rgb(241, 243, 244)
+}
+#reb{
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    height: 36px;
+    width: fit-content;
+    display: inline-flex;
+    align-items: center;
+    padding: 0px 24px;
+    background-color: rgb(32, 33, 36);
 }
 #sib:hover{background-color: rgb(241, 243, 244);}
-span{color: rgb(32, 33, 36); font-size: 14px;line-height: 20px;font-weight: bold;}
+#sis{color: rgb(32, 33, 36); font-size: 14px;font-weight: bold;}
+#res{color: white; font-size: 14px;font-weight: bold;}
