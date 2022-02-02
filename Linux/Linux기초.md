@@ -562,4 +562,140 @@
   -h, --no-dereference : symbolic link도 변경
   ```
 
+- df(disk free)
+
+  ```
+  컴퓨터의 파일 시스템에 대한 크기, 사용된 공간, 사용 가능한 공간, 사용 비율 및 마운트된 세부 사항을 표시함.
+  -h : 사람이 읽을 수 있는 형식 (GB 및 MB)로 크기를 표시함.
+  -x : 관심이 없는 파일 시스템을 제외하는 데 사용
+  
+  파일시스템, 디스크 크기, 사용량, 여유공간, 사용률, 마운트지점 순으로 나타남
+  ```
+
+  ```
+  $ df
+  Filesystem     1K-blocks     Used Available Use% Mounted on
+  udev             8120836        0   8120836   0% /dev
+  tmpfs            1630852     2300   1628552   1% /run
+  /dev/sda3      223920820 24919916 187556680  12% /
+  tmpfs            8154248    86200   8068048   2% /dev/shm
+  tmpfs               5120        4      5116   1% /run/lock
+  tmpfs            8154248        0   8154248   0% /sys/fs/cgroup
+  /dev/loop0        113152   113152         0 100% /snap/core/12603
+  /dev/loop1         56832    56832         0 100% /snap/core18/2128
+  ...
+  ```
+
+  ```
+  $ df -h
+  Filesystem      Size  Used Avail Use% Mounted on
+  udev            7.8G     0  7.8G   0% /dev
+  tmpfs           1.6G  2.3M  1.6G   1% /run
+  /dev/sda3       214G   24G  179G  12% /
+  tmpfs           7.8G   80M  7.7G   1% /dev/shm
+  tmpfs           5.0M  4.0K  5.0M   1% /run/lock
+  tmpfs           7.8G     0  7.8G   0% /sys/fs/cgroup
+  /dev/loop0      111M  111M     0 100% /snap/core/12603
+  /dev/loop1       56M   56M     0 100% /snap/core18/2128
+  /dev/loop2       66M   66M     0 100% /snap/gtk-common-themes/1519
+  ```
+
+- du(disk usage)
+
+  ```
+  특정 디렉터리를 기준으로 디스크 사용량 확인
+  
+  -h : 사람이 읽을 수 있는 형식 (GB 및 MB)로 크기 표시
+  -s : 요약된 정보 출력(서브 디렉터리 출력 x)
+  ```
+
+  ```
+  $ du -sh /home
+  8.4G	/home
+  ```
+
+- diff / cmp / diff3 / comm
+
+  ```
+  cmp(compare) : 비교해서 단순한 결과를 보여줌
+  			   파일들의 다른 내용을 비교하여 결과를 알려줌.
+  			   cmp는 단순히 내용이 서로 다른지 확인하는 용도이며 어떻게 다른지는 확인할 수 없음
+  
+  diff(diffrences) : 두 파일 사이의 내용을 비교하는 명령어. cmp보다 직관적이고 명확하게 결과를 알려줌.
+  				   -u : unified context
+    -i, --ignore-case               ignore case differences in file contents
+    -b, --ignore-space-change       ignore changes in the amount of white space
+    -w, --ignore-all-space          ignore all white space
+    -E, --ignore-tab-expansion      ignore changes due to tab expansion
+    -B, --ignore-blank-lines        ignore changes where lines are all blank  
+    -Z, --ignore-trailing-space     ignore white space at line end
+    대소문자 차이, 탭문자 차이, 공백의 차이 등은 제외(무시)하도록 함.
+    
+    
+  diff3 : 세 파일 사이의 차이점 비교할 수 있음
+  
+  comm : 두 파일에서 공통적인 부분과 한쪽에만 있는 부분을 찾아낼 수 있음
+  	   -1 - 두 파닝릉 비교하여 첫번째 파일과 다른 두번째 파일의 내용과 공통 부분
+  	   -2 - 두번째 파일과 다른 부분의 첫번째 파일내용과 공통 부분
+  	   -3 - 두 파일의 공통된 부분 제외한 나머지 차이 부분
+  ```
+
+- find
+
+  ```
+  파일 시스템에서 파일 및 디렉터리를 검색하는 데 사용.
+  파일 이름, 디렉터리 이름, 작성 날짜, 수정 날짜, 파일 소유자, 파일 권한 등을 제공하여 찾을 수 있음.
+  검색 표현식에 와일드카드를 사용할 수도 있음.
+  
+  find [검색 시작지점] [검색 표현식] [option] [찾을 내용]
+  ```
+
+  ```
+  $ find . -name "*file*"
+  4.0K	./anaconda3/mkspecs/solaris-cc-stlport
+  4.0K	./anaconda3/mkspecs/common/qnx
+  4.0K	./anaconda3/mkspecs/common/bsd
+  4.0K	./anaconda3/mkspecs/common/winrt_winphone/manifests/10.0
+  8.0K	./anaconda3/mkspecs/common/winrt_winphone/manifests
+  4.0K	./anaconda3/mkspecs/common/winrt_winphone/assets
+  16K	./anaconda3/mkspecs/common/winrt_winphone
+  ...
+  
+  파일 이름에 문자열 'file'을 포함하는 현재 디렉터리(.)에서 모든 파일을 검색
+  ```
+
+- history
+
+  ```
+  이전에 명령 줄에서 실행한 명령을 표시 ex) history 3 : 마지막으로 실행한 3개의 명령
+  !EventNumber : 특정 명령 실행
+  ```
+
+- gzip
+
+  ```
+  파일 압축하는 데 사용됨.
+  
+  gzip [option] filename
+    -c, --stdout      write on standard output, keep original files unchanged
+    -d, --decompress  decompress
+    -f, --force       force overwrite of output file and compress links
+    -h, --help        give this help
+    -k, --keep        keep (don't delete) input files
+    -l, --list        list compressed file contents
+    -L, --license     display software license
+    -n, --no-name     do not save or restore the original name and timestamp
+    -N, --name        save or restore the original name and timestamp
+    -q, --quiet       suppress all warnings
+    -r, --recursive   operate recursively on directories
+        --rsyncable   make rsync-friendly archive
+    -S, --suffix=SUF  use suffix SUF on compressed files
+        --synchronous synchronous output (safer if system crashes, but slower)
+    -t, --test        test compressed file integrity
+    -v, --verbose     verbose mode
+    -V, --version     display version number
+    -1, --fast        compress faster
+    -9, --best        compress better
+  ```
+
   
