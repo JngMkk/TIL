@@ -7,7 +7,7 @@ $ conda create -n {name} python={version}
 $ conda activate {name}
 ```
 
-## Django
+## Django 기초
 
 ```
 $ pip install django
