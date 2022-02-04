@@ -108,4 +108,29 @@ $ pip install django
   settings.py에서 STATICFILES_DIRS 경로 지정
   ```
 
+  ![image](https://user-images.githubusercontent.com/87686562/152479189-d8fc07fb-e4de-4126-aab9-cf2ac96f6744.png)
+
+- static 사용할 때 templatesyntax error 시 {% load static %}
+
+  ```html
+  {% load static %}
+  <!DOCTYPE html>
+  <html>
+      ...
+      <link rel="stylesheet" href="{% static '...' %}">
+      <script src="{% static '...' %}"></script>
+  </html>
+  ```
+
+- db 사용할 때
+
+  ```
+  $ python manage.py migrate
+  $ sqlite3 db.sqlite3
+  ```
+
+- .table : 현재 가지고 있는 table
+
+- .exit : 나가기
+
   
