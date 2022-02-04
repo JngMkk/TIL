@@ -19,6 +19,8 @@ $ pip install django
   $ django-admin startproject {project name}
   ```
 
+  ![image](https://user-images.githubusercontent.com/87686562/152450714-556266ed-0bcb-4768-8e42-6cd3003bc98e.png)
+
 - server 요청(프로젝트 디렉터리 경로에서)
 
   ```
