@@ -1,4 +1,4 @@
-# django
+# Django
 
 ## 가상환경 만들기
 
@@ -7,7 +7,7 @@ $ conda create -n {name} python={version}
 $ conda activate {name}
 ```
 
-## Django 기초
+## Django 실습
 
 ```
 $ pip install django
