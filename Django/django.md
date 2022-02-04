@@ -84,6 +84,10 @@ $ pip install django
   {% endfor %}
   ```
 
-  
+- {% url 'Hello' %}
+
+  ```
+  name이 Hello인 것을 찾아라.
+  ```
 
   
