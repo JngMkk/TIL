@@ -35,4 +35,16 @@ $ pip install django
 
 - app이 많아지면 project의 urls.py가 무거워지므로 각 app 디렉터리에 urls.py 만들어줌
 
-- path 설정시 path함수 뒤에 , 필수
+- Server Side Rendering (SSR)
+
+  ```
+  요청이 들어오면 서버에서 그 요청에 맞는 '처리'를 한 후 document를 응답
+  ```
+
+- Client Side Rendering (CSR)
+
+  ```
+  요청이 들어오면 요청에 맞는 data를 바로 받아서 응답(Restful)
+  ```
+
+  
