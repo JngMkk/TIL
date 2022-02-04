@@ -31,7 +31,7 @@ $ sudo apt -y upgrade
   export PATH=$PATH:$SPARK_HOME/bin:$SPARK_HOME/sbin
   ```
 
-  ![Screenshot from 2022-02-04 04-17-48](/home/jngmk/Pictures/Screenshot from 2022-02-04 04-17-48.png)
+  ![Screenshot from 2022-02-04 04-17-48](https://user-images.githubusercontent.com/87686562/152450933-28e4f8cc-4f9c-479c-94c2-f7f57dd250d4.png)
 
   ```
   $ source ~/.bashrc
@@ -49,7 +49,7 @@ $ sudo apt -y upgrade
 
   - http://localhost:8080 접속
 
-    ![image-20220204042406424](/home/jngmk/.config/Typora/typora-user-images/image-20220204042406424.png)
+    ![Screenshot from 2022-02-04 04-23-58](https://user-images.githubusercontent.com/87686562/152450994-1538179c-0368-4b6f-939c-38b0ea37a4ac.png)
 
 - Start worker process
 
@@ -174,7 +174,7 @@ $ sudo apt -y upgrade
 
   - localhost:8080 접속 시
 
-    ![image-20220204054124373](/home/jngmk/.config/Typora/typora-user-images/image-20220204054124373.png)
+    ![Screenshot from 2022-02-04 05-41-19](https://user-images.githubusercontent.com/87686562/152451035-055d77be-260b-4b45-8b15-0be1ea965c18.png)
 
 - 종료
 
