@@ -90,4 +90,22 @@ $ pip install django
   name이 Hello인 것을 찾아라.
   ```
 
+- POST 방식일 때 {% csrf_token %}
+
+  ```html
+  <form action=... method="post">{% csrf_token %}
+      ...
+  </form>
+  ```
+
+  ```
+  csrf : cross-site request forgery
+  ```
+
+- static app
+
+  ```
+  settings.py에서 STATICFILES_DIRS 경로 지정
+  ```
+
   
