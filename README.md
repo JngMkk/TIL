@@ -19,7 +19,7 @@
   - [2장 이 책에서 다루는 도구와 데이터](https://github.com/JngMkk/TIL/blob/main/SQL/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D%EC%9D%84%20%EC%9C%84%ED%95%9C%20SQL%EB%A0%88%EC%8B%9C%ED%94%BC(%EB%82%98%EC%82%AC%ED%82%A4%EB%82%98%EA%B0%80%ED%86%A0)/2%EC%9E%A5%20%EC%9D%B4%20%EC%B1%85%EC%97%90%EC%84%9C%20%EB%8B%A4%EB%A3%A8%EB%8A%94%20%EB%8F%84%EA%B5%AC%EC%99%80%20%EB%8D%B0%EC%9D%B4%ED%84%B0/2%EC%9E%A5%20%EC%9D%B4%20%EC%B1%85%EC%97%90%EC%84%9C%20%EB%8B%A4%EB%A3%A8%EB%8A%94%20%EB%8F%84%EA%B5%AC%EC%99%80%20%EB%8D%B0%EC%9D%B4%ED%84%B0.md)
   - [3장 데이터 가공을 위한 SQL](https://github.com/JngMkk/TIL/tree/main/SQL/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D%EC%9D%84%20%EC%9C%84%ED%95%9C%20SQL%EB%A0%88%EC%8B%9C%ED%94%BC(%EB%82%98%EC%82%AC%ED%82%A4%EB%82%98%EA%B0%80%ED%86%A0)/3%EC%9E%A5%20%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EA%B0%80%EA%B3%B5%EC%9D%84%20%EC%9C%84%ED%95%9C%20SQL)
   - [4장 매출을 파악하기 위한 데이터 추출](https://github.com/JngMkk/TIL/tree/main/SQL/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D%EC%9D%84%20%EC%9C%84%ED%95%9C%20SQL%EB%A0%88%EC%8B%9C%ED%94%BC(%EB%82%98%EC%82%AC%ED%82%A4%EB%82%98%EA%B0%80%ED%86%A0)/4%EC%9E%A5%20%EB%A7%A4%EC%B6%9C%EC%9D%84%20%ED%8C%8C%EC%95%85%ED%95%98%EA%B8%B0%20%EC%9C%84%ED%95%9C%20%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EC%B6%94%EC%B6%9C)
-- [SparkSQL 실습 위한 Apache Spark & Zeppelin 설치](https://github.com/JngMkk/TIL/blob/main/SQL/Apache%20Spark%20%26%20Zeppelin%20%EC%84%A4%EC%B9%98.md)
+- [SparkSQL 실습용 Apache Spark & Zeppelin 설치](https://github.com/JngMkk/TIL/blob/main/SQL/Apache%20Spark%20%26%20Zeppelin%20%EC%84%A4%EC%B9%98.md)
 
 ## Git & Github
 - [Git & Github](https://github.com/JngMkk/TIL/blob/master/Git%20%26%20Github/Git%26Github.md)
