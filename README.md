@@ -35,7 +35,7 @@
 
 ## Docker & Kubernetes
 - [Docker 기초](https://github.com/JngMkk/TIL/blob/main/Docker%20%26%20Kubernetes/Docker.md)
-- [컨테이너 인프라 환경 구축을 위한 도커/쿠버네티스 정리](https://github.com/JngMkk/TIL/blob/main/Docker%20%26%20Kubernetes/Docker%20%26%20Kubernetes.md)
+- [컨테이너 인프라 환경 구축을 위한 도커/쿠버네티스 정리](https://github.com/JngMkk/TIL/tree/main/Docker%20%26%20Kubernetes/Docker_Kubernetes%EC%A0%95%EB%A6%AC)
 
 ## Django
 - [Django](https://github.com/JngMkk/TIL/tree/main/Django)
