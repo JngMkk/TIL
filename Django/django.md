@@ -33,7 +33,7 @@ $ pip install django
   $ python manage.py startapp {app name}
   ```
 
-- app이 많아지면 project의 urls.py가 무거워지므로 각 app 디렉터리에 urls.py 만들어줌
+- app이 많아지면 project directory의 urls.py가 무거워지므로 각 app directory에 urls.py 만들어줌
 
 - Server Side Rendering (SSR)
 
@@ -46,5 +46,44 @@ $ pip install django
   ```
   요청이 들어오면 요청에 맞는 data를 바로 받아서 응답(Restful)
   ```
+
+- Templates directory 만들 때
+
+  ```
+  settings.py 에서 TEMPLATES 경로 변경
+  ```
+
+  ![image](https://user-images.githubusercontent.com/87686562/152470094-3fb9baed-5129-4e60-bca2-d8cbf4969f43.png)
+
+- 작동 방식
+
+  ![image](https://user-images.githubusercontent.com/87686562/152470177-35e896d4-bd44-4ef6-86b7-84e6ad14bdef.png)
+
+  ```
+  app 만들 때마다 views.py, urls.py, templates, 루트의 urls.py 작업.
+  ```
+
+- WAS (Web Application Server) 동작
+
+- render 함수
+
+  ```python
+  from django.shortcuts import render
+  
+  def index(request):
+      return render(request, "경로")
+  
+  # render(request, "경로", [전달값])
+  ```
+
+- loop (templates engine이 처리)
+
+  ```html
+  {% for i in number %}
+  <p>{{i}}</p>
+  {% endfor %}
+  ```
+
+  
 
   
