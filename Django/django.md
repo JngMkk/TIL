@@ -133,4 +133,94 @@ $ pip install django
 
 - .exit : 나가기
 
+- project 안에 models.py 만들기
+
+  ```python
+  from django.db import models
+  
+  class classname(models.Model):
+      ...
+  ```
+
+- settings.py install_app에 project 추가
+
+  ![image](https://user-images.githubusercontent.com/87686562/152486318-6c012e06-0524-4642-870a-cf232101be4b.png)
+
+- 모델 만들기
+
+  ```
+  $ python manage.py makemigrations dbtest
+  Migrations for 'dbtest':
+    dbtest/migrations/0001_initial.py
+      - Create model MyBoard
+  ```
+
+  ![image-20220204160838416](/home/jngmk/.config/Typora/typora-user-images/image-20220204160838416.png)
+
+  ```
+  PK 지정해주지 않으면 알아서 'id'라는 PK 만듦
+  ```
+
+- 확인
+
+  ```
+  $ python manage.py sqlmigrate dbtest 0001
+  BEGIN;
+  --
+  -- Create model MyBoard
+  --
+  CREATE TABLE "dbtest_myboard" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "myname" varchar(100) NOT NULL, "mytitle" varchar(500) NOT NULL, "mycontent" varchar(2000) NOT NULL, "mydate" datetime NOT NULL);
+  COMMIT;
+  ```
+
+- Apply
+
+  ```
+  $ python manage.py migrate
+  Operations to perform:
+    Apply all migrations: admin, auth, contenttypes, dbtest, sessions
+  Running migrations:
+    Applying dbtest.0001_initial... OK
+  ```
+
+- python으로 data 삽입하기
+
+  ```
+  $ python manage.py shell
+  Python 3.9.7 (default, Sep 16 2021, 13:09:58) 
+  [GCC 7.5.0] on linux
+  Type "help", "copyright", "credits" or "license" for more information.
+  (InteractiveConsole)
+  >>> from dbtest.models import MyBoard
+  >>> from django.utils import timezone
+  >>> test = MyBoard(myname='testuser', mytitle='test title', mycontent='test 1234', mydate=timezone.now())
+  >>> type(test)
+  <class 'dbtest.models.MyBoard'>
+  >>> test.save()
+  >>> MyBoard.objects
+  <django.db.models.manager.Manager object at 0x7f75d7e08a90>
+  >>> MyBoard.objects.all()
+  <QuerySet [<MyBoard: MyBoard object (1)>]>
+  >>> exit()
+  ```
+
+- views.py 만들기
+
+  ```python
+  from django.shortcuts import render
+  from .models import MyBoard
+  
+  def index(request):
+      return render(request, 'index.html', {'list': MyBoard.objects.all()})
+  ```
+
+- app 안에 templates directory 만들었을 때
+
+  ```
+  project directory settings.py ->
+  TEMPLATES = APP_DIRS : True 면 자동으로 templates 실행.
+  ```
+
+  
+
   
