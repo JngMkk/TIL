@@ -24,5 +24,6 @@ urlpatterns = [
     path('forloop/', views.forloop),
     path('if1/', views.if1),
     path('if2/', views.if2),
-    path('href/', views.href)
+    path('href/', views.href),
+    path('request/', views.get_post),
 ]
