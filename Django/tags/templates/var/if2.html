@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    
+    {% if role == 'admin' %}
+    <h1>ADMIN PAGE</h1>
+    <a href="#">user list</a>
+    <br>
+    <a href="#">user delete</a>
+    {% elif role == 'manager' %}
+    <h1>MANAGE PAGE</h1>
+    <a href="#">user list</a>
+    {% else %}
+    <a href="#">my</a>
+    {% endif %}
+
+</body>
+</html>

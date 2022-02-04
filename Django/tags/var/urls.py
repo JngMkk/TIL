@@ -16,7 +16,13 @@ Including another URLconf
 from django.urls import path
 from . import views
 
+# {% url 'index' %} : name이 index인 것을 찾아라
 urlpatterns = [
-    path('', views.index),
+    path('', views.index, name='index'),
     path('var01/', views.variables01),
+    path('var02/', views.variables02),
+    path('forloop/', views.forloop),
+    path('if1/', views.if1),
+    path('if2/', views.if2),
+    path('href/', views.href)
 ]
