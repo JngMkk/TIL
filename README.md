@@ -32,8 +32,7 @@
 ## Linux
 - [Linux](https://github.com/JngMkk/TIL/blob/main/Linux/Linux.md)
 
-## Docker
-- [Docker](https://github.com/JngMkk/TIL/blob/main/Docker/Docker.md)
+## Docker & Kubernetes
 
 ## Django
 - [Django](https://github.com/JngMkk/TIL/tree/main/Django)
