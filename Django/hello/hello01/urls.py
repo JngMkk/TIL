@@ -19,4 +19,7 @@ from . import views
 # path 뒤에 , 필수
 urlpatterns = [
     path('', views.index),
+    # hello directory의 urls에서 이미 hello01/ 로 넘겨줬기 때문에 hello01 안붙여도 됨
+    path('test/', views.test),
+    path('my/', views.my),
 ]
