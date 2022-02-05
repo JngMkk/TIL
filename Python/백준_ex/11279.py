@@ -11,6 +11,6 @@ for _ in range(int(input())):
         if not h:
             print(0)
         else:
-            print(-heapq.heappop(h))
+            print(abs(heapq.heappop(h)))
     else:
         heapq.heappush(h, -n)
