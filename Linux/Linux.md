@@ -16,6 +16,16 @@
   /home/JngMK
   ```
 
+- nautilus
+
+  ```
+  $ nautilus .
+  현재 디렉터리 파일탐색기로 열기
+  
+  $ nautilus ~/TIL
+  지정 디렉터리 파일탐색기로 열기
+  ```
+  
 - whoami
 
   ```
@@ -728,6 +738,91 @@
   
   $ which typora
   /usr/bin/typora
+  ```
+
+- echo
+
+  ```
+  > : 덮어 씌움
+  >> : append
+  
+  $ echo "Hello, world!" > test.txt
+  
+  $ cat test.txt
+  Hello, world!
+  
+  $ echo "Bye, world!" >> test.txt
+  $ cat test.txt
+  Hello, world!
+  Bye, world!
+  ```
+
+- cp
+
+  ```
+  copy.
+  
+  cp [option] [file...] [directory]
+  
+  -p : 시간, 권한 변함 없이 원본 그대로 복사
+  -r : 디렉터리 복사
+  ```
+
+- grep
+
+  ```
+  Global regular expression print
+  
+  grep [option] pattern [file...]
+  
+  -n : 검색 결과 출력 라인 앞에 라인 번호 출력.
+  -i : 대소문자 구분 x
+  -r : recursive
+  -H : 검색 결과 출력 라인 앞에 파일 이름 표시.
+  ```
+
+  ```
+  $ grep "world" *.txt
+  Hello, world!
+  Bye, world!
+  
+  $ grep -n "world" *.txt
+  1:Hello, world!
+  2:Bye, world!
+  
+  $ grep -ni "world" *.txt
+  1:Hello, world!
+  2:Bye, world!
+  3:seeya, World!
+  
+  $ grep -nir "world" .
+  ./test.txt:1:Hello, world!
+  ./test.txt:2:Bye, world!
+  ./test.txt:3:seeya, World!
+  ./dir1/test2.txt:1:Hello World
+  ```
+
+- 환경 변수 설정 (export/env/unset)
+
+  ```
+  $ export MY_DIR="TIL"
+  
+  설정된 모든 환경변수 보기 : env
+  
+  $ env
+  SHELL=/bin/bash
+  MY_DIR=TIL
+  ...
+  PATH=/home/jngmk/anaconda3/bin:/home/jngmk/anaconda3/condabin:/home/jngmk/anaconda3/condabin:/home/jngmk/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/opt/spark/bin:/opt/spark/sbin
+  ...
+  
+  $ cd $MY_DIR
+  jngmk@ubuntu:~/TIL$ 
+  
+  $PATH로 내가 지정한 디렉터리로 이동할 수 있음
+  
+  $ unset MY_DIR
+  지정된 환경변수 삭제
   ```
 
   
