@@ -825,4 +825,14 @@
   지정된 환경변수 삭제
   ```
 
+- ssh
+
+  ```
+  ssh -p {port} user@ipaddress
+
+  $ $ ssh -p 60010 root@127.0.0.1
+  root@127.0.0.1's password: 
+  [root@m-k8s ~]# 
+  ```
+
   
