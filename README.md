@@ -31,7 +31,7 @@
 - [JQuery](https://github.com/JngMkk/TIL/tree/main/Web/JQuery)
 
 ## Linux
-- [Linux](https://github.com/JngMkk/TIL/blob/main/Linux/Linux%EA%B8%B0%EC%B4%88.md)
+- [Linux](https://github.com/JngMkk/TIL/blob/main/Linux/Linux.md)
 
 ## Docker & Kubernetes
 - [Docker 기초](https://github.com/JngMkk/TIL/blob/main/Docker%20%26%20Kubernetes/Docker.md)
