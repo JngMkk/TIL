@@ -1,8 +1,8 @@
 # Linux
 
-## 기본 Linux 명령
-
->Ubuntu 21.04 LTS
+> Ubuntu 21.04 LTS
+>
+> 실습하면서 배운 명령어 정리
 
 - pwd
 
@@ -60,8 +60,6 @@
   30 31
   ```
 
-## Linux 파일 시스템을 탐색하는 명령
-
 - ls [options] [files]
 
   ```
@@ -112,8 +110,6 @@
   
   /는 루트 디렉토리를 나타내므로 이 명령은 루트 디렉토리에 있는 모든 파일과 폴더를 표시함
   ```
-
-## 기타 유용한 Linux 명령어
 
 - w
 
@@ -662,6 +658,18 @@
   ...
   
   파일 이름에 문자열 'file'을 포함하는 현재 디렉터리(.)에서 모든 파일을 검색
+  
+  $ find . -type f -name "*.py"
+  ./anaconda3/lib/python3.9/site-packages/networkx/algorithms/chordal.py
+  ./anaconda3/lib/python3.9/site-packages/networkx/algorithms/tournament.py
+  ./anaconda3/lib/python3.9/site-packages/networkx/algorithms/clique.py
+  ./anaconda3/lib/python3.9/site-packages/networkx/algorithms/asteroidal.py
+  ...
+  
+  $ find . -type d -name "*go"
+  ./.local/kitty.app/lib/kitty/logo
+  ./anaconda3/pkgs/sphinx-4.2.0-pyhd3eb1b0_1/site-packages/sphinx/themes/agogo
+  ...
   ```
 
 - history
@@ -698,5 +706,28 @@
     -9, --best        compress better
   ```
   
+- cd -
+
+  ```
+  전에 작업한 디렉터리를 불러옴.
+  
+  $ cd -
+  /home/jngmk/TIL/Linux
+  
+  $ cd -
+  /home/jngmk
+  ```
+
+- which
+
+  ```
+  내가 지금 실행하고자 하는 프로그램이 어디에 설치되어 있는지 어디에 설정되어 있는지 경로 확인
+  
+  $ which code
+  /usr/bin/code
+  
+  $ which typora
+  /usr/bin/typora
+  ```
 
   
