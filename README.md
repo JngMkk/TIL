@@ -32,6 +32,7 @@
 
 ## Linux
 - [Linux](https://github.com/JngMkk/TIL/blob/main/Linux/Linux.md)
+- [ShellScript](https://github.com/JngMkk/TIL/tree/main/Linux/ShellScript)
 
 ## Docker & Kubernetes
 - [Docker 기초](https://github.com/JngMkk/TIL/blob/main/Docker%20%26%20Kubernetes/Docker.md)
