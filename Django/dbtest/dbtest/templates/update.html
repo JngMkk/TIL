@@ -8,29 +8,31 @@
 </head>
 <body>
     
-    <h1>Insert</h1>
+    <h1>Update</h1>
 
-    <form action="/insertres/" method="post">{% csrf_token %}
+    <form action="/updateres/" method="post">{% csrf_token %}
+        <input type="hidden" name="id" value="{{dto.id}}">
         <table border="1">
             <tr>
                 <th>작성자</th>
-                <td><input type="text" name="myname"></td>
+                <td><input type="text" name="myname" value="{{dto.myname}}" readonly></td>
             </tr>
             <tr>
                 <th>제목</th>
-                <td><input type="text" name="mytitle"></td>
+                <td><input type="text" name="mytitle" value="{{dto.mytitle}}"></td>
             </tr>
             <tr>
                 <th>내용</th>
-                <td><textarea cols="60" rows="10" name="mycontent"></textarea></td>
+                <td><textarea name="mycontent" cols="60" rows="10">{{dto.mycontent}}</textarea></td>
             </tr>
             <tr>
                 <td colspan="2" align="right">
                     <input type="button" value="취소" onclick="">
-                    <input type="submit" value="글작성">
+                    <input type="submit" value="수정">
                 </td>
             </tr>
         </table>
+
     </form>
 
 </body>
