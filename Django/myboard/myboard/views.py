@@ -46,4 +46,4 @@ def delete(request, id):
     if result_delete[0]:
         return redirect('index')
     else:
-        return redirect('/detail/' +id)
+        return redirect('/detail/' +id) 
