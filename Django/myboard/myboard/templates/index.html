@@ -8,7 +8,7 @@
 </head>
 <body>
     
-    <h1>Hello, {{request.session.myname | default: "Django"}} with MySQL</h1>
+    <h1>Hello, {{request.session.myname | default:"Django"}} with MySQL</h1>
 
     <table border="1">
         <col width="50">
@@ -30,7 +30,7 @@
                 <tr>
                     <td>{{data.id}}</td>
                     <td>{{data.myname}}</td>
-                    <td><a href="#">{{data.mytitle}}</a></td>
+                    <td><a href="{% url 'detail' data.id %}">{{data.mytitle}}</a></td>
                     <td>{{data.mydate | date:"Y-m-d"}}</td>
                 </tr>
             {% endfor %}

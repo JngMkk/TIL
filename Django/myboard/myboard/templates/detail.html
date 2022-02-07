@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1>Detail</h1>
+
+    <table border="1">
+        <tr>
+            <th></th>
+            <td><input type="text" value="{{dto.myname}}" readonly></td>
+        </tr>
+        <tr>
+            <th>제목</th>
+            <td><input type="text" value="{{dto.mytitle}}" readonly></td>
+        </tr>
+        <tr>
+            <th>내용</th>
+            <td><textarea cols="60" rows="10" readonly></textarea></td>
+        </tr>
+        <tr>
+            <td colspan="2" align="right">
+                <input type="button" value="목록" onclick="">
+                <input type="button" value="수정" onclick="location.href='/updateform/{{dto.id}}'">
+                <input type="button" value="삭제" onclick="location.href='/delete/{{dto.id}}'">
+            </td>
+        </tr>
+    </table>
+
+</body>
+</html>
