@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1>Hello, {{request.session.myname | default: "Django"}} with MySQL</h1>
+
+    <table border="1">
+        <col width="50">
+        <col width="100">
+        <col width="500">
+        <col width="100">
+        <tr>
+            <th>번호</th>
+            <th>작성자</th>
+            <th>제목</th>
+            <th>작성일</th>
+        </tr>
+        {% if not list %}
+            <tr>
+                <th colspan="4">------작성된 글이 없습니다------</th>
+            </tr>
+        {% else %}
+            {% for data in list %}
+                <tr>
+                    <td>{{data.id}}</td>
+                    <td>{{data.myname}}</td>
+                    <td><a href="#">{{data.mytitle}}</a></td>
+                    <td>{{data.mydate | date:"Y-m-d"}}</td>
+                </tr>
+            {% endfor %}
+        {% endif %}
+        <tr>
+            <td colspan="4" align="right">
+                <input type="button" value="글작성" onclick="">
+            </td>
+        </tr>
+    </table>
+
+
+</body>
+</html>
