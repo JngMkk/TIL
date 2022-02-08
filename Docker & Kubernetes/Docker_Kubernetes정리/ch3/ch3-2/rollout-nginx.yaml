@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rollout-nginx
+spec:
+  replicas: 3
+  # 셀렉터의 레이블 지정
+  selector:
+    matchLabels:
+      app: nginx
+    template:
+      # 템플릿의 레이블 지정
+      metadata:
+        labels:
+          app: nginx
+      # 템플릿에서 사용할 컨테이너 이미지 및 버전 지정
+      spec:
+        containers:
+        - name: nginx
+          image: nginx:1.15.2
