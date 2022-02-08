@@ -6,5 +6,6 @@ func main() {
 	// var num uint8 = 28000
 	var num2 uint8 = 28
 	num2 = num2 + 100
-	println(num2)
+	num3 := 3
+	println(num2, num3)
 }
