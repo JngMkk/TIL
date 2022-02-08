@@ -41,7 +41,34 @@
             </td>
         </tr>
     </table>
+    <!--추가-->
+    <!--처음으로-->
+    <a href="?page=1">처음</a>
+    <!--이전 페이지-->
+    {% if list.has_previous %}
+        <a href="?page={{list.previous_page_number}}">이전</a>
+    {% else %}
+        <a>이전</a>
+    {% endif %}
 
+    <!--페이징-->
+    {% for page_num in list.paginator.page_range %}
+        {% if page_num == list.number %}
+            <b>{{page_num}}</b>
+        {% else %}
+            <a href="?page={{page_num}}">{{page_num}}</a>
+        {% endif %}
+    {% endfor %}
+
+    <!--다음 페이지-->
+    {% if list.has_next %}
+        <a href="?page={{list.next_page_numer}}">다음</a>
+    {% else %}
+        <a>다음</a>
+    {% endif %}
+    
+    <!--끝으로-->
+    <a href="?page={{list.paginator.num_pages}}">끝</a>
 
 </body>
 </html>

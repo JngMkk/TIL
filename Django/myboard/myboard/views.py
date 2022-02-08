@@ -1,10 +1,32 @@
 import django
 from django.shortcuts import redirect, render
 from django.utils import timezone
+from django.core.paginator import Paginator
 from .models import MyBoard
 
 def index(request):
-    return render(request, 'index.html', {'list': MyBoard.objects.all().order_by('-id')})   # 내림차순
+    myboard = MyBoard.objects.all().order_by('-id')
+    paginator = Paginator(myboard, 5)
+    page_num = request.GET.get('page', 1)
+
+    # 페이지에 맞는 모델 가져오기
+    page_obj = paginator.get_page(page_num)
+
+    # 관련 메서드
+    print(type(page_obj))
+    print(page_obj.count)
+    print(page_obj.paginator.num_pages)
+    print(page_obj.paginator.page_range)
+    print(page_obj.has_next())
+    print(page_obj.has_previous())
+    try:
+        print(page_obj.next_page_number)
+        print(page_obj.previous_page_number())
+    except:
+        pass
+    print(page_obj.start_index())
+    print(page_obj.end_index())
+    return render(request, 'index.html', {'list': page_obj})
 
 def insert_form(request):
     return render(request, 'insert.html')
