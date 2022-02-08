@@ -19,7 +19,7 @@
     }
     ```
 
-- python manage.py makemigarations [project name]
+- python manage.py makemigrations [project name]
 
     ```
     /tmp/mysql.sock을 찾을 수 없다는 에러가 발생...
