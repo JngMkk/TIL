@@ -1,8 +1,10 @@
+import re
 import django
 from django.shortcuts import redirect, render
 from django.utils import timezone
-from django.core.paginator import Paginator
-from .models import MyBoard
+from django.core.paginator import Paginator                 # 페이지 번호
+from django.contrib.auth.hashers import make_password       # 암호화
+from .models import MyBoard, MyMember
 
 def index(request):
     myboard = MyBoard.objects.all().order_by('-id')         # 내림차순
@@ -69,3 +71,16 @@ def delete(request, id):
         return redirect('index')
     else:
         return redirect('/detail/' +id) 
+
+def register(request):
+    if request.method == "GET":
+        return render(request, 'register.html')
+    elif request.method == "POST":
+        myname = request.POST['myname']
+        mypw = request.POST['mypw']
+        myemail = request.POST['myemail']
+        mymember = MyMember(myname=myname, mypw=make_password(mypw), myemail=myemail)
+        mymember.save()
+
+        return redirect('/')
+    return redirect('/')

@@ -11,5 +11,6 @@ urlpatterns = [
     path('detail/<int:id>', views.detail, name='detail'),
     path('updateform/<int:id>', views.update_form, name='updateform'),
     path('updateres/', views.update_res),
-    path('delete/<int:id>', views.delete)
+    path('delete/<int:id>', views.delete),
+    path('register/', views.register),
 ]

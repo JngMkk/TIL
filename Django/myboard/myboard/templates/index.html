@@ -69,6 +69,19 @@
     
     <!--끝으로-->
     <a href="?page={{list.paginator.num_pages}}">끝</a>
+    <br>
+    <br>
+
+    <!--회원가입-->
+    <a href="/register/">회원가입</a>
+    <br>
+
+    <!--로그인-->
+    {% if not request.session.myname %}
+    <a href="login/">로그인</a>
+    {% else %}
+    <a href="logout/">로그아웃</a>
+    {% endif %}
 
 </body>
 </html>
