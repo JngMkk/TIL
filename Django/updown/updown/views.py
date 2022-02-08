@@ -18,7 +18,7 @@ def upload_process(request):
     return render(request, 'download.html', {'filename' : uploaded})
 
 def download_process(request, filename):
-    response = HttpResponse(filename)
+    response = HttpResponse(defualt_storage.open(filename).read())
     response['Content-Disposition'] = f"attachment; filename={filename}"
 
     return response
