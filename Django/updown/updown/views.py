@@ -1,7 +1,9 @@
+import mimetypes
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
+import mimetypes
 
 def index(request):
     return render(request, 'index.html')
@@ -18,7 +20,8 @@ def upload_process(request):
     return render(request, 'download.html', {'filename' : uploaded})
 
 def download_process(request, filename):
-    response = HttpResponse(defualt_storage.open(filename).read())
+    # mime_type = mimetypes.guess_type(filename)
+    response = HttpResponse(default_storage.open(filename).read())
     response['Content-Disposition'] = f"attachment; filename={filename}"
 
     return response
