@@ -155,7 +155,7 @@ $ pip install django
       - Create model MyBoard
   ```
 
-  ![image-20220204160838416](/home/jngmk/.config/Typora/typora-user-images/image-20220204160838416.png)
+  ![image-20220204160838416](https://user-images.githubusercontent.com/87686562/152939527-189c74b2-a6af-4dc5-bd21-d113ca6f2eac.png)
 
   ```
   PK 지정해주지 않으면 알아서 'id'라는 PK 만듦
