@@ -2,8 +2,8 @@ import re
 import django
 from django.shortcuts import redirect, render
 from django.utils import timezone
-from django.core.paginator import Paginator                 # 페이지 번호
-from django.contrib.auth.hashers import make_password       # 암호화
+from django.core.paginator import Paginator                                 # 페이지 번호
+from django.contrib.auth.hashers import make_password, check_password       # 암호화, 비밀번호 확인
 from .models import MyBoard, MyMember
 
 def index(request):
@@ -22,7 +22,7 @@ def index(request):
     print(page_obj.has_next())
     print(page_obj.has_previous())
     try:
-        print(page_obj.next_page_number)
+        print(page_obj.next_page_number())
         print(page_obj.previous_page_number())
     except:
         pass
@@ -83,4 +83,21 @@ def register(request):
         mymember.save()
 
         return redirect('/')
+    return redirect('/')
+
+def login(request):
+    if request.method == 'GET':
+        return render(request, 'login.html')
+    else:
+        myname = request.POST['myname']
+        mypw = request.POST['mypw']
+        mymember = MyMember.objects.get(myname=myname)
+        if check_password(mypw, mymember.mypw):
+            request.session['myname'] = mymember.myname
+            return redirect('/')
+        else:
+            return redirect('/login')
+
+def logout(request):
+    del request.session['myname']
     return redirect('/')
