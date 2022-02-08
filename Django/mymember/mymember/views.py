@@ -12,3 +12,6 @@ def register(request):
             return redirect('index')
     else:
         return render(request, 'register.html', {'form': MyMemberForm()})
+
+def result(request):
+    return render(request, 'result.html')
