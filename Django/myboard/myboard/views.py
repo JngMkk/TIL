@@ -3,7 +3,7 @@ import django
 from django.shortcuts import redirect, render
 from django.utils import timezone
 from django.core.paginator import Paginator                                 # 페이지 번호
-from django.contrib.auth.hashers import make_password, check_password       # 암호화, 비밀번호 확인
+from django.contrib.auth.hashers import make_password, check_password       # 암호화(해시테이블), 비밀번호 확인
 from .models import MyBoard, MyMember
 
 def index(request):
@@ -92,7 +92,7 @@ def login(request):
         myname = request.POST['myname']
         mypw = request.POST['mypw']
         mymember = MyMember.objects.get(myname=myname)
-        if check_password(mypw, mymember.mypw):
+        if check_password(mypw, mymember.mypw):                 # 암호화한 값이 전달된 값과 같은지
             request.session['myname'] = mymember.myname
             return redirect('/')
         else:
