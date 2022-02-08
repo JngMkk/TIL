@@ -5,9 +5,9 @@ from django.core.paginator import Paginator
 from .models import MyBoard
 
 def index(request):
-    myboard = MyBoard.objects.all().order_by('-id')
+    myboard = MyBoard.objects.all().order_by('-id')         # 내림차순
     paginator = Paginator(myboard, 5)
-    page_num = request.GET.get('page', 1)
+    page_num = request.GET.get('page', 1)                   # value값이 없으면 default 1
 
     # 페이지에 맞는 모델 가져오기
     page_obj = paginator.get_page(page_num)
