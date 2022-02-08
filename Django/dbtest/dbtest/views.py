@@ -1,5 +1,3 @@
-import re
-from unittest import result
 from django.shortcuts import render, redirect
 from django.utils import timezone
 from .models import MyBoard

@@ -1,5 +1,3 @@
-import re
-import django
 from django.shortcuts import redirect, render
 from django.utils import timezone
 from django.core.paginator import Paginator                                 # 페이지 번호
