@@ -44,3 +44,5 @@
 
 ## Go
 - [Go](https://github.com/JngMkk/TIL/tree/main/Go)
+
+## [용어정리](https://github.com/JngMkk/TIL/blob/main/TIL/TIL.md)
