@@ -11,15 +11,10 @@ driver = webdriver.Chrome(service=service)
 
 
 # 인스타그램 접속하기
-
 driver.get('https://www.instagram.com')
-
-# 정보를 로딩하는 시간 기다리기
-
 time.sleep(3)
 
 # 인스타그램 로그인하기
-
 email = input("email : ")
 input_id = driver.find_elements_by_css_selector('input._2hvTZ.pexuQ.zyHYP')[0]
 input_id.clear()
@@ -33,29 +28,17 @@ input_pw.submit()
 time.sleep(5)
 
 # 검색결과 URL 만들기 with 함수
-
 def insta_searching(word):
-    
     url = 'https://www.instagram.com/explore/tags/' + word
     return url
 
-# 검색결과 페이지 접속하기
-
-word = 'python'
-url = insta_searching(word)
-driver.get(url)
-
 # HTML에서 첫번째 게시글 찾아 클릭하기
-
 def select_first(driver):
     first = driver.find_element_by_css_selector("div._9AhH0")
     first.click()
     time.sleep(5)
-    
-select_first(driver)
 
 # 게시글 정보 가져오기
-
 def get_content(driver):
     # 1. 현재 페이지 html 정보 가져오기
     html = driver.page_source
@@ -85,39 +68,27 @@ def get_content(driver):
     data = [content, date, like, place, tags]
     return data
 
-get_content(driver)
-
 # 다음 게시글 열기
-
 def move_next(driver) :
-    right = driver.find_element(By.CLASS_NAME, 'wpO6b__')
-    webdriver.ActionChains(driver).context_click(right).perform()
+    right = driver.find_element(By.CSS_SELECTOR, 'div._l8mY4_feth3 > button')
+    right.click()
     time.sleep(3)
 
-move_next(driver)
-
-# 인스타그램 크롤링 2
-# 2. 인스타그램 검색페이지 URL만들기
-
+# 인스타그램 크롤링
 word = '잠실카페'
 url = insta_searching(word)
 
-# 3. 검색페이지 접속하기
-
 driver.get(url)
 time.sleep(10)
-
-# 4. 첫 번째 게시글 열기
 
 first = driver.find_element_by_css_selector("div._9AhH0")
 first.click()
 time.sleep(3)
 
-# 5. 비어있는 변수(results)만들기
-
+# 비어있는 변수(results)만들기
 results = [ ]
 
-# 6. 여러 게시글 수집하기
+# 여러 게시글 수집하기
 target = 500 # 크롤링할 게시글 수
 for i in range(target) :
     # 게시글 수집에 오류 발생 시 2초 대기 후, 다음 글로 넘어가게 하기

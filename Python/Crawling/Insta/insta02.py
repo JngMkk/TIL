@@ -16,3 +16,12 @@ id.send_keys(my_id)
 pw = driver.find_element(By.NAME, "password")
 pw.send_keys(my_pw)
 time.sleep(3)
+
+driver.find_element(By.CSS_SELECTOR, "#loginForm>div>div:nth-child(3)").click()
+time.sleep(10)
+
+later = driver.find_element(By.CSS_SELECTOR, 'div.cmbtv > button')
+later.click()
+
+# later2 = driver.find_element()
+# later2.click()
