@@ -9,6 +9,7 @@
 - [Statistic](https://github.com/JngMkk/TIL/tree/main/Python/Statistic)
 - [자료구조 & 알고리즘](https://github.com/JngMkk/TIL/tree/main/Python/DS%26ALGO)
 - [백준문제풀이](https://github.com/JngMkk/TIL/tree/main/Python/%EB%B0%B1%EC%A4%80_ex)
+- [Crawling](https://github.com/JngMkk/TIL/tree/main/Python/Crawling)
 
 ## SQL
 - 누구나쉽게SQL 정리
@@ -40,3 +41,6 @@
 
 ## Django
 - [Django](https://github.com/JngMkk/TIL/tree/main/Django)
+
+## Go
+- [Go](https://github.com/JngMkk/TIL/tree/main/Go)
