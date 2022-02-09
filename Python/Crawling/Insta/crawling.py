@@ -1,10 +1,14 @@
 # Instagram Crawling
-
+from bs4 import BeautifulSoup
 from selenium import webdriver
-
-driver = webdriver.Chrome('/Users/JngMK/2021KNUpython2/chromedriver')
-
+from selenium.webdriver.common.by import By
+import re
 import time
+import unicodedata
+
+service = webdriver.chrome.service.Service('/usr/local/bin/chromedriver')
+driver = webdriver.Chrome(service=service)
+
 
 # 인스타그램 접속하기
 
@@ -12,21 +16,21 @@ driver.get('https://www.instagram.com')
 
 # 정보를 로딩하는 시간 기다리기
 
-time.sleep(2)
+time.sleep(3)
 
 # 인스타그램 로그인하기
 
-email = '01071370240'
+email = input("email : ")
 input_id = driver.find_elements_by_css_selector('input._2hvTZ.pexuQ.zyHYP')[0]
 input_id.clear()
 input_id.send_keys(email)
 
-password = 'wndahek12@'
+password = input("password : ")
 input_pw = driver.find_elements_by_css_selector('input._2hvTZ.pexuQ.zyHYP')[1]
 input_pw.clear()
 input_pw.send_keys(password)
 input_pw.submit()
-time.sleep(3)
+time.sleep(5)
 
 # 검색결과 URL 만들기 with 함수
 
@@ -37,7 +41,7 @@ def insta_searching(word):
 
 # 검색결과 페이지 접속하기
 
-word = '여신'
+word = 'python'
 url = insta_searching(word)
 driver.get(url)
 
@@ -46,15 +50,11 @@ driver.get(url)
 def select_first(driver):
     first = driver.find_element_by_css_selector("div._9AhH0")
     first.click()
-    time.sleep(3)
+    time.sleep(5)
     
 select_first(driver)
 
 # 게시글 정보 가져오기
-
-import re
-from bs4 import BeautifulSoup
-import unicodedata
 
 def get_content(driver):
     # 1. 현재 페이지 html 정보 가져오기
@@ -90,50 +90,16 @@ get_content(driver)
 # 다음 게시글 열기
 
 def move_next(driver) :
-    right = driver.find_element_by_css_selector('a.coreSpriteRightPaginationArrow')
-    right.click()
+    right = driver.find_element(By.CLASS_NAME, 'wpO6b__')
+    webdriver.ActionChains(driver).context_click(right).perform()
     time.sleep(3)
 
 move_next(driver)
 
-# 인스타그램 크롤링 1
-
-from selenium import webdriver
-from bs4 import BeautifulSoup
-import time
-import re
-
-# 1. 크롬 브라우저 열기
-
-driver = webdriver.Chrome('/Users/JngMK/2021KNUpython2/chromedriver')
-
-# 인스타그램 접속하기
-
-driver.get('https://www.instagram.com')
-
-# 정보를 로딩하는 시간 기다리기
-
-time.sleep(2)
-
-# 인스타그램 로그인하기
-
-email = '01071370240'
-input_id = driver.find_elements_by_css_selector('input._2hvTZ.pexuQ.zyHYP')[0]
-input_id.clear()
-input_id.send_keys(email)
-
-password = 'wndahek12@'
-input_pw = driver.find_elements_by_css_selector('input._2hvTZ.pexuQ.zyHYP')[1]
-input_pw.clear()
-input_pw.send_keys(password)
-input_pw.submit()
-
-time.sleep(3)
-
 # 인스타그램 크롤링 2
 # 2. 인스타그램 검색페이지 URL만들기
 
-word = '대구카페'
+word = '잠실카페'
 url = insta_searching(word)
 
 # 3. 검색페이지 접속하기
@@ -170,4 +136,4 @@ print(results[:2])
 import pandas as pd
 results_df = pd.DataFrame(results)
 results_df.columns = ['content', 'data', 'like', 'place', 'tags']
-results_df.to_excel('./files/1_crawling_daegucafe_500.xlsx')
+results_df.to_excel(f'./files/1_crawling_{word}_500.xlsx')
