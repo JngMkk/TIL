@@ -46,3 +46,7 @@ res_json = json.dumps(res, ensure_ascii=False)
 # print(res_json)
 with open('./webtoons.json', 'w') as f:
     f.write(res_json)
+
+# encoding
+# with open('./webtoons.json', 'w', encoding='utf-8') as f:
+#   f.write(res_json)
