@@ -59,5 +59,5 @@ if __name__ == '__main__':
         else: lst.extend(getStore('17', ''))
     d = {'list': lst}
     data = json.dumps(d, ensure_ascii=False)
-    with open(f'./starbucks_allstores.json', 'w') as f:
+    with open(f'./starbucks2.json', 'w') as f:
         f.write(data)
