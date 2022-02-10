@@ -2,8 +2,8 @@ from bs4 import BeautifulSoup as bs
 from selenium import webdriver
 import time
 
-service = webdriver.chrome.service.Service('/usr/local/bin/chromedriver')
-driver = webdriver.Chrome(service=service)
+service = webdriver.firefox.service.Service('/home/jngmk/geckodriver')
+driver = webdriver.Firefox(service=service)
 
 def scroll() :
     last_page_height = driver.execute_script("return document.documentElement.scrollHeight")
@@ -28,4 +28,3 @@ imgs = soup.select('a.link--h3bPW > img')
 srcs = []
 for img in imgs:
     srcs.append(img)
-
