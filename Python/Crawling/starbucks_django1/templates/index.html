@@ -12,9 +12,20 @@
                 $.ajax({
                     url: "starbucks/",
                     dataType: "json",
-                    success: function(msg){
-                        // console.log(msg)
+                    success: function(data){
+                        // console.log(data)
                         // {'list' : [{}, {}, ...]}
+                        var list = data['list']
+                        var $table = $("table")
+                        var keys = Object.keys(list[0])
+                        for (var i=0;i<list.length;i++){
+                            var $tr = $("<tr>")
+                            for (var j=0;j<keys.length;j++){
+                                var $td = $("<td>").html(list[i][keys[j]])
+                                $tr.append($td)
+                            }
+                            $table.append($tr)
+                        }
                     }
                 })
             })
