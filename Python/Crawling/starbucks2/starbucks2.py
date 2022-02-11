@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
-
 import requests
 import json
+import time
 
 def getSiDo():
     url = "https://www.starbucks.co.kr/store/getSidoList.do"
@@ -51,6 +51,7 @@ def getStore(sido_code='', gugun_code=''):
     return lst
 
 if __name__ == '__main__':
+    start = time.time()
     lst = []
     for sc in getSiDo():
         if sc != '17':
@@ -61,3 +62,4 @@ if __name__ == '__main__':
     data = json.dumps(d, ensure_ascii=False)
     with open(f'./starbucks2.json', 'w') as f:
         f.write(data)
+    print("time :", time.time() - start)
