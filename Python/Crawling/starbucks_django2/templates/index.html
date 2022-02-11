@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(function(){
+            $.ajax({
+                url: 'get_sido/',
+                dataType: 'json',
+                success: function(data){
+                    dataKeys = Object.keys(data)
+                    var $sido = $("#sido")
+                    for(var i=0;i<dataKeys.length;i++){
+                        $sido.append($("<option>").val(dataKeys[i]).text(data[dataKeys[i]]))
+                    }
+                    
+                }
+            })
+            $("#sido").change(function(){
+                var sido = $(this).val()
+                if(sido=='17'){
+                    getStore('17')
+                }else{
+                    $.ajax({
+                        url: 'get_gugun/',
+                        data: {'sido_code': sido},
+                        dataType: "json",
+                        success: function(data){
+                            dataKeys = Object.keys(data)
+                            $gugun = $("<select>").prop('id', 'gugun').append($("<option>").val(0).text('구군선택'))
+                            
+                            for(var i=0;i<dataKeys.length;i++){
+                                $gugun.append($("<option>").val(dataKeys[i]).text(data[dataKeys[i]]))
+                            }
+                            if($("#gugun").length){
+                                $("#gugun").remove()
+                                $("#wrapper").append($gugun)
+                            }else{
+                                $("#wrapper").append($gugun)
+                            }
+                        }
+                    })
+                }
+            })
+            // $("#gugun").change(function(){})
+            $("#wrapper").on('change', '#gugun', function(){
+                code = $(this).val()
+                getStore(code)
+            })
+        })
+        function getStore(code){
+            $.ajax({
+                url: "get_store/",
+                data: {'code': code},
+                dataType: "json",
+                success: function(data){
+                    stores = data.store_list
+                    var $table = $("#result")
+                    var head_text = Object.keys(stores[0])
+                    var $tr = $("<tr>")
+                    for(var i=0;i<head_text.length;i++){
+                        $tr.append($("<th>").text(head_text[i]))
+                    }
+                    $table.append($tr)
+                    for(var i=0; i<stores.length; i++){
+                        var $tr = $("<tr>")
+                        var store_keys = Object.keys(stores[i])
+                        for(var j=0; j<store_keys.length; j++){
+                            $tr.append($("<td>").text(stores[i][store_keys[j]]))
+                        }
+                        $table.append($tr)
+                    }
+                }
+            })
+        }
+        
+    </script>
+</head>
+<body>
+    <h1>Starbucks</h1>
+    <div id="wrapper">
+        <select id="sido">
+            <option value="0">시도선택</option>
+        </select>
+    </div>
+    <table id="result"></table>
+</body>
+</html>
