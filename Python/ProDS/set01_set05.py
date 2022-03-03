@@ -268,17 +268,31 @@ q2_out2.pvalue.max() # 0.0007010113024729462
 # 12.345
 # =============================================================================
 
+q3=data2.copy()
+q3.columns
+# 변수 생성
+q3['Sex_cd']=np.where(q3.Sex == 'M', 0, 1)
+q3['BP_cd']=np.where(q3.BP == 'LOW', 0, 
+              np.where(q3.BP == 'NORMAL', 1, 2))
+q3['Ch_cd']=np.where(q3.Cholesterol == 'NORMAL', 0, 1)
+
+# 의사결정나무 적용 - 모델 생성
+from sklearn.tree import DecisionTreeClassifier, plot_tree, export_text
+
+var_list=['Age', 'Na_to_K', 'Sex_cd', 'BP_cd', 'Ch_cd']
+
+dt=DecisionTreeClassifier().fit(q3[var_list], q3['Drug'])
+
+# 모델 탐색, root node, 룰 시각화, 룰 텍스트 호출
+
+plot_tree(dt, feature_names=var_list,
+          class_names=list(q3['Drug'].unique()),
+          max_depth=1, fontsize=8)
 
 
+print(export_text(dt, feature_names=var_list, decimals=3))
 
-
-
-
-
-
-
-
-
+# 답: Na_to_K, 14.829
 
 
 
@@ -308,7 +322,10 @@ q2_out2.pvalue.max() # 0.0007010113024729462
 # =============================================================================
 # =============================================================================
 
+import pandas as pd
+import numpy as np
 
+data3=pd.read_csv('Dataset_03.csv')
 
 #%%
 
@@ -318,14 +335,20 @@ q2_out2.pvalue.max() # 0.0007010113024729462
 # 정의할 때, 이상치에 해당하는 데이터는 몇 개인가? (답안 예시) 10
 # =============================================================================
 
+q1=data3.copy()
 
+q1['forehead_ratio']=q1['forehead_width_cm']/q1['forehead_height_cm']
 
+xbar=q1['forehead_ratio'].mean()
+std=q1['forehead_ratio'].std()
 
+UB=xbar + 3 * std
+LB=xbar - 3 * std
 
+outlier_data=q1[(q1['forehead_ratio'] > UB) |  (q1['forehead_ratio'] < LB)]
+len(outlier_data)
 
-
-
-
+# 답: 3
 
 #%%
 
@@ -337,16 +360,19 @@ q2_out2.pvalue.max() # 0.0007010113024729462
 # - 신뢰수준 99%에서 양측 검정을 수행하고 결과는 귀무가설 기각의 경우 Y로, 그렇지
 # 않을 경우 N으로 답하시오. (답안 예시) 1.234, Y
 # =============================================================================
+q1.columns
 
+g_m=q1[q1.gender=='Male']['forehead_ratio']
+g_f=q1[q1.gender=='Female']['forehead_ratio']
 
+from scipy.stats import ttest_ind, bartlett
 
+q2_out=ttest_ind(g_m, g_f, equal_var=False)
 
+q2_out.pvalue # 0.0027186702390657176
+q2_out.pvalue < 0.01  # Y
 
-
-
-
-
-
+# 답: 
 
 
 #%%
@@ -371,17 +397,33 @@ q2_out2.pvalue.max() # 0.0007010113024729462
 # train_test_split 의 random_state = 123
 # =============================================================================
 
+# train/test 분리
+from sklearn.model_selection import train_test_split
 
+train, test=train_test_split(data3, test_size=0.3, random_state=123)
 
+# 학습
+from sklearn.linear_model import LogisticRegression
 
+var_list=data3.columns.drop('gender')
+logit=LogisticRegression(random_state=123).fit(train[var_list], train['gender'])
 
+dir(logit)
 
+# 예측
+q3_pred=logit.predict(test[var_list])
+q3_pred_pr=logit.predict_proba(test[var_list])
+np.where(q3_pred_pr[:,1] >= 0.7, 'Male', 'Female')
 
+# 성능평가
 
+from sklearn.metrics import precision_score, classification_report
 
+precision_score(test['gender'], q3_pred, pos_label='Male')
 
+# 답: 0.96
 
-
+print(classification_report(test['gender'], q3_pred))
 
 
 #%%
@@ -415,6 +457,11 @@ q2_out2.pvalue.max() # 0.0007010113024729462
 
 #%%
 
+import pandas as pd
+import numpy as np
+
+data4=pd.read_csv('Dataset_04.csv')
+
 # =============================================================================
 # 1.한국인의 1인당 육류 소비량이 해가 갈수록 증가하는 것으로 보여 상관분석을 통하여
 # 확인하려고 한다. 
@@ -423,12 +470,15 @@ q2_out2.pvalue.max() # 0.0007010113024729462
 # 상관계수를 소수점 셋째 자리에서 반올림하여 소수점 둘째 자리까지만 기술하시오. 
 # (답안 예시) 0.55
 # =============================================================================
+data4.columns
+# ['LOCATION', 'SUBJECT', 'TIME', 'Value'],
 
+q1=data4[data4.LOCATION == 'KOR']
 
+q1_out=q1.groupby('TIME')['Value'].sum().reset_index()
+q1_out.corr()['TIME']['Value']
 
-
-
-
+# 답: 0.96
 
 #%%
 
@@ -440,10 +490,30 @@ q2_out2.pvalue.max() # 0.0007010113024729462
 # 적으시오. (알파벳 순서) (답안 예시) BEEF, PIG, POULTRY, SHEEP
 # =============================================================================
 
+# 1. 한국/일본 필터링
+q2=data4[data4.LOCATION.isin(['KOR', 'JPN'])]
 
+# 2. 육류목록 추출
+sub_list=q2.SUBJECT.unique()
+# ['BEEF', 'PIG', 'POULTRY', 'SHEEP']
 
+from scipy.stats import ttest_rel
 
+# 3. 반복문 이용해서 육류 종류별 대응 t 검정
+q2_out=[]
+for i in sub_list:
+    temp=q2[q2.SUBJECT==i]
+    temp2=pd.pivot_table(temp, index='TIME', columns='LOCATION',
+                        values='Value', aggfunc='mean').dropna()
+    ttest_out=ttest_rel(temp2['KOR'], temp2['JPN'])
+    q2_out.append([i, ttest_out.pvalue])
 
+q2_out=pd.DataFrame(q2_out, columns=['sub', 'pvalue'])
+
+# 4. 두 국가 간의 연도별 소비량 차이가 없는 것으로 판단할 수 있는 육류 종류
+q2_out[q2_out.pvalue >= 0.05]['sub']
+
+# 답: POULTRY
 
 #%%
 
@@ -457,16 +527,33 @@ q2_out2.pvalue.max() # 0.0007010113024729462
 # =============================================================================
 
 
+# 1. 한국 데이터 필터링
+
+q3=data4[data4.LOCATION == 'KOR']
 
 
+# 2. 육류 종류별로 회귀 분석, 결정계수, MAPE
+sub_list=q3.SUBJECT.unique()
 
+from sklearn.linear_model import LinearRegression
 
+q3_out=[]
+for i in sub_list:
+    temp=q3[q3.SUBJECT == i]
+    lm=LinearRegression().fit(temp[['TIME']], temp['Value'])
+    r2=lm.score(temp[['TIME']], temp['Value'])
+    # MAPE = Σ ( | y - y ̂ | / y ) * 100/n
+    pred=lm.predict(temp[['TIME']])
+    mape= (abs(temp['Value'] - pred) / temp['Value']).sum() * 100 / len(temp)
+    q3_out.append([i, r2, mape])
 
+# 3. 가장 높은 결정계수를 가진 모델의
+# 학습오차 중 MAPE를 반올림하여 소수점 둘째 자리
+q3_out=pd.DataFrame(q3_out, columns=['sub', 'r2', 'mape'])
 
+q3_out.loc[q3_out.r2.idxmax(), 'mape']
 
-
-
-
+# 답: 5.78
 
 #%%
 
@@ -513,6 +600,10 @@ q2_out2.pvalue.max() # 0.0007010113024729462
 
 
 #%%
+import pandas as pd
+import numpy as np
+
+data5=pd.read_csv('Dataset_05.csv', na_values=['?', 'NA','', ' '])
 
 # =============================================================================
 # 1.위의 표에 표시된 데이터 타입에 맞도록 전처리를 수행하였을 때, 데이터 파일 내에
@@ -521,10 +612,9 @@ q2_out2.pvalue.max() # 0.0007010113024729462
 # (String 타입 변수의 경우 White Space(Blank)를 결측으로 처리한다) (답안 예시) 123
 # =============================================================================
 
+data5.isnull().sum().sum()
 
-
-
-
+# 답: 1166
 
 #%%
 
@@ -535,9 +625,21 @@ q2_out2.pvalue.max() # 0.0007010113024729462
 # (답안 예시) 0.2345, N
 # =============================================================================
 
+# 1. 결측치 제거
+q2=data5.dropna()
 
+# 2. 성별이 세분화(Segmentation)에 영향을 미치는지 독립성 검정: 카이스퀘어 검정
+q2_tab=pd.crosstab(index=q2.Gender, columns=q2.Segmentation)
 
+from scipy.stats import chi2_contingency
+q2_out=chi2_contingency(q2_tab)
 
+# p-value를 반올림하여 소수점
+# 넷째 자리까지 쓰고, 귀무가설을 기각하면 Y로, 기각할 수 없으면 N
+pvalue=q2_out[1]  # 0.003125001283622576
+pvalue < 0.05  # Y
+
+# 답: 0.0031, Y
 
 #%%
 
@@ -558,6 +660,33 @@ q2_out2.pvalue.max() # 0.0007010113024729462
 # 기술하시오.
 # (답안 예시) 0.12
 # =============================================================================
+
+# 1.결측치가 포함된 행은 제거한 후 진행, 
+#  Segmentation 값이 A 또는 D인 데이터만 사용
+q3=q2[q2.Segmentation.isin(['A','D'])]
+
+# 2.Train대 Test 7대3으로 데이터를 분리(Seed = 123)
+from sklearn.model_selection import train_test_split
+
+train, test=train_test_split(q3, test_size=0.3, random_state=123)
+
+# 3. Train 데이터를 사용하여 의사결정나무 학습을 수행하고, Test 데이터로 평가를
+# 수행(Parameter : Gini / Max Depth = 7 / Seed = 123)
+var_list=['Age_gr', 'Gender', 'Work_Experience', 'Family_Size', 
+          'Ever_Married', 'Graduated', 'Spending_Score']
+
+from sklearn.tree import DecisionTreeClassifier
+
+dt=DecisionTreeClassifier(max_depth=7, random_state=123)
+dt.fit(train[var_list], train['Segmentation'])
+
+
+# 4. 정확도(Accuracy)를 소수점 셋째 자리 이하는 버리고 소수점 둘째자리
+q3_out=dt.score(test[var_list], test['Segmentation'])
+
+# 답: 0.68
+
+
 
 
 

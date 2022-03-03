@@ -40,7 +40,10 @@ Created on 2021
 # =============================================================================
 # =============================================================================
 
+import pandas as pd
+import numpy as np
 
+data6=pd.read_csv('Dataset_06.csv')
 
 #%%
 
@@ -51,12 +54,12 @@ Created on 2021
 # =============================================================================
 
 
+q1_1=data6[data6.waterfront==1]['price'].mean()
+q1_0=data6[data6.waterfront==0]['price'].mean()
 
+q1_out=abs(q1_1 - q1_0)
 
-
-
-
-
+# 답: 1167272
 
 #%%
 
@@ -66,15 +69,14 @@ Created on 2021
 # 변수를 차례로 기술하시오. (답안 예시) view, zipcode
 # 
 # =============================================================================
+var_list=['price', 'bedrooms', 'bathrooms', 'sqft_living', 
+          'sqft_lot', 'floors', 'yr_built']
+q2=data6[var_list].corr().drop('price')['price'].abs()
 
+q2.idxmax() # 'sqft_living'
+q2.idxmin() #  'yr_built'
 
-
-
-
-
-
-
-
+# 답: sqft_living,  yr_built
 
 
 #%%
@@ -94,12 +96,28 @@ Created on 2021
 # from statsmodels.formula.api import ols
 # =============================================================================
 
+# 1. 회귀분석
+from statsmodels.formula.api  import ols
 
+var_list=data6.columns.drop(['id', 'date','zipcode', 'price'])
 
+form1='price~'  + '+'.join(var_list)
 
+lm=ols(form1, data6).fit()
 
+# 2. 통계적 유의성을 갖지 못하는 독립변수를 제거하면 회귀
+# 모형에 남는 변수는 모두 몇 개인가
+q3_out1=lm.pvalues.drop('Intercept')
+(q3_out1 < 0.05).sum() # 13
 
+# 3. 이 때 음의 회귀계수를 가지는 변수는 몇 개
+# - 유의성을 갖는 변수 목록
+sel_var_list=q3_out1[q3_out1<0.05].index
 
+# - 유의성을 갖는 변수 중 회귀계수 호출 & 회귀계수가 음수인 변수
+(lm.params[sel_var_list] < 0).sum()
+
+# 답: 13, 2
 
 #%%
 
@@ -139,6 +157,13 @@ Created on 2021
 
 #%%
 
+import pandas as pd
+import numpy as np
+
+data7=pd.read_csv("Dataset_07.csv")
+data7.columns
+# ['Serial_No', 'GRE', 'TOEFL', 'University_Rating', 'SOP', 'LOR', 'CGPA',
+#        'Research', 'Chance_of_Admit']
 # =============================================================================
 # 1. 합격 가능성에 GRE, TOEFL, CGPA 점수 가운데 가장 영향이 큰 것이 어떤 점수인지
 # 알아 보기 위해서 상관 분석을 수행한다.
@@ -148,11 +173,13 @@ Created on 2021
 # =============================================================================
 
 
+var_list=['GRE', 'TOEFL', 'CGPA','Chance_of_Admit']
 
 
+q1=data7[var_list].corr().drop('Chance_of_Admit')['Chance_of_Admit']
+abs(q1).max() 
 
-
-
+# 답: 0.8732890993553003 -> 0.873
 
 #%%
 
@@ -166,15 +193,22 @@ Created on 2021
 # (답안 예시) 1.23
 # =============================================================================
 
+mu=data7['GRE'].mean()
+
+q2=data7.copy()
+q2['GRE_gr']=np.where(q2.GRE >= mu, 1, 0)
+
+g1=q2[q2.GRE_gr == 1]['CGPA']
+g0=q2[q2.GRE_gr == 0]['CGPA']
 
 
+from scipy.stats import ttest_ind
 
+q2_out=ttest_ind(g1, g0, equal_var=True)
 
+q2_out.statistic
 
-
-
-
-
+#답:  19.443291692470982 -> 19.44
 
 #%%
 
@@ -190,10 +224,27 @@ Created on 2021
 # (답안 예시) abc, 0.12
 # =============================================================================
 
+q3=data7.copy()
 
+q3['Ch_cd']=np.where(q3.Chance_of_Admit > 0.5 , 1, 0)
 
+from sklearn.linear_model import LogisticRegression
 
+x_list=data7.columns.drop(['Serial_No','Chance_of_Admit'])
 
+logit=LogisticRegression(fit_intercept=False, 
+                         random_state=12, solver = 'liblinear')
+
+logit.fit(q3[x_list], q3['Ch_cd'])
+#abs(logit.coef_).max() # 1.955355062462584
+
+logit.coef_.shape
+q3_out=pd.Series(logit.coef_.reshape(-1))
+
+q3_out.index=x_list
+q3_out.abs().nlargest(1)
+
+# 답: CGPA, 1.955355 -> CGPA,    1.96
 
 
 #%%
@@ -228,16 +279,29 @@ Created on 2021
 
 #%%
 
+import pandas as pd
+
+data8=pd.read_csv('Dataset_08.csv')
+
+
+#%%
+
 # =============================================================================
 # 1.각 주(State)별 데이터 구성비를 소수점 둘째 자리까지 구하고, 알파벳 순으로
 # 기술하시오(주 이름 기준).
 # (답안 예시) 0.12, 0.34, 0.54
 # =============================================================================
 
+data8.columns
+# ['RandD_Spend', 'Administration', 'Marketing_Spend', 'State', 'Profit']
 
+data8['State'].value_counts(normalize=True).sort_index().values
 
+# California    0.34
+# Florida       0.32
+# New York      0.34
 
-
+# (정답) [0.34, 0.32, 0.34]
 
 #%%
 
@@ -245,13 +309,16 @@ Created on 2021
 # 2.주별 이익의 평균을 구하고, 평균 이익이 가장 큰 주와 작은 주의 차이를 구하시오. 
 # 차이값은 소수점 이하는 버리고 정수부분만 기술하시오. (답안 예시) 1234
 # =============================================================================
+q2=data8.copy()
+
+q2_tab=pd.pivot_table(data=q2,
+               index='State',
+               values='Profit')
+
+q2_tab.max() - q2_tab.min()
 
 
-
-
-
-
-
+# (정답) 14868.849081 -> 14868
 
 #%%
 
@@ -264,16 +331,28 @@ Created on 2021
 # (답안 예시) ABC, 1.56
 # =============================================================================
 
+from sklearn.linear_model import LinearRegression
 
+q3=data8.copy()
+q3.columns
+x_var=['RandD_Spend', 'Administration', 'Marketing_Spend']
+state_list=q3.State.unique()
+ 
+q3_out=[]
+for i in state_list:
+    temp=q3[q3.State == i]
+    lm=LinearRegression().fit(temp[x_var], temp['Profit'])
+    pred=lm.predict(temp[x_var])
+    # MAPE = Σ ( | y - y ̂ | / y ) * 100/n 
+    mape=(abs(temp['Profit'] - pred) / temp['Profit']).sum() * 100 / len(temp)
 
+    q3_out.append([i, mape])
 
+q3_out=pd.DataFrame(q3_out, columns=['var', 'mape'])
 
+q3_out.sort_values(by='mape', ascending=True).head(1)
 
-
-
-
-
-
+# (정답) Florida  5.706713
 
 #%%
 
@@ -322,16 +401,22 @@ Created on 2021
 
 #%%
 
+import pandas as pd
+
+data9=pd.read_csv('Dataset_09.csv')
+
+#%%
+
 # =============================================================================
 # 1.데이터 타입을 위 표에 정의된 타입으로 전처리를 한 후, 데이터 파일 내에 결측값은
 # 총 몇 개인가? (답안 예시) 1
 # =============================================================================
 
 
+data9.isna().sum().sum()
 
 
-
-
+# (정답) 5
 
 #%%
 # =============================================================================
@@ -345,16 +430,34 @@ Created on 2021
 # (답안 예시) 123
 # =============================================================================
 
+q2=data9.copy()
+q2.columns
+
+import numpy as np
+q2['Age_gr']=np.where(q2.Age <= 20, 10,
+                np.where(q2.Age <= 30, 20,
+                   np.where(q2.Age <= 40, 30,
+                     np.where(q2.Age <= 50, 40,
+                        np.where(q2.Age <= 60, 50,  60)))))
 
 
+from scipy.stats import chi2_contingency
 
 
+# - Age_gr, Gender, Customer_Type, Class 변수가 satisfaction에 영향이 있는지
+var_list=['Age_gr', 'Gender', 'Customer_Type', 'Class']
 
+q2_out=[]
+for i in var_list:
+    q2_tab=pd.crosstab(index=q2[i], columns=q2['satisfaction'])
+    chi, pvalue, *_=chi2_contingency(q2_tab)
+    q2_out.append([i, chi, pvalue])
 
+q2_out=pd.DataFrame(q2_out, columns=['var', 'chi', 'pvalue'])
 
+q2_out[q2_out.pvalue < 0.05]['chi']
 
-
-
+# (정답) 1068.632582 -> 1068
 
 #%%
 
@@ -374,18 +477,52 @@ Created on 2021
 
 
 
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+# from sklearn import metrics
+from sklearn.metrics import f1_score, classification_report
 
 
+x_var=['Flight_Distance', 'Seat_comfort', 'Food_and_drink',
+       'Inflight_wifi_service','Inflight_entertainment', 'Onboard_service', 
+       'Leg_room_service', 'Baggage_handling', 'Cleanliness',
+       'Departure_Delay_in_Minutes', 'Arrival_Delay_in_Minutes']
+
+q3=data9.dropna()
+
+X_train, X_test, y_train, y_test = \
+    train_test_split(q3[x_var], q3['satisfaction'], 
+                 test_size = 0.3, random_state = 123)
 
 
+model = LogisticRegression(solver = 'liblinear',random_state=123)
+result = model.fit(X_train, y_train)
+
+y_pred = model.predict(X_test)
 
 
+f1_score(y_test, y_pred, pos_label='dissatisfied')
 
 
+# =============================================================================
+# metrics.accuracy_score(y_test, y_pred)
+# metrics.precision_score(y_test, y_pred)
+
+# metrics.confusion_matrix(y_test, y_pred)
+# FF, FM, MF, MM = metrics.confusion_matrix(y_test, y_pred).ravel()
+# 
+# f1_dissatisfied = 2 / ((1/(258/(79+258))) + (1/(258/(69+258))))
+# f1_dissatisfied
+# 
+# f1_satisfied = 2 / ((1/(193/(79+193))) + (1/(193/(69+193))))
+# f1_satisfied
+# 
+# result.coef_
+# result.get_params()
+# =============================================================================
 
 
-
-
+# (정답) 0.777
 #%%
 
 # =============================================================================
@@ -418,6 +555,12 @@ Created on 2021
 # from sklearn.linear_model import LinearRegression
 # =============================================================================
 
+import pandas as pd
+import numpy as np
+
+data10=pd.read_csv('Dataset_10.csv')
+
+data10=data10.dropna(axis=1, how='all')
 
 #%%
 
@@ -428,18 +571,21 @@ Created on 2021
 # 기술하시오.
 # (모델별 평균 → 일평균 → 최대최소 비율 계산) (답안 예시) 0.12
 # =============================================================================
+data10.columns
+# ['model', 'engine_power', 'age_in_days', 'km', 'previous_owners',
+#       'price']
 
+# 1. 이전 소유자 수가 한 명이고 엔진 파워가 51인 차에 대해 필터링
+q1= data10[(data10['previous_owners'] == 1) & (data10['engine_power'] == 51)]
 
+# 2. 모델별 하루 평균 운행 거리를 산출
+q1_out1=q1.groupby('model')[['age_in_days', 'km']].mean()
+q1_out1['day']=q1_out1['km']/q1_out1['age_in_days']
 
+#가장 낮은 값을 가진 모델이 가장 큰 값을 가진 모델에 대한 비율
+q1_out1['day'].min()/q1_out1['day'].max()
 
-
-
-
-
-
-
-
-
+# 답: 0.97
 
 #%%
 
@@ -452,14 +598,34 @@ Created on 2021
 # (답안 예시) 0.23, Y
 # =============================================================================
 
+# 1. 위 1번 문제에서 가장 큰 값을 가지고 있던 
+#  모델과 가장 낮은 값을 가지고 있던 모델
+max_g=q1_out1['day'].idxmax()
+min_g=q1_out1['day'].idxmin()
 
+# 2. 변수 생성 : 일평균 운행거리 생성
+q2=data10.copy()
+q2['day']=q2['km']/q2['age_in_days']
 
+# 3. 그룹별 데이터 필터링
+max_data=q2[q2.model == max_g]['day']
+min_data=q2[q2.model == min_g]['day']
 
+# 4. 독립인 2표본 t 검정(등분산을 가정)
+from scipy.stats import ttest_ind, bartlett
+q2_out=ttest_ind(max_data, min_data, equal_var=True)
 
+# [참고] 등분산 검정
+bartlett(max_data, min_data)  # 등분산
+# BartlettResult(statistic=2.8320958263094305, pvalue=0.09239770665253491)
+# H0: 등분산이다.
+# H1: 등분산이 아니다(이분산이다).
 
+# 5. p-value를 소수점 세자리 이하는 버리고 소수점
+# 두자리까지 기술하고 기각 여부를 Y / N로 답하시오. 
+q2_out.pvalue
 
-
-
+# 답: 0.13, N
 
 #%%
 
@@ -467,26 +633,40 @@ Created on 2021
 # 3.독립변수로 engine_power, age_in_days, km를 사용하고 종속변수로 price를 사용하여
 # 모델별 선형회귀분석을 수행하고, 산출된 모형을 사용하여 다음과 같은 조건의
 # 중고차에 대한 가격을 예측하고 예측된 가격을 정수부만 기술하시오.
-# - model : pop / engine_power : 51 / age_in_days : 400 / km : 9500 / previous_owners : 2
+# - model : pop / engine_power : 51 / age_in_days : 400 / km : 9500 / 
+#  previous_owners : 2
 
 # (답안 예시) 12345
 # =============================================================================
 # model = pop이고 이전 소유자수가 2명인 데이터만을 이용하여 회귀모델을 생성하시오.
 
 
+# 1. 이전 소유자수가 2명인 데이터 필터링
+q3=data10[data10.previous_owners == 2]
+
+# 모델 리스트 추출
+model_list=q3.model.unique()
+
+# 3. 모델별 회귀분석 모델 생성
+from sklearn.linear_model import LinearRegression
+
+var_list=['engine_power', 'age_in_days', 'km']
 
 
+for i in model_list:
+    temp=q3[q3.model==i]
+    globals()['lm_'+i]=LinearRegression().fit(temp[var_list], temp['price'])
 
+#4. engine_power : 51 / age_in_days : 400 / km : 9500 적용
+lm_pop.predict([[51, 400, 9500]])
 
+# 답: 10367
 
+lm_pop.predict(pd.DataFrame(
+    {'engine_power' : [51],
+     'age_in_days' : [400],
+     'km' : [9500]}))
 
-
-
-
-
-
-
-
-
+# 10367
 
 

@@ -24,7 +24,10 @@ Created on 2021
 # =============================================================================
 # =============================================================================
 
+import pandas as pd
+import numpy as np
 
+data11=pd.read_csv('Dataset_11.csv')
 
 
 #%%
@@ -36,11 +39,19 @@ Created on 2021
 # - 3년 연속 데이터가 기록되지 않은 국가 데이터는 제외하고 이를 향후 분석에서
 # 활용하시오.(답안 예시) 1
 # =============================================================================
+data11.columns
+# ['Country', 'Happiness_Rank', 'Happiness_Score', 'year']
+q1=data11.groupby('Country').apply(len)
+q1.value_counts()
 
+# 3년 연속 데이터가 기록되지 않은 국가의 개수
+(q1< 3).sum()
 
+len(q1[q1< 3])
 
+# 답: 20
 
-
+sel_country=q1[q1==3].index
 
 
 
@@ -52,21 +63,27 @@ Created on 2021
 # 높은 순서대로 차례대로 기술하시오.
 # 증감률 = (2017년행복지수−2015년행복지수)/2
 # 
-# - 연도는 년월(YEAR_MONTH) 변수로부터 추출하며, 연도별 매출금액합계는 1월부터
-# 12월까지의 매출 총액을 의미한다. (답안 예시) Korea, Japan, China
+# (답안 예시) Korea, Japan, China
 # =============================================================================
 
+# 1. 1번 산출물을 활용
+q2=data11[data11.Country.isin(sel_country)]
 
+# 2. 증감률을 산출을 위한 데이터셋 생성
 
+q2_tab=pd.pivot_table(q2,
+                      index='Country',
+                      columns='year',
+                      values='Happiness_Score')
 
+q2_tab['ratio']=(q2_tab[2017] - q2_tab[2015])/2
 
+# 3.행복지수 증감률이 가장 높은 3개 국가를 행복지수가
+# 높은 순서대로 차례대로 기술
 
+q2_tab['ratio'].nlargest(3).index
 
-
-
-
-
-
+# 답: Latvia, Romania, Togo
 
 #%%
 
@@ -83,15 +100,39 @@ Created on 2021
 # from statsmodels.stats.anova import anova_lm
 
 
+from scipy.stats import f_oneway
+from statsmodels.formula.api import ols
+from statsmodels.stats.anova import anova_lm
+from statsmodels.stats.multicomp import pairwise_tukeyhsd  # 다중비교, 사후 검정
 
+# 1. 1번 산출물을 활용
+q3=data11[data11.Country.isin(sel_country)]
 
+# 2. 분산분석용 데이터셋 생성
+q3_tab=pd.pivot_table(q3,
+                      index='Country',
+                      columns='year',
+                      values='Happiness_Score')
 
+q3_out1=f_oneway(q3_tab[2015], q3_tab[2016], q3_tab[2017])
+# F_onewayResult(statistic=0.004276725037689305, pvalue=0.9957324489944479)
 
+# anova, ols적용
+q3_out2=ols('Happiness_Score~C(year)', q3).fit()
 
+q3_out2.summary()
+anova_lm(q3_out2)
 
+ # 검정통계량은 소수점 넷째 자리까지 기술
+q3_out1.statistic  # 0.0042
+anova_lm(q3_out2)['F'][0] # 0.0042
 
+# 답: 0.0042
 
+# [참고]
+tukey_out=pairwise_tukeyhsd(q3['Happiness_Score'], q3['year'])
 
+print(tukey_out)
 
 #%%
 
@@ -119,16 +160,35 @@ Created on 2021
 
 #%%
 
+import pandas as pd
+
+data12=pd.read_csv('Dataset_12.csv')
+
+data12.columns
+# ['Age', 'Gender', 'Dependent_Count', 'Education_Level', 'is_Married',
+#        'Read_Book_per_Year', 'Income_Range']
 # =============================================================================
 # 1.수치형 변수를 대상으로 피어슨 상관분석을 실시하고 연간 독서량과 가장
 # 상관관계가 강한 변수의 상관계수를 기술하시오
 # - 상관계수는 반올림하여 소수점 셋째 자리까지 기술하시오. (답안 예시) 0.123
 # =============================================================================
 
+data12['Age']=data12.Age.astype('str')
+data12.columns[data12.dtypes != 'object']
 
+x_list=['Dependent_Count', 'is_Married', 'Read_Book_per_Year']
 
+q1=data12[x_list].corr().drop('Read_Book_per_Year')['Read_Book_per_Year']
 
+abs(q1).max()
 
+# 답: 0.1325908414916882 -> 0.133
+
+q1_2=data12.corr().drop('Read_Book_per_Year')['Read_Book_per_Year']
+
+abs(q1_2).max()
+
+# (Age 포함) 답: 0.7968432255640413
 
 #%%
 
@@ -140,10 +200,20 @@ Created on 2021
 # - 유의 확률은 반올림하여 소수점 셋째 자리까지 기술한다. (답안 예시) 0.123
 # =============================================================================
 
+q2=data12.copy()
+q2['Education_Level'].unique() # ['석사', '박사', '학사', '고졸']
 
+q2['is_grad']=q2['Education_Level'].isin(['석사','박사'])+0
 
+from scipy.stats import ttest_ind
 
+q2_out=ttest_ind(q2.loc[q2['is_grad']==1, 'Read_Book_per_Year'],
+          q2.loc[q2['is_grad']==0, 'Read_Book_per_Year'],
+          equal_var=True)
 
+q2_out.pvalue
+
+# 답: 0.2685589229897138 -> 0.269
 
 #%%
 
@@ -160,18 +230,29 @@ Created on 2021
 # from statsmodels.formula.api import ols
 
 
+q3=data12[data12['Education_Level'].isin(['학사','석사','박사'])]
+q3.Income_Range.value_counts()
+
+q3=q3[~q3.Income_Range.isin(['X'])]
+
+x_list=q3.columns[q3.dtypes != 'object'].drop('Read_Book_per_Year')
+
+from statsmodels.formula.api import ols
+
+form='Read_Book_per_Year~'+'+'.join(x_list)
+
+ols1=ols(form, data=q3).fit()
+
+ols1.params
+# Intercept         -0.382146
+# Age                0.796440
+# Dependent_Count   -0.250269
+# is_Married         0.049624
 
 
+ols1.params['Age']*(40-30)
 
-
-
-
-
-
-
-
-
-
+# 답: 7.964402066284841 -> 8
 
 #%%
 
@@ -203,17 +284,24 @@ Created on 2021
 
 
 #%%
+import pandas as pd
+data13 = pd.read_csv("Dataset_13_train.csv")
+
+#%%
 
 # =============================================================================
 # 1.(Dataset_13_train.csv를 활용하여) 경력과 최근 이직시 공백기간의 상관관계를 보고자
 # 한다. 남여별 피어슨 상관계수를 각각 산출하고 더 높은 상관계수를 기술하시오.
 # - 상관계수는 반올림하여 소수점 둘째 자리까지 기술하시오. (답안 예시) 0.12
 # =============================================================================
+data13.columns
+# ['city_development_index', 'gender', 'relevent_experience',
+#        'enrolled_university', 'education_level', 'major_discipline',
+#        'experience', 'last_new_job', 'training_hours', 'target']
 
+data13.groupby('gender')[['experience', 'last_new_job']].corr()
 
-
-
-
+# (정답) 0.45
 
 #%%
 
@@ -227,15 +315,41 @@ Created on 2021
 # - p-value는 반올림하여 소수점 둘째 자리까지 기술하시오. (답안 예시) 0.12
 # =============================================================================
 
+# (1) 데이터 타입 변경
+q2=data13.copy()
+q2['target']=q2['target'].astype(str)
+q2['target'].dtype
 
+# (2) 조건에 해당하는 데이터 필터링
 
+# ['city_development_index', 'gender', 'relevent_experience',
+#        'enrolled_university', 'education_level', 'major_discipline',
+#        'experience', 'last_new_job', 'training_hours', 'target']
 
+q2['major_discipline'].value_counts()
 
+base=q2['city_development_index'].quantile(0.85)
 
+q2_1=q2[(q2['major_discipline']=='STEM') & 
+   (q2['city_development_index'] > base)]
 
+# (3) 범주형 데이터의 독립성 검정 : 카이스퀘어 검정
+from scipy.stats import chi2_contingency
+ 
+q2_tab=pd.crosstab(index=q2_1.relevent_experience,
+                     columns=q2_1.target) 
 
+q2_out=chi2_contingency(q2_tab)[1]   
+   
+# (41.16381604042102,
+#  1.3999022544385146e-10,
+#  1,
+#  array([[213.35891473,  73.64108527],
+#         [745.64108527, 257.35891473]]))
 
+round(q2_out,2)
 
+# (정답) 0.64
 #%%
 
 
@@ -255,17 +369,18 @@ Created on 2021
 # random_state = 123
 
 
+x_var= data13.columns[data13.dtypes != 'object'].drop('target')
 
+from sklearn.tree import DecisionTreeClassifier
 
+dt=DecisionTreeClassifier(random_state=123).fit(data13[x_var], data13.target)
 
+test=pd.read_csv('Dataset_13_test.csv')
 
+dt.score(test[x_var], test.target)
 
-
-
-
-
-
-
+# (정답) 0.672
+# (정답) 0.67  (이직 의사 변수를 문자열로 설정)
 
 
 #%%
@@ -295,6 +410,9 @@ Created on 2021
 # =============================================================================
 
 
+import pandas as pd
+data14 = pd.read_csv("Dataset_14.csv")
+
 #%%
 
 # =============================================================================
@@ -304,12 +422,16 @@ Created on 2021
 # =============================================================================
 
 
+data14["income"] = data14["price"] * data14["subscribers"]
+data14["review_rate"] = data14["reviews"] / data14["subscribers"]
+data14.head(2)
+
+
+sum((data14["income"] >= 10000) & (data14["review_rate"] >= 0.1))
 
 
 
-
-
-
+# (정답) 59
 
 #%%
 
@@ -320,16 +442,24 @@ Created on 2021
 # - 상관계수는 반올림하여 소수점 둘째 자리까지 기술하시오. (답안 예시) 0.12
 # =============================================================================
 
+data14["published"] = pd.to_datetime(data14["published"])
+data14["year"] = data14["published"].dt.year
+data14.head(2)
+
+
+data14_sub = data14.loc[(data14["year"] == 2016) & (data14["subject"] == "Web Development"), ]
+data14_sub.head(2)
+
+
+data14_sub[["price", "subscribers"]].corr()
 
 
 
+round(0.034392, 2)
 
 
 
-
-
-
-
+# (정답) 0.03
 
 #%%
 
@@ -346,21 +476,18 @@ Created on 2021
 # =============================================================================
 
 
+from statsmodels.formula.api import ols
+from statsmodels.stats.anova import anova_lm
 
 
+model = ols(formula = "review_rate ~ C(year)", data = data14).fit()
+anova_lm(model)
 
 
+round(18.542038, 1)
 
 
-
-
-
-
-
-
-
-
-
+# (정답) 18.5
 
 #%%
 
@@ -396,9 +523,17 @@ Created on 2021
 # =============================================================================
 
 
+import pandas as pd
+import numpy as np
 
+pos1=pd.read_csv('Dataset_05_Mart_POS.csv')
+list1=pd.read_csv('Dataset_05_item_list.csv')
 
+pos1.columns
+# ['Member_number', 'Date', 'itemDescription']
 
+list1.columns
+# ['prod_id', 'prod_nm', 'alcohol', 'frozen']
 #%%
 
 # =============================================================================
@@ -406,15 +541,13 @@ Created on 2021
 # 제품의 판매 개수는? (답안 예시) 1
 # =============================================================================
 
+# 1. 가장 많은 제품이 팔린 날짜
+sel_date=pos1['Date'].value_counts().idxmax()
 
+# 2. 그 날짜에 가장 많이 팔린 제품의 판매 개수
+q1=pos1[pos1.Date == sel_date]['itemDescription'].value_counts().nlargest(1)
 
-
-
-
-
-
-
-
+# 답:(soda) 7
 
 
 
@@ -432,19 +565,47 @@ Created on 2021
 # - p-value는 반올림하여 소수점 둘째 자리까지 기술하시오. (답안 예시) 0.12
 # =============================================================================
 
+# 금요일과 토요일의 일별 주류제품 구매 제품 수 
+
+# 1. 변수 생성: 월, 요일, 금토여부
+pos2=pos1.copy()
+
+pd.to_datetime(pos2.Date).dt.year
+
+pos2['month']=pd.to_datetime(pos2.Date).dt.month
+pos2['day']=pd.to_datetime(pos2.Date).dt.day_name(locale='ko_kr')
+pos2['week']=np.where(pos2['day'].isin(['금요일','토요일']), 1,0 )
+
+# [참고]
+# import locale
+# locale.locale_alias
+
+# 2. 테이블 결합
+merge1=pd.merge(pos2, list1, how='left', 
+                left_on='itemDescription',
+                right_on='prod_nm')
+
+# 3. 필터링
+merge2=merge1[merge1.month.isin([1,2,3])]
+
+# 4. 일별 주류제품 구매 제품 수 vs 금토여부 피벗테이블 (요일 매칭됨)
+merge3=pd.pivot_table(merge2, index='Date',
+                      columns='week',
+                      values='alcohol',
+                      aggfunc='sum')
 
 
+# 5. ttest 진행(등분산 가정을 만족하지 않는다)
+from scipy.stats import ttest_ind
 
+q2_out=ttest_ind(merge3[1].dropna(),
+                 merge3[0].dropna(),
+                 equal_var=False)
 
+# 6. p-value 찾기(반올림하여 소수점 둘째 자리까지 기술)
+q2_out.pvalue
 
-
-
-
-
-
-
-
-
+#답: 0.02
 
 #%%
 
@@ -462,24 +623,29 @@ Created on 2021
 # =============================================================================
 
 
+# 1. 1년 동안 가장 많이 판매된 10개 상품을 주력 상품으로 설정
+top10 = pos2.itemDescription.value_counts().nlargest(10).index
 
+# 2.  요일별 주력 상품의 판매 개수(일자별 주력 상품의 판매 개수) 변수 생성
+q3=pos2[pos2.itemDescription.isin(top10)]
 
+q3.groupby(['Date', 'day'])['itemDescription'].apply(len).reset_index()
 
+q3_tab=pd.pivot_table(q3, index=['Date','day'] ,
+                      values='itemDescription',
+                      aggfunc='count').reset_index()
 
+# 3. 요일별 주력 상품의 판매 개수의 평균이 유의미하게 차이가 나는지 분석: 분산분석
+from statsmodels.formula.api import ols
 
+anova_out=ols('itemDescription~day', q3_tab).fit()
 
+# 4. p-value 찾기
+from statsmodels.stats.anova import anova_lm
 
+anova_lm(anova_out)['PR(>F)'][0]
 
-
-
-
-
-
-
-
-
-
-
+# 답: 0.52
 
 
 
