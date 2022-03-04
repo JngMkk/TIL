@@ -1,0 +1,225 @@
+-- 2022/03/04 ORACLE 강의
+--DROP TABLE DEPT;
+--DROP TABLE EMP;
+--DROP TABLE SALGRADE;
+CREATE TABLE DEPT (
+	DEPTNO NUMBER(2) CONSTRAINT PK_DEPT PRIMARY KEY, 
+	DNAME VARCHAR2(14) , 
+	LOC VARCHAR2(13) 
+);
+INSERT INTO DEPT VALUES (10,'ACCOUNTING','NEW YORK'); 
+INSERT INTO DEPT VALUES (20,'RESEARCH','DALLAS'); 
+INSERT INTO DEPT VALUES (30,'SALES','CHICAGO'); 
+INSERT INTO DEPT VALUES (40,'OPERATIONS','BOSTON');
+-- EMP 
+CREATE TABLE EMP(    
+	EMPNO NUMBER(4) CONSTRAINT PK_EMP PRIMARY KEY, 
+	ENAME VARCHAR2(10), 
+	JOB VARCHAR2(9), 
+	MGR NUMBER(4), 
+	HIREDATE DATE, 
+	SAL NUMBER(7,2), 
+	COMM NUMBER(7,2),
+	DEPTNO NUMBER(2) CONSTRAINT FK_DEPTNO REFERENCES DEPT
+);
+INSERT INTO EMP VALUES (7369,'SMITH','CLERK',7902,to_date('17-12-1980','dd-mm-yyyy'),800,NULL,20); 
+INSERT INTO EMP VALUES (7499,'ALLEN','SALESMAN',7698,to_date('20-2-1981','dd-mm-yyyy'),1600,300,30); 
+INSERT INTO EMP VALUES (7521,'WARD','SALESMAN',7698,to_date('22-2-1981','dd-mm-yyyy'),1250,500,30);
+INSERT INTO EMP VALUES (7566,'JONES','MANAGER',7839,to_date('2-4-1981','dd-mm-yyyy'),2975,NULL,20); 
+INSERT INTO EMP VALUES (7654,'MARTIN','SALESMAN',7698,to_date('28-9-1981','dd-mm-yyyy'),1250,1400,30); 
+INSERT INTO EMP VALUES (7698,'BLAKE','MANAGER',7839,to_date('1-5-1981','dd-mm-yyyy'),2850,NULL,30); 
+INSERT INTO EMP VALUES (7782,'CLARK','MANAGER',7839,to_date('9-6-1981','dd-mm-yyyy'),2450,NULL,10); 
+INSERT INTO EMP VALUES (7839,'KING','PRESIDENT',NULL,to_date('17-11-1981','dd-mm-yyyy'),5000,NULL,10); 
+INSERT INTO EMP VALUES (7844,'TURNER','SALESMAN',7698,to_date('8-9-1981','dd-mm-yyyy'),1500,0,30); 
+INSERT INTO EMP VALUES (7900,'JAMES','CLERK',7698,to_date('3-12-1981','dd-mm-yyyy'),950,NULL,30); 
+INSERT INTO EMP VALUES (7902,'FORD','ANALYST',7566,to_date('3-12-1981','dd-mm-yyyy'),3000,NULL,20); 
+INSERT INTO EMP VALUES (7934,'MILLER','CLERK',7782,to_date('23-1-1982','dd-mm-yyyy'),1300,NULL,10);
+-- SALGRADE 
+CREATE TABLE SALGRADE (    
+	GRADE NUMBER, 
+	LOSAL NUMBER, 
+	HISAL NUMBER 
+);
+INSERT INTO SALGRADE VALUES (1,700,1200); 
+INSERT INTO SALGRADE VALUES (2,1201,1400); 
+INSERT INTO SALGRADE VALUES (3,1401,2000); 
+INSERT INTO SALGRADE VALUES (4,2001,3000); 
+INSERT INTO SALGRADE VALUES (5,3001,9999);
+
+-- select
+SELECT * FROM DEPT;
+SELECT * FROM EMP; 
+SELECT * FROM SALGRADE;
+
+CREATE OR REPLACE VIEW V_EMP AS SELECT * FROM emp;
+SELECT * FROM v_emp;
+
+-- 자동으로 값+ 해주고 싶을 때 SEQUENCE 사용
+CREATE SEQUENCE seq_test;
+
+-- dual : 임시 테이블
+SELECT seq_test.nextval FROM dual;
+
+-- 테이블 이름 복제
+CREATE TABLE myemp AS SELECT * FROM EMP;
+SELECT * FROM myemp;
+DROP TABLE myemp;
+
+-- 원하는 컬럼 복제
+CREATE TABLE emps AS SELECT ENAME, EMPNO FROM EMP;
+SELECT * FROM EMPS;
+DROP TABLE EMPS;
+
+-- 구조(컬컴)만 복제
+-- WHERE 절을 거짓으로 하면 구조만 가져옴
+CREATE TABLE TEST AS SELECT * FROM EMP WHERE 1 = 2;
+SELECT * FROM TEST;
+DROP TABLE TEST;
+
+CREATE TABLE TABLE_NOTNULL01(
+    ID      CHAR(3) NOT NULL,
+    NAME    VARCHAR2(20)
+);
+
+-- null값이라 오류
+INSERT INTO TABLE_NOTNULL01 VALUES('', 'a');
+-- 오류 x
+INSERT INTO TABLE_NOTNULL01 VALUES(' ', 'a');
+
+INSERT INTO TABLE_NOTNULL01 VALUES ('HI', 'HIHI');
+
+CREATE TABLE TABLE_NOTNULL02(
+    ID          CHAR(3),
+    NAME        VARCHAR2(20),
+    CONSTRAINT  TN02_ID_NN NOT NULL (ID)
+    -- NOT NULL은 컬럼 정의할 때만 가능 -> 오류
+)
+
+-- UNIQUE
+-- null은 값이 없는 것이므로 unique에 영향받지 않음
+CREATE TABLE table_unique01(
+	ID		CHAR(3) UNIQUE,
+	NAME	VARCHAR2(20)
+);
+
+CREATE TABLE table_unique02(
+	ID			CHAR(3),
+	NAME		VARCHAR2(20),
+	CONSTRAINT	TU02_ID_UNQ UNIQUE (ID)
+);
+
+INSERT INTO table_unique02 VALUES('100', 'oracle');
+-- ORA-00001: unique constraint (SYSTEM.TU02_ID_UNQ) violated
+-- 무결성 제약조건에 위배됨
+INSERT INTO table_unique02 VALUES('100', 'oracle');
+
+CREATE TABLE table_unique03(
+	ID			CHAR(3),
+	NAME		VARCHAR2(20),
+	-- 묶여져 있는 값이 unique 하다.
+	CONSTRAINT	TU03_ID_UNQ UNIQUE (ID, NAME)
+);
+
+INSERT INTO table_unique03 VALUES('100', 'oracle');
+
+INSERT INTO table_unique03 VALUES('100', 'python');
+
+CREATE TABLE table_unique04(
+	ID			CHAR(4),
+	NAME		VARCHAR2(20),
+	CONSTRAINT	tu04_id_unq	UNIQUE(ID),
+	CONSTRAINT	tu04_nm_unq UNIQUE(NAME)
+);
+
+INSERT INTO table_unique04 VALUES ('100', 'oracle');
+
+-- 오류
+INSERT INTO table_unique04 VALUES ('100', 'python');
+
+-- 기본 키
+CREATE TABLE table_pk01(
+	ID		CHAR(3) PRIMARY KEY,
+	NAME	VARCHAR2(20)
+);
+
+INSERT INTO table_pk01 VALUES('100', 'oracle');
+
+INSERT INTO table_pk01 VALUES('200', 'python');
+
+-- unique constraint (SYSTEM.SYS_C007006) violated
+INSERT INTO table_pk01 VALUES('200', 'hadoop');
+
+
+CREATE TABLE table_pk02(
+	ID			CHAR(3),
+	NAME		VARCHAR2(20),
+	CONSTRAINT	TP02_ID_PK PRIMARY KEY (ID)
+);
+
+INSERT INTO table_pk02 VALUES('100', 'oracle');
+
+INSERT INTO table_pk02 VALUES('200', 'python');
+
+-- unique constraint (SYSTEM.TP02_ID_PK) violated
+INSERT INTO table_pk02 VALUES('200', 'hadoop');
+
+-- 슈퍼키(복합키)
+CREATE TABLE table_pk03(
+	ID			CHAR(3),
+	NAME		VARCHAR(20),
+	CONSTRAINT	TP03_ID_PK PRIMARY KEY (ID, NAME)
+);
+
+INSERT INTO table_pk03 VALUES('100', 'oracle');
+
+INSERT INTO table_pk03 VALUES('100', 'python');
+
+-- cannot insert NULL into ("SYSTEM"."TABLE_PK03"."ID")
+INSERT INTO table_pk03(NAME) VALUES('hadoop');
+
+-- foreign key
+CREATE TABLE table_fk01(
+	ID			CHAR(3),
+	NAME		VARCHAR(20),
+	PKID		CHAR(3) REFERENCES TABLE_PK01(ID)
+);
+
+-- integrity constraint (SYSTEM.SYS_C007014) violated - parent key not                                                        found 
+-- table_pk01에 500이 없음
+INSERT INTO table_fk01 VALUES('500', 'oracle', '500');
+
+INSERT INTO table_fk01 VALUES('500', 'oracle', '100');
+
+
+CREATE TABLE table_fk02(
+	ID			CHAR(3),
+	NAME		VARCHAR2(20),
+	PKID		CHAR(3),
+	CONSTRAINT	TF02_ID_FK FOREIGN KEY (ID) REFERENCES table_pk02(ID)
+);
+
+-- integrity constraint (SYSTEM.TF02_ID_FK) violated - parent key not                                                         found
+-- foreign key가 id를 가리키고 있음
+INSERT INTO table_fk02 VALUES('300', 'hadoop', '200');
+
+CREATE TABLE table_check01(
+	ID			CHAR(3),
+	NAME		VARCHAR2(20),
+	MARRIAGE	CHAR(1) CHECK(MARRIAGE IN ('Y', 'N'))
+);
+
+CREATE TABLE table_check02(
+	ID			CHAR(3),
+	NAME		VARCHAR2(20),
+	MARRIAGE	CHAR(1),
+	CONSTRAINT	TC02_MG_CK	CHECK(MARRIAGE IN ('Y', 'N'))
+);
+
+INSERT INTO table_check01 VALUES('100', 'oracle', 'Y');
+
+-- check constraint (SYSTEM.SYS_C007016) violated
+INSERT INTO table_check01 VALUES('200', 'python', 'n');
+
+
+
+
