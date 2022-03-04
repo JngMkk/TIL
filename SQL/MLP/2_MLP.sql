@@ -476,7 +476,7 @@ SELECT
 	SUM(sal) AS sum_sal
 FROM emp
 HAVING
-	deptno != 30
+	deptno <> 30
 	AND
 	SUM(sal) >= 8000
 GROUP BY deptno
