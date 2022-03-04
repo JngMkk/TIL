@@ -60,7 +60,7 @@ CREATE SEQUENCE seq_test;
 -- dual : 임시 테이블
 SELECT seq_test.nextval FROM dual;
 
--- 테이블 이름 복제
+-- 테이블 복제
 CREATE TABLE myemp AS SELECT * FROM EMP;
 SELECT * FROM myemp;
 DROP TABLE myemp;
@@ -220,6 +220,159 @@ INSERT INTO table_check01 VALUES('100', 'oracle', 'Y');
 -- check constraint (SYSTEM.SYS_C007016) violated
 INSERT INTO table_check01 VALUES('200', 'python', 'n');
 
+-- Quiz
 
+-- SIZE가 10인 가변길이 문자형 컬럼 ID와 SIZE가 10인 고정길이 문자형 컬럼 PW를 가진 TEST 테이블을 생성하자
+CREATE TABLE test(
+	ID		VARCHAR2(10),
+	PW		CHAR(10)
+);
 
+-- 사원테이블(EMP)의 모든 구조와 데이터를 복사하여 TEST01 테이블을 생성하자
+CREATE TABLE test01
+	AS SELECT * FROM emp;
 
+-- 사원테이블에서 사원번호와 이름을 복사하여 TEST02 테이블을 생성하자
+CREATE TABLE test02
+	AS SELECT empno, ename FROM emp;
+
+-- 사원테이블에서 사원번호의 컬럼명을 M1, 이름의 컬럼명을 M2로 변경 하면서 복사하여 TEST03 테이블을 생성하자
+CREATE TABLE test03(
+	M1,
+	M2
+) AS SELECT empno, ename FROM emp;
+
+-- 사원테이블의 구조만 복사하여 TEST04 테이블을 생성하자
+CREATE TABLE test04
+	AS SELECT *
+	FROM emp
+	WHERE 1 = 2
+;
+
+-- 부서테이블(DEPT)의 구조만 복사하여 TEST05 테이블을 생성하자
+CREATE TABLE test05
+	AS SELECT *
+	FROM dept
+	WHERE 1 = 2
+;
+
+SELECT deptno FROM dept UNION SELECT deptno FROM emp;
+
+SELECT deptno FROM dept UNION ALL SELECT deptno FROM emp;
+
+SELECT deptno FROM dept INTERSECT SELECT deptno FROM emp;
+
+SELECT deptno FROM dept MINUS SELECT deptno FROM emp;
+
+-- 문자열 합체
+SELECT empno || ename FROM emp;
+
+-- AS : alias(별칭)
+SELECT empno || ename AS test FROM emp;
+
+-- 연산
+SELECT sal + comm FROM emp;
+
+-- 현재 날짜(시간)
+-- 현재 위치에 따라 다름
+SELECT SYSDATE FROM dual;
+
+-- update
+SELECT * FROM test01;
+-- 이름이 WARD인 사원의 월급을 2000으로 바꾸자
+UPDATE test01
+SET sal = 2000
+WHERE ename = 'WARD';
+-- 이름이 WARD인 사원의 직업을 manager로 바꾸고 부서를 20으로 바꾸자.
+UPDATE test01
+SET
+	JOB = 'MANAGER',
+	DEPTNO = 20
+WHERE ENAME = 'WARD';
+
+-- Quiz
+-- 사원테이블의 모든 데이터를 출력하자.
+SELECT * FROM emp;
+
+-- 사원테이블에서 사원의 이름(ENAME), 사원번호(EMPNO), 월급(SAL)을 출력하자.
+SELECT
+	ename,
+	empno,
+	sal
+FROM emp
+;
+
+-- 사원테이블에서 사원의 이름과 연봉을 출력하자.
+SELECT
+	ename,
+	sal * 12 + COALESCE(comm, 0)
+FROM emp
+;
+
+-- 사원테이블에서 사원의 이름, 입사일(HIREDATE), 부서번호(DEPTNO)를 출력하자.
+SELECT
+	ename,
+	hiredate,
+	deptno
+FROM emp
+;
+
+-- 사원테이블에서 사원의 이름과, 사원을 관리하고 있는 관리자번호(MGR)를 출력하자.
+SELECT
+	ename,
+	MGR
+FROM emp
+;
+
+-- 사원테이블에서 사원의 이름, 월급, 커미션(COMM)을 출력하자.
+SELECT
+	ename,
+	sal,
+	comm
+FROM emp
+;
+
+-- 사원테이블의 모든 데이터를 “oo님이 oo에 입사를 하고 oo의 월급을 받습니다.” 형식의 컬럼 하나로 출력하자.
+SELECT
+	(ename || ' nim ' || hiredate || ' ipsa ' || sal || ' wolgeup') AS test
+	FROM emp
+;
+
+-- 부서테이블(DEPT)의 구조를 출력하자
+DESC DEPT;
+
+-- 사원테이블에서 사원번호가 ‘7844’인 사원의 사원번호, 이름, 월급을 출력하자.
+SELECT
+	empno,
+	ename,
+	sal
+FROM emp
+WHERE empno='7844'
+;
+
+-- 사원테이블에서 ‘SMITH’의 사원번호, 이름, 월급을 출력하자.
+SELECT
+	empno,
+	ename,
+	sal
+FROM emp
+WHERE ename='SMITH'
+;
+
+-- 사원테이블에서 입사일이 1980년 12월 17일인 사원의 모든 데이터를 출력하자.
+SELECT
+	*
+FROM emp
+WHERE hiredate=TO_DATE('17-12-1980','dd-mm-yyyy')
+;
+
+-- 사원테이블에서 1980년 부터 1982년 사이에 입사한 사원의 이름과 입사일을 출력하자.
+SELECT
+	ename,
+	hiredate
+FROM emp
+WHERE hiredate BETWEEN TO_DATE('01-01-1980', 'dd-mm-yyyy') AND TO_DATE('31-12-1982', 'dd-mm-yyyy')
+;
+사원테이블에서 월급이 2000 이하인 사원의 이름과 월급을 출력하자.
+사원테이블에서 월급이 1000 에서 2000 사이인 사원의 이름과 월급을 출력하자.
+사원번호가 7369 이거나, 7499 이거나, 7521인 사원들의 이름과 월급을 출력하자.
