@@ -406,3 +406,79 @@ FROM emp
 WHERE empno
 	IN (7369, 7499, 7521)
 ;
+
+-- 사원테이블에서 사원의 이름과 월급을 출력하되, 월급을 내림차순으로 정렬하자.
+SELECT
+	ename,
+	sal
+FROM emp
+ORDER BY sal DESC
+;
+
+-- 사원테이블에서 직업별 평균 월급을 출력하되 컬럼 alias를 ‘평균’으로 하고, 평균 월급이 높은 순으로 정렬하자.
+SELECT
+	job,
+	AVG(sal) AS job_avg
+FROM emp
+GROUP BY job
+ORDER BY job_avg
+;
+
+-- 사원테이블에서 전체 사원의 평균 월급을 출력하자.
+SELECT
+	AVG(sal) AS all_avg
+FROM emp
+;
+
+-- 사원테이블에서 부서번호가 10인 부서에 근무하고 있는 사원들의 부서번호와 평균 월급을 출력하자.
+SELECT
+	deptno,
+	AVG(sal) AS avg_10
+FROM emp
+WHERE deptno=10
+GROUP BY deptno
+;
+
+-- 사원테이블에서 직업별 평균 월급을 구하자.
+SELECT
+	job,
+	AVG(sal) AS job_avg
+FROM emp
+GROUP BY job
+;
+
+-- 사원테이블에서 10번 부서의 최대 월급을 출력하자.
+SELECT
+	MAX(sal) AS max_sal_10
+FROM emp
+WHERE deptno=10
+;
+
+-- 사원테이블에서 부서 별 최대 월급을 출력하자.
+SELECT
+	deptno,
+	MAX(sal) AS max_sal_dept
+FROM emp
+GROUP BY deptno
+;
+
+-- 사원테이블에서 직업별 총 월급을 구하고, 총 월급이 5000 이상인 직업만 출력하자.
+SELECT
+	job
+FROM emp
+HAVING SUM(sal) >= 5000
+GROUP BY job
+;
+
+-- 사원테이블에서 부서별 총 월급을 출력하되, 30번 부서를 제외하고, 총 월급이 8000 이상인 부서만, 총 월급이 높은 순으로 정렬하자.
+SELECT
+	deptno,
+	SUM(sal) AS sum_sal
+FROM emp
+HAVING
+	deptno != 30
+	AND
+	SUM(sal) >= 8000
+GROUP BY deptno
+ORDER BY sum_sal DESC
+;
