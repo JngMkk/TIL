@@ -421,7 +421,7 @@ SELECT
 	AVG(sal) AS job_avg
 FROM emp
 GROUP BY job
-ORDER BY job_avg
+ORDER BY 2 DESC
 ;
 
 -- 사원테이블에서 전체 사원의 평균 월급을 출력하자.
@@ -480,5 +480,5 @@ HAVING
 	AND
 	SUM(sal) >= 8000
 GROUP BY deptno
-ORDER BY sum_sal DESC
+ORDER BY 2 DESC
 ;
