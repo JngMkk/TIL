@@ -373,6 +373,36 @@ SELECT
 FROM emp
 WHERE hiredate BETWEEN TO_DATE('01-01-1980', 'dd-mm-yyyy') AND TO_DATE('31-12-1982', 'dd-mm-yyyy')
 ;
-사원테이블에서 월급이 2000 이하인 사원의 이름과 월급을 출력하자.
-사원테이블에서 월급이 1000 에서 2000 사이인 사원의 이름과 월급을 출력하자.
-사원번호가 7369 이거나, 7499 이거나, 7521인 사원들의 이름과 월급을 출력하자.
+
+-- 사원테이블에서 월급이 2000 이하인 사원의 이름과 월급을 출력하자.
+SELECT
+	ename,
+	sal
+FROM emp
+WHERE sal <= 2000;
+
+-- 사원테이블에서 월급이 1000 에서 2000 사이인 사원의 이름과 월급을 출력하자.
+SELECT
+	ename,
+	sal
+FROM emp
+WHERE sal BETWEEN 1000 AND 2000
+;
+
+-- 사원번호가 7369 이거나, 7499 이거나, 7521인 사원들의 이름과 월급을 출력하자.
+SELECT
+	ename,
+	sal
+FROM emp
+WHERE
+	empno=7369
+	OR empno=7499
+	OR empno=7521
+;
+SELECT
+	ename,
+	sal
+FROM emp
+WHERE empno
+	IN (7369, 7499, 7521)
+;
