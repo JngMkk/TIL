@@ -498,3 +498,168 @@ WHERE
              FROM emp
              WHERE empno = 7876)
 ;
+
+-- JOIN
+-- 테이블과 테이블을 연결
+-- JOIN할 두 테이블에 일치하는 값이 있는 컬럼이 없을 때
+SELECT
+    ename,
+    sal,
+    grade
+FROM
+    emp e
+  JOIN
+    salgrade sg
+  ON
+    (sal BETWEEN losal AND hisal)
+;
+
+-- SELF JOIN
+SELECT
+    e.ename,
+    e.empno,
+    mgr.ename,
+    mgr.empno
+FROM
+    emp e,
+    emp mgr
+WHERE
+    e.mgr = mgr.empno
+;
+
+SELECT
+    e.ename,
+    e.empno,
+    mgr.ename,
+    mgr.empno
+FROM
+    emp e
+  LEFT OUTER JOIN
+    emp mgr
+  ON
+    e.mgr = mgr.empno
+;
+
+-- 사원들의 이름, 부서번호, 부서이름을 출력하자.
+SELECT
+    ename,
+    e.deptno,
+    dname
+FROM
+    emp e
+    JOIN dept d
+    ON e.deptno = d.deptno
+ORDER BY 2
+; 
+
+SELECT
+    ename,
+    deptno,
+    dname
+FROM emp
+    JOIN dept
+    USING(deptno)
+;
+
+-- ‘DALLAS’에서 근무하는 사원의 이름, 직업, 부서번호, 부서이름을 출력하자.
+SELECT
+    ename,
+    job,
+    e.deptno,
+    dname
+FROM emp e
+    JOIN dept d
+    ON e.deptno = d.deptno
+    WHERE d.loc = 'DALLAS'
+;
+
+-- 이름에 ‘A’가 들어가는 사원들의 이름과 부서이름을 출력하자.
+SELECT
+    ename,
+    dname
+FROM emp e
+    JOIN dept d
+    ON e.deptno = d.deptno
+    WHERE e.ename LIKE '%A%'
+;
+
+-- 사원의 이름과 부서이름, 월급을 출력하되, 월급이 3000 이상인 사원들만 출력하자.
+SELECT
+    e.ename,
+    d.dname,
+    e.sal
+FROM emp e
+    JOIN dept d
+    ON e.deptno = d.deptno
+    WHERE e.sal >= 3000
+ORDER BY 3 DESC
+;
+
+-- 사원테이블과 급여테이블(SALGRADE)에서 커미션이 책정된 사원들의 사원번호, 이름, 연봉, 연봉+커미션, 급여등급(SALGRADE)을 출력하자.
+SELECT
+    empno,
+    ename,
+    sal * 12 AS sal, 
+    sal * 12 + NVL(comm, 0) AS sal_comm,
+    grade
+FROM emp
+    JOIN salgrade
+    ON (sal BETWEEN losal AND hisal)
+ORDER BY 4 DESC
+;
+
+-- 부서번호가 10번인 사원들의 부서번호, 부서이름, 사원이름, 월급, 급여등급을 출력하자.
+SELECT
+    e.deptno,
+    dname,
+    ename,
+    sal,
+    grade
+FROM emp e
+    JOIN salgrade
+    ON (sal BETWEEN losal AND hisal)
+    JOIN dept d
+    ON e.deptno = d.deptno
+    WHERE e.deptno = 10
+ORDER BY 4 DESC
+;
+
+-- 부서번호가 10번이거나 20번인 사원들의 부서번호, 부서이름, 사원이름, 급여등급을 출력하되,
+-- 부서번호가 낮은 순으로, 월급이 높은 순으로 출력하자.
+SELECT
+    e.deptno,
+    dname,
+    ename,
+    grade
+FROM emp e
+    JOIN salgrade
+    ON (sal BETWEEN losal AND hisal)
+    JOIN dept d
+    ON e.deptno = d.deptno
+    WHERE e.deptno IN (10, 20)
+ORDER BY 1, 4 DESC
+;
+
+-- 사원번호와 이름, 관라자의 사원번호와 관리자이름을 출력하자.
+SELECT
+    e.ename,
+    e.empno,
+    mgr.ename AS mgr_name,
+    mgr.empno AS mgr_empno
+FROM
+    emp e
+    JOIN emp mgr
+    ON e.mgr = mgr.empno
+;
+
+-- 부서이름, 위치, 각 부서의 사원수, 평균 월급을 출력하자.
+SELECT
+    dname,
+    loc,
+    COUNT(ename) AS cnt,
+    AVG(sal) AS avg
+FROM emp e
+    RIGHT JOIN dept d
+    ON e.deptno = d.deptno
+GROUP BY dname, loc
+;
