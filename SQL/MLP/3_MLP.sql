@@ -420,8 +420,7 @@ SELECT
     deptno,
     sal
 FROM emp
-WHERE deptno IN (SELECT
-                    deptno
+WHERE deptno IN (SELECT deptno
                  FROM dept
                  WHERE loc = 'CHICAGO')
 ;
