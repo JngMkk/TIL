@@ -341,3 +341,162 @@ SELECT
 FROM emp
 WHERE ename LIKE 'M%'
 ;
+
+-- 서브쿼리
+
+-- SINGLE ROW SUBQUERY
+-- JONES 보다 더 많은 월급을 받는 사원의 이름과 월급을 출력하자
+SELECT
+    ename,
+    sal
+FROM emp
+WHERE sal >
+    (
+    SELECT sal
+    FROM emp
+    WHERE ename = 'JONES'
+    )
+;
+
+-- MULTI ROW SUBQUERY
+-- 부하직원이 없는 사원의 사원번호와 이름을 출력하자
+SELECT
+    empno,
+    ename
+FROM emp
+WHERE
+    empno
+    NOT IN
+    (
+    SELECT
+        NVL(mgr, 0)
+    FROM emp
+    )
+;
+
+-- MULTI COLUMN SUBQUERY
+SELECT
+    ename,
+    sal,
+    deptno
+FROM emp
+WHERE
+    (deptno, sal)
+    IN
+    (
+    SELECT
+        deptno,
+        sal
+    FROM emp
+    WHERE job = 'SALESMAN'
+    )
+;
+
+-- INLINE VIEW
+-- 결과가 가상테이블로 사용
+SELECT
+    e.ename,
+    e.sal,
+    mydept.deptno,
+    myavg
+FROM
+    emp e,
+    (
+    SELECT
+        deptno,
+        AVG(sal) AS myavg
+    FROM emp
+    GROUP BY deptno
+    ) mydept
+WHERE
+    e.deptno = mydept.deptno
+    AND
+    e.sal > mydept.myavg
+;
+
+-- ‘CHICAGO’에서 근무하는 사원들과 같은 부서에서 근무하는 사원의 이름과 월급을 출력하자.
+SELECT
+    ename,
+    deptno,
+    sal
+FROM emp
+WHERE deptno IN (SELECT
+                    deptno
+                 FROM dept
+                 WHERE loc = 'CHICAGO')
+;
+
+-- 관리자의 이름이 ‘KING’인 사원의 이름과 월급을 출력하자.
+SELECT
+    ename,
+    sal
+FROM emp
+WHERE COALESCE(mgr, 0) 
+        IN (SELECT empno
+            FROM emp
+            WHERE ename = 'KING')
+;
+
+-- 전체 사원 중, 20번 부서의 사원 중 가장 많은 월급을 받는 사원보다 더 많은 월급을 받는 사원들의 이름과 월급을 출력하자.
+SELECT
+    ename,
+    sal
+FROM emp
+WHERE sal > (SELECT MAX(sal)
+             FROM emp
+             WHERE deptno = 20)
+;
+
+-- 전체 사원 중, 직업이 ‘SALESMAN’인 사원 중 가장 많은 월급을 받는 사원보다 더 많은 월급을 받는 사원들의 이름과 월급을 출력하되,
+-- MAX()함수를 사용하지 말자. (ANY, ALL 연산자)
+SELECT
+    ename,
+    sal
+FROM emp
+WHERE
+    sal > ALL(SELECT sal
+              FROM emp
+              WHERE job = 'SALESMAN')
+;
+
+-- ‘BLAKE’가 근무하는 부서의 위치(LOC)를 출력하자.
+SELECT loc
+FROM dept
+WHERE deptno IN (SELECT deptno
+                 FROM emp
+                 WHERE ename = 'BLAKE')
+;
+
+-- 이름에 ’S’가 들어가는 사원과 동일한 부서에서 근무하는 사원 중, 자신의 월급이 전체 사원의 평균 월급보다 많은 사원들의
+-- 사원번호, 이름, 월급을 출력하자.
+SELECT
+    e.deptno,
+    e.ename,
+    e.sal
+    avg_sal
+FROM emp e,
+     (SELECT AVG(sal) AS avg_sal
+      FROM emp)
+WHERE
+    deptno
+    IN (SELECT deptno
+        FROM emp
+        WHERE ename LIKE 'S%')
+    AND
+        e.sal > avg_sal
+;
+
+-- 사원번호가 7369인 사원과 같은 직업이고, 월급이 7876인 사원보다 많이 받는 사원의 이름과 직업을 출력하자.
+SELECT
+    ename,
+    job
+FROM emp
+WHERE
+    job IN (SELECT job
+            FROM emp
+            WHERE empno = 7369)
+        AND sal > 
+            (SELECT sal
+             FROM emp
+             WHERE sal = 7876)
+;
