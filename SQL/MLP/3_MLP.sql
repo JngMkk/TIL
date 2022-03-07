@@ -641,7 +641,7 @@ FROM emp e
 ORDER BY 1, 4 DESC
 ;
 
--- 사원번호와 이름, 관라자의 사원번호와 관리자이름을 출력하자.a
+-- 사원번호와 이름, 관라자의 사원번호와 관리자이름을 출력하자.
 SELECT
     e.ename,
     e.empno,
