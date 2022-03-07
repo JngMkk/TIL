@@ -430,10 +430,9 @@ SELECT
     ename,
     sal
 FROM emp
-WHERE COALESCE(mgr, 0) 
-        IN (SELECT empno
-            FROM emp
-            WHERE ename = 'KING')
+WHERE mgr IN (SELECT empno
+              FROM emp
+              WHERE ename = 'KING')
 ;
 
 -- 전체 사원 중, 20번 부서의 사원 중 가장 많은 월급을 받는 사원보다 더 많은 월급을 받는 사원들의 이름과 월급을 출력하자.
@@ -480,12 +479,12 @@ WHERE
     deptno
     IN (SELECT deptno
         FROM emp
-        WHERE ename LIKE 'S%')
+        WHERE ename LIKE '%S%')
     AND
         e.sal > avg_sal
 ;
 
--- 사원번호가 7369인 사원과 같은 직업이고, 월급이 7876인 사원보다 많이 받는 사원의 이름과 직업을 출력하자.
+-- 사원번호가 7369인 사원과 같은 직업이고, 사원번호가 7876인 사원보다 많이 받는 사원의 이름과 직업을 출력하자.
 SELECT
     ename,
     job
@@ -497,5 +496,5 @@ WHERE
         AND sal > 
             (SELECT sal
              FROM emp
-             WHERE sal = 7876)
+             WHERE empno = 7876)
 ;
