@@ -600,11 +600,12 @@ SELECT
     empno,
     ename,
     sal * 12 AS sal, 
-    sal * 12 + NVL(comm, 0) AS sal_comm,
+    sal * 12 + comm AS sal_comm,
     grade
 FROM emp
     JOIN salgrade
-    ON (sal BETWEEN losal AND hisal)
+    ON sal BETWEEN losal AND hisal
+WHERE comm IS NOT NULL
 ORDER BY 4 DESC
 ;
 
@@ -617,7 +618,7 @@ SELECT
     grade
 FROM emp e
     JOIN salgrade
-    ON (sal BETWEEN losal AND hisal)
+    ON sal BETWEEN losal AND hisal
     JOIN dept d
     ON e.deptno = d.deptno
     WHERE e.deptno = 10
@@ -633,7 +634,7 @@ SELECT
     grade
 FROM emp e
     JOIN salgrade
-    ON (sal BETWEEN losal AND hisal)
+    ON sal BETWEEN losal AND hisal
     JOIN dept d
     ON e.deptno = d.deptno
     WHERE e.deptno IN (10, 20)
