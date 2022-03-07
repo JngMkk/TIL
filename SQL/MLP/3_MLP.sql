@@ -641,7 +641,7 @@ FROM emp e
 ORDER BY 1, 4 DESC
 ;
 
--- 사원번호와 이름, 관라자의 사원번호와 관리자이름을 출력하자.
+-- 사원번호와 이름, 관라자의 사원번호와 관리자이름을 출력하자.a
 SELECT
     e.ename,
     e.empno,
@@ -658,7 +658,7 @@ SELECT
     dname,
     loc,
     COUNT(ename) AS cnt,
-    AVG(sal) AS avg
+    NVL(AVG(sal), 0) AS avg
 FROM emp e
     RIGHT JOIN dept d
     ON e.deptno = d.deptno
