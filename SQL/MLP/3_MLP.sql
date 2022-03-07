@@ -472,7 +472,7 @@ WHERE deptno IN (SELECT deptno
 SELECT
     e.deptno,
     e.ename,
-    e.sal
+    e.sal,
     avg_sal
 FROM emp e,
      (SELECT AVG(sal) AS avg_sal
