@@ -376,3 +376,219 @@
   False
   True
   ```
+
+## 디렉터리 연산자
+
+```
+디렉터리 연산자는 변수 유형이 디렉터리일 경우에 사용할 수 있는 연산자로
+특정 디렉터리 내의 파일 목록 중에 디렉터리가 있는지 체크할 경우 매우 유용하게 사용할 수 있음.
+또한 디렉터리 내에 디렉터리나 파일이 있는지도 확인할 수 있음.
+```
+
+| 연산자 | 사용법          | 설명                                      |
+| ------ | --------------- | ----------------------------------------- |
+| -d     | if [ -d $변수 ] | 변수 유형이 디렉터리이면 참               |
+| -e     | if [ -e $변수 ] | 디렉터리 내에 디렉터리나 파일이 있으면 참 |
+
+- 예제) 디렉터리 연산
+
+  ```
+  환경변수 HOME을 이용하여 HOME의 값이 디렉터리인지,
+  디렉터리라면 해당 디렉터리 내에 또 다른 디렉터리나 파일이 있는지를 -d와 -e를 이용하여 체크
+  ```
+
+  ```bash
+  #!/bin/bash
+  
+  if [ -d $HOME ]
+  then echo True
+  else echo False
+  fi
+  
+  if [ -e $HOME ]
+  then echo True
+  else echo False
+  fi
+  ```
+
+  ```bash
+  $ sh 11_dirOper.sh
+  True
+  True
+  ```
+
+## 파일 연산자
+
+```
+파일 연산자는 파일이 가지고 있는 다양한 속성들을 체크하는 연산자.
+예를 들어 파일에 읽기 권한이 있는지, 쓰기 권한이 있는지 등을 파일 연산자를 통해 확인할 수 있음
+```
+
+| 연산자 | 설명                                                         |
+| ------ | ------------------------------------------------------------ |
+| -f     | 변수 유형이 파일이면 참                                      |
+| -L     | 변수 유형이 파일이면서 심볼릭 링크이면 참                    |
+| -r     | 변수 유형이 파일이거나 디렉터리이면서 읽기 권한이 있으면 참  |
+| -w     | 변수 유형이 파일이거나 디렉터리이면서 쓰기 권한이 있으면 참  |
+| -x     | 변수 유형이 파일이거나 디렉터리이면서 실행 권한이 있으면 참  |
+| -s     | 변수 유형이 파일이거나 디렉터리이면서 사이즈가 0보다 크면 참 |
+| -O     | 변수 유형이 파일이거나 디렉터리이면서 스크립트 실행 소유자와 동일하면 참 |
+| -G     | 변수 유형이 파일이거나 디렉터리이면서 스크립트 실행 그룹과 동일하면 참 |
+
+- 예제 1) 파일 여부를 체크할 경우
+
+  ```bash
+  #!/bin/bash
+  
+  FILE=/etc/localtime
+  
+  if [ -f $FILE ]
+  then echo True
+  else echo False
+  fi
+  
+  if [ -L $FILE ]
+  then echo True
+  else echo False
+  fi
+  ```
+
+  ```bash
+  $ sh 12_fileOper.sh 
+  True
+  True
+  ```
+
+- 예제 2) 파일 권한을 체크할 경우
+
+  ```bash
+  #!/bin/bash
+  
+  ls -l /etc/localtime
+  
+  # 원파일 속성 확인
+  ls -l /usr/share/zoneinfo/Asia/Seoul
+  
+  FILE=/etc/localtime
+  
+  # 파일에 읽기 권한이 있으면 True, 아니면 False
+  if [ -r $FILE ]
+  then echo True; else echo False; fi
+  
+  # 파일에 쓰기 권한이 있으면 True, 아니면 False
+  if [ -w $FILE ]
+  then echo True; else echo False; fi
+  
+  # 파일에 실행 권한이 있으면 True, 아니면 False
+  if [ -x $FILE ]
+  then echo True; else echo False; fi
+  
+  # 파일의 크기가 0보다 크면 True, 아니면 False
+  if [ -s $FILE ]
+  then echo True; else echo False; fi
+  ```
+
+  ```bash
+  $ sh 13_fileOper.sh 
+  lrwxrwxrwx 1 root root 30  1월 28 21:45 /etc/localtime -> /usr/share/zoneinfo/Asia/Seoul
+  -rw-r--r-- 1 root root 645 10월 26 08:58 /usr/share/zoneinfo/Asia/Seoul
+  True
+  False	# 원파일에 쓰기 권한이 없음
+  False	# 원파일에 실행 권한이 없음
+  True
+  ```
+
+- 예제3) 파일 소유권을 체크할 경우
+
+  ```
+  -O 연산자와 -G 연산자를 이용해 스크립트가 수행되는 프롬프트의 소유자 및 그룹이
+  변수에 정의된 파일의 소유자 및 그룹과 동일한지 여부를 확인할 수 있음
+  ```
+
+  ```bash
+  #!/bin/bash
+  
+  # /etc/localtime의 파일 속성 확인
+  ls -l /etc/localtime
+  
+  # /etc/localtime 원파일의 속성 확인
+  ls -l /usr/share/zoneinfo/Asia/Seoul
+  
+  FILE=/etc/localtime
+  
+  # 스크립트 실행 소유자와 같은지
+  if [ -O $FILE ]
+  then echo True; else echo False; fi
+  
+  # 소유 그룹이 같은지
+  if [ -G $FILE ]
+  then echo True; else echo False; fi
+  ```
+
+  ```bash
+  $ sh 14_fileOper.sh 
+  lrwxrwxrwx 1 root root 30  1월 28 21:45 /etc/localtime -> /usr/share/zoneinfo/Asia/Seoul
+  -rw-r--r-- 1 root root 645 10월 26 08:58 /usr/share/zoneinfo/Asia/Seoul
+  False	# 루트 계정이 아니므로 False
+  False	# 루트 계정이 아니므로 False
+  
+  # 루트 계정으로 할 경우
+  # sh 14_fileOper.sh 
+  lrwxrwxrwx 1 root root 30  1월 28 21:45 /etc/localtime -> /usr/share/zoneinfo/Asia/Seoul
+  -rw-r--r-- 1 root root 645 10월 26 08:58 /usr/share/zoneinfo/Asia/Seoul
+  True
+  True
+  ```
+
+## 파일 비교 연산자
+
+```
+파일 비교 연산자는 두 개의 변수에 정의된 파일을 비교하는 연산자로 어떤 파일이 더 최근에 생성된 것인지,
+어떤 파일이 더 오래된 파일인지 확인할 수 있음.
+또한 -ef 연산자를 이용하여 두 개의 파일이 동일한 파일인지를 확인할 수 있음
+```
+
+| 연산자 | 사용법                   | 설명                                                       |
+| ------ | ------------------------ | ---------------------------------------------------------- |
+| -nt    | if [ $변수1 -nt $변수2 ] | 변수 유형이 파일이면서, 변수1이 변수2보다 최신 파일이면 참 |
+| -ot    | if [ $변수1 -ot $변수2 ] | 변수 유형이 파일이면서, 변수1이 변수2보다 이전 파일이면 참 |
+| -ef    | if [ $변수1 -ef $변수2 ] | 변수 유형이 파일이면서, 변수1과 변수2가 동일 파일이면 참   |
+
+- 예제 1) 파일을 비교할 때
+
+  ```bash
+  #!/bin/bash
+  
+  # 비교할 파일 생성
+  echo "AAA" > test1.txt
+  sleep 1s
+  echo "BBB" > test2.txt
+  
+  FILE1=test1.txt
+  FILE2=test2.txt
+  
+  # 최신 파일인지 비교
+  if [ $FILE1 -nt $FILE2 ]
+  then echo True; else echo False; fi
+  
+  # 예전 파일인지 비교
+  if [ $FILE1 -ot $FILE2 ]
+  then echo True; else echo False; fi
+  
+  # 심볼릭 링크로 연결된 두 개의 파일명을 각각의 변수에 저장
+  FILE1=/etc/localtime
+  FILE2=/usr/share/zoneinfo/Asia/Seoul
+  
+  # 동일한 파일인지 비교
+  if [ $FILE1 -ef $FILE2 ]
+  then echo True; else echo False; fi
+  ```
+
+  ```bash
+  $ sh 15_fileOper.sh 
+  False
+  True
+  True
+  ```
+
+  
