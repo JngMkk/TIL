@@ -1,0 +1,186 @@
+// update document
+db.inventory.insertMany( [
+	{ item: "canvas", qty: 100, size: { h: 28, w: 35.5, uom: "cm" }, status: "A" },
+	{ item: "journal", qty: 25, size: { h: 14, w: 21, uom: "cm" }, status: "A" },	
+	{ item: "mat", qty: 85, size: { h: 27.9, w: 35.5, uom: "cm" }, status: "A" },
+	{ item: "mousepad", qty: 25, size: { h: 19, w: 22.85, uom: "cm" }, status: "P" },
+	{ item: "notebook", qty: 50, size: { h: 8.5, w: 11, uom: "in" }, status: "P" },
+	{ item: "paper", qty: 100, size: { h: 8.5, w: 11, uom: "in" }, status: "D" },
+	{ item: "planner", qty: 75, size: { h: 22.85, w: 30, uom: "cm" }, status: "D" },
+	{ item: "postcard", qty: 45, size: { h: 10, w: 15.25, uom: "cm" }, status: "A" },
+	{ item: "sketchbook", qty: 80, size: { h: 14, w: 21, uom: "cm" }, status: "A" },
+	{ item: "sketch pad", qty: 95, size: { h: 22.85, w: 30.5, uom: "cm" }, status: "A" }
+] );
+
+// _id만 빼고 전체출력
+db.inventory.find({}, {_id:0})
+
+// status가 D인 document
+db.inventory.find({status:'D'})
+
+// qty가 높은 순부터 (내림차순)
+db.inventory.find().sort({qty:-1})
+
+// qty가 80 미만인 document를 낮은 순부터 (오름차순)
+db.inventory.find(
+    {qty:
+        {$lt:80}}
+).sort({qty:1})
+
+// qty가 75보다 크거나 같고, 100보다 작은 document
+db.inventory.find(
+    {qty :
+        {$gte : 75, $lt : 100}
+    }
+)
+
+// qty가 60이상이면서 size의 h가 10 이상인 document
+db.inventory.find(
+    {qty :
+        {$gte : 60},
+     "size.h" :
+        {$gte : 10}
+    }
+)
+
+// uom이 in인 document
+db.inventory.find(
+    {"size.uom" :
+        "in"
+    }
+)
+
+// item이 p로 시작하는 document
+db.inventory.find({item : /^p/})
+
+db.inventory.find(
+    {item:
+        {$regex : '^p'}
+    }
+)
+
+// item이 r로 끝나는 document
+db.inventory.find({item : /r$/})
+
+db.inventory.find(
+    {item:
+        {$regex : 'r$'}
+    }
+)
+
+// item에 r이 들어간 document
+db.inventory.find({item : /r/})
+
+db.inventory.find(
+    {item:
+        {$regex : 'r'}
+    }
+)
+
+// qty의 값이 25나 45인 document
+db.inventory.find(
+    {$or :
+        [
+            {qty : 25},
+            {qty : 45}
+        ]
+    },
+    {_id:0}
+)
+
+db.inventory.find(
+    {$or :
+        [
+            {qty :
+                {$in : [25, 45]}}
+        ]
+    },
+    {_id:0}
+)
+
+// w의 값이 11나 21가 아닌 documnet
+db.inventory.find(
+    {$nor :
+        [
+            {"size.w":
+                {$in : [11, 21]}
+            }
+        ]
+    },
+    {_id : 0}
+)
+
+db.inventory.find(
+    {$nor :
+        [
+            {"size.w" : 11},
+            {"size.w" : 21}
+        ]
+    },
+    {_id : 0}
+)
+
+// $eq를 이용하여 item이 'notebook'인 document를 찾아, item과 status만 출력
+db.inventory.find(
+    {item :
+        {$eq : "notebook"}
+    },
+    {_id:0, item:1, status:1}
+)
+
+// status가 A이거나 qty가 30미만 인 document
+db.inventory.find(
+    {$or :
+        [
+            {status : 'A'},
+            {qty : {$lt : 30}}
+        ]
+    }
+)
+
+// status가 A이고 qty가 30미만 인 document
+db.inventory.find(
+    {
+        status : 'A',
+        qty : {$lt : 30}
+    }
+)
+
+// h 기준으로 오름차순 정렬
+db.inventory.find().sort({"size.h":1})
+
+// h가 10보다 큰 document
+db.inventory.find(
+    {
+        "size.h":
+            {$gt : 10}
+    }
+)
+
+// qty가 100이 아닌 document 출력
+db.inventory.find(
+    {qty :
+        {$ne : 100}
+    }
+)
+
+db.inventory.find(
+    {qty :
+        {$nin : [100]}
+    }
+)
+
+// qty가 존재하면서, qty의 값이 50보다 큰 document
+db.inventory.find({qty: {$exists: true, $gt: 50}})
+
+db.inventory.find(
+    {$and :
+        [
+            {qty : {$exists: true}},
+            {qty : {$gt : 50}}
+        ]
+    }
+)
+
+// uom이 cm인 document들의 item과 status만 출력
+db.inventory.find({"size.uom" : "cm"}, {_id : 0, item : 1, status : 1})

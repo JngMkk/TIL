@@ -278,5 +278,198 @@ jstest
   { "acknowledged" : true, "deletedCount" : 3 }
   ```
 
+
+## Aggregation
+
+- collection이 각 stage를 거치면서 document 처리 및 집계
+
+- 일부 처리는 shard에 대응 ( 각 shard에서 처리 )
+
+- pipeline : 이전 단계의 결과를 다음 단계의 입력으로 사용
+
+  ![image](https://user-images.githubusercontent.com/87686562/157586697-e823ebae-af84-4cfe-a260-f5f060c8b209.png)
+
+  | SQL      | NOSQL    |
+  | -------- | -------- |
+  | WHERE    | $match   |
+  | HAVING   | $match   |
+  | GROUP BY | $group   |
+  | SELECT   | $project |
+  | ORDER BY | $sort    |
+  | LIMIT    | $limit   |
+  | SUM      | $sum     |
+  | COUNT    | $sum     |
+
+  ```
+  // collection 생성
+  db.multi.insertMany(
+  	[
+  		{name: 'hong-gd', kor: 100, eng: 30, math: 60},
+  		{name: 'kim-sd', kor: 40, eng: 70, math: 100},
+  		{name: 'park-jy', kor: 100, eng: 100, math: 100},
+  		{name: 'heo-jy', kor: 100, eng: 100, math: 100},
+  		{name: 'hong-gd', kor: 60, eng: 100, math: 70},
+  	]
+  )
   
+  db.multi.aggregate(
+  	{$match:
+  		{kor: {$gt: 70}}},
+  	{$project:
+  		{kor: 1}},
+  	{$group:
+  		{_id: "test", "average": {$avg: "$kor"}}}
+  )
+  { "_id" : "test", "average" : 100 }
+  
+  db.multi.aggregate(
+  	{$match:
+      	{name: /s/}},
+      {$group:
+      	{_id: "test", "sum": {$sum: "$kor"}}}
+  )
+  { "_id" : "test", "sum" : 40 }
+  
+  db.score.insertMany(
+      [
+          {name:"홍길동",kor:90,eng:80,math:98,test:"midterm"},
+          {name:"이순신",kor:100,eng:100,math:76,test:"final"},
+          {name:"김선달",kor:80,eng:55,math:67,test :"midterm"},
+          {name:"강호동",kor:70,eng:69,math:89,test:"midterm"},
+          {name:"유재석",kor:60,eng:80,math:78,test:"final"},
+          {name:"신동엽",kor:100,eng:69,math:89,test:"midterm"},
+          {name:"조세호",kor:75,eng:100,math:100,test:"final"}
+      ]
+  )
+  
+  db.score.aggregate(
+  	{$project:
+      	{_id:0, name:1, kor:1, eng: 1, math: 1}}
+  )
+  
+  db.score.aggregate(
+  	{$match:
+      	{kor: {$gt: 80}}}
+  )
+  
+  db.score.aggregate(
+  	{$group:
+      	{_id: "$test", "average": {$avg: "$kor"}}}
+  )
+  ```
+
+
+## MapReduce
+
+- Aggregation framework가 처리하지 못하는 복잡한 집계 작업에 사용
+- Javascript function을 사용하여 복잡한 작업 처리
+- shard에 대응 -> 분산 처리 가능
+- query -> map -> reduce -> out
+  - map : data mapping ( grouping )
+  - reduce : 집계 연산 실행
+  - query : 입력될 document
+  - out : collection or document 출력
+
+```javascript
+function myMap(){
+    emit(
+        	this.score,
+        	{name: this.name, kor: this.kor, eng: this.eng, test: this.test}
+    	)
+}
+
+function myReduce(key, values){
+    var result = {name: new Array(),
+                  kor: new Array(),
+                  eng: new Array(),
+                  total: new Array(),
+                 }
+    values.forEach(function(val){
+        if(val.test == 'final'){
+            result.name += val.name + " "
+            result.kor += val.kor + " "
+            result.eng += val.eng + " "
+            result.total += val.kor + val.eng + " "
+        }
+    })
+    return result
+}
+
+db.score.mapReduce(myMap, myReduce, {out: {replace: "myRes"}})
+db.myRes.find()
+```
+
+## Geospatial
+
+```json
+db.starbucks02.createIndex({location:"2dsphere"})
+// 내 위치 : 37.5248171381127, 127.05505428317193
+
+// 내 위치 기준 주변 검색
+db.starbucks02.find(
+    {
+        location: {
+            $near: {
+                $geometry:{
+                    type: "Point",
+                    coordinates: [127.05505428317193, 37.5248171381127]
+                },
+                $maxDistance: 500
+            }
+        }
+    }
+)
+
+// 현재 위치부터 ~ "서울" 단어가 포함된 좌표들의 거리
+db.starbucks02.aggregate(
+    [
+        {
+            $geoNear:{
+                near:{
+                    type: "Point",
+                    coordinates : [127.05505428317193, 37.5248171381127]
+                },
+                spherical : true,
+                query: {s_name: /서울/},
+                distanceField: "distance"
+            }
+        }
+    ]
+)
+
+// 평면 내 검색
+// 강남 : 127.02761159460194, 37.49803675628153
+// 선정릉 : 127.04391325768417, 37.510487444168355
+// 학여울 : 127.07050608281472, 37.496836198102905
+db.starbucks02.find(
+    {
+        location:{
+            $geoIntersects: {
+                $geometry: {
+                    type: "Polygon",
+                    coordinates: [
+                                    [
+                                        [127.02761159460194, 37.49803675628153],
+                                        [127.04391325768417, 37.510487444168355],
+                                        [127.07050608281472, 37.496836198102905],
+                                        [127.02761159460194, 37.49803675628153]
+                                    ]
+                    ]
+                }
+            }
+        }
+    }
+)
+
+// 원
+db.starbucks02.find(
+    {
+        location: {
+            $geoWithin: {
+                $centerSphere: [[127.05505428317193, 37.5248171381127], 0.5/3963.2]
+            }
+        }
+    }
+)
+```
 
