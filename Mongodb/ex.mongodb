@@ -79,6 +79,12 @@ db.inventory.find(
 
 // qty의 값이 25나 45인 document
 db.inventory.find(
+    {qty : 
+        {$in : [25, 45]}
+    }
+)
+
+db.inventory.find(
     {$or :
         [
             {qty : 25},
@@ -99,6 +105,12 @@ db.inventory.find(
 )
 
 // w의 값이 11나 21가 아닌 documnet
+db.inventory.find(
+    {'size.w' : 
+        {$nin: [11, 21]}
+    }
+)
+
 db.inventory.find(
     {$nor :
         [
