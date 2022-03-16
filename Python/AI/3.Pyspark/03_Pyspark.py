@@ -26,3 +26,105 @@ text
 db
 
 """
+
+retails = spark.read.format("csv").option("header", "true").option("inferSchema", "true").load("/home/jngmk/data/retails/*.csv")
+
+from pyspark.sql.functions import to_date, col
+
+date_df = retails.withColumn("date", to_date(col("InvoiceDate"), "yyyy-MM-dd HH:mm:ss"))
+date_df.show(3)
+
+notnull_df = date_df.drop()
+notnull_df.createOrReplaceTempView("notnullDf")
+
+spark.sql("""
+SELECT
+    CustomerID, StockCode, SUM(Quantity)
+FROM notnullDf
+GROUP BY CustomerID, StockCode
+ORDER BY CustomerID DESC, StockCode DESC
+""").show()
+
+from pyspark.sql.functions import sum, expr
+
+rollup_df = notnull_df.rollup("Date", "Country").agg(sum("Quantity")).selectExpr("Date", "Country", "`SUM(Quantity)` AS total_quantity").orderBy("Date")
+rollup_df.show()
+rollup_df.where("Country IS NULL").show()
+
+cube_df = notnull_df.cube("Date", "Country").agg(sum(col("Quantity"))).select("Date", "Country", "SUM(Quantity)").orderBy("Date")
+cube_df.where("Date IS NULL").show()
+
+person = spark.createDataFrame(
+    [
+        (1, "shin dongyeup", 2, [1]),
+        (2, "seo janghoon", 3, [2]),
+        (3, "yoo jaeseok", 1, [1, 2]),
+        (4, "kang hodong", 0, [0])
+    ]
+).toDF("id", "name", "program", "job")
+
+program = spark.createDataFrame(
+    [
+        (1, "MBC", "놀면 뭐하니"),
+        (2, "KBS", "불후의 명곡"),
+        (3, "SBS", "미운 우리 새끼"),
+        (4, "JTBC", "뭉쳐야 찬다")
+    ]
+).toDF("id", "broadcaster", "program")
+
+job = spark.createDataFrame(
+    [
+        (1, "main mc"),
+        (2, "member")
+    ]
+).toDF("id", "job")
+
+person.show()
+program.show()
+job.show()
+
+person.createOrReplaceTempView("person")
+program.createOrReplaceTempView("program")
+job.createOrReplaceTempView("job")
+
+# person.join(program, person['program'] == program['id']).show()
+person.join(program, person.program == program.id).show()
+spark.sql("""
+SELECT *
+FROM PERSON PS
+    JOIN PROGRAM PR
+    ON PS.PROGRAM = PR.ID
+""").show()
+
+conditions = person.program == program.id
+person.join(program, conditions, "inner").show()
+person.join(program, conditions, "outer").show()
+spark.sql("""
+SELECT *
+FROM PERSON PS
+    FULL OUTER JOIN PROGRAM PR
+    ON PS.PROGRAM = PR.ID
+""").show()
+
+person.join(program, conditions, "left_outer").show()
+person.join(program, conditions, "right_outer").show()
+person.join(program, conditions, "left_anti").show()
+person.join(program, conditions, "left_semi").show()
+# person.join(program, how = "cross").show()
+person.crossJoin(program).show()
+# person.join(job, expr("array_contains(job, id)")).show()
+person.withColumnRenamed("id", "num").withColumnRenamed("job", "role").join(job, expr("array_contains(role, id)")).show()
+
+spark.sql("""
+SELECT P.*
+FROM PERSON P
+    JOIN PROGRAM M
+    ON P.PROGRAM = M.ID
+WHERE BROADCASTER = 'SBS'
+""").show()
+
+spark.sql("""
+SELECT *
+FROM PERSON
+WHERE PROGRAM = (SELECT ID FROM PROGRAM WHERE BROADCASTER = 'SBS')
+""").show()
