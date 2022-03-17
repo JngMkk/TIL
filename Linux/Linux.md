@@ -1,6 +1,6 @@
 # Linux
 
-> Ubuntu 21.04 LTS
+> Ubuntu 20.04 LTS
 >
 > 실습하면서 배운 명령어 정리 & 궁금한거 구글링
 
@@ -162,7 +162,7 @@
   ```
 
   ```
-  $ unmae -v
+  $ uname -v
   #29~20.04.1-Ubuntu SMP Fri Jan 14 00:32:30 UTC 2022
   
   커널 버전 표시
