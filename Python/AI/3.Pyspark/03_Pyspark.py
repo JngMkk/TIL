@@ -3,7 +3,7 @@ from pyspark.sql import SparkSession
 
 conf = SparkConf().setAppName("practice")
 sc = SparkContext(conf=conf)
-spark = SparkSession.builder.getOrCreate()
+spark = SparkSession.builder.master("yarn").appName("practice").getOrCreate()
 
 csv_file01 = spark.read.format("csv").option("header", "true").load("/home/jngmk/data/flights/csv/2010-summary.csv")
 csv_file02 = spark.read.option("header", "true").csv("/home/jngmk/data/flights/csv/2010-summary.csv")

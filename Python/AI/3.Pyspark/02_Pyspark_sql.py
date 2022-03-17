@@ -5,7 +5,7 @@ sc = SparkContext(conf=conf)
 
 from pyspark.sql import SparkSession
 
-spark = SparkSession.builder.getOrCreate()
+spark = SparkSession.builder.master("yarn").appName("practice").getOrCreate()
 
 f2015 = spark.read.format("json").load("/home/jngmk/data/flights/json/2015-summary.json")
 f2015.show()
