@@ -18,7 +18,7 @@ func hitURL(url string) error {
 }
 
 func main() {
-	var results = make(map[string]string)
+	results := make(map[string]string)
 	urls := []string{
 		"https://www.airbnb.com",
 		"https://www.google.com",
