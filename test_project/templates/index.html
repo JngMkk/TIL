@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="shortcut icon" href="#">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         function getLoc() {
@@ -16,10 +17,7 @@
             }
         }
         function getPos(pos) {
-            var userLoc = document.getElementById("userloc")
-            var condi = document.getElementById("condi")
-            var temp = document.getElementById("temp")
-            var humid = document.getElementById("humidity")
+            const userLoc = document.getElementById("userloc")
             const lat = pos.coords.latitude
             const lng = pos.coords.longitude
 
@@ -31,31 +29,21 @@
                 },
                 success: function(data) {
                     var addrS = data.documents[0].address.address_name.split(" ")
-                    var addr = ""
                     if (addrS[0] == "서울") {
-                        addr = "서울특별시"
-                    } else if (addrS[0] == "대구" || addrS[0] == "울산" || addrS[0] == "부산" || addrS[0] == "인천" || addrS[0] == "대전" || addrS[0] == "광주") {
-                        addr = addrS[0] + "광역시"
+                        var addr = "서울특별시"
+                    } else if (addr[1].substr(-1) == "시" | addr[1].substr(-1) == "군") {
+                        var addr = addrS[1]
                     } else {
-                        addr = addrS[1]
+                        var addr = addrS[0] + "광역시"
                     }
                     userLoc.innerHTML = addr
                     $.ajax({
-                        url: "",
+                        url: "/?loc=" + addr,
                         type: "GET",
-                        success: function(data2) {
-                            for (var i=0; data2.length; i++) {
-                                if (data2[i].si == addr) {
-                                    condi.innerHTML = data2[i].condi
-                                    temp.innerHTML = data2[i].temp
-                                    humid.innerHTML = data2[i].humidity
-                                }
-                            }
-                        },
                         errer: function(e) {
                             console.log(e)
-                        }
-                    })
+                            }
+                        })
                 },
                 error: function(e) {
                     console.log(e)
@@ -86,8 +74,9 @@
     <h1>Hello, World!</h1>
     <a href="plants/">검색</a>
     <div id="userloc"></div>
-    <div id="condi"></div>
-    <div id="temp"></div>
-    <div id="humidity"></div>
+    <div id="condi">{{weather.0.condi}}</div>
+    <div id="temp">{{weather.0.temp}}</div>
+    <div id="humidity">{{weather.0.humidity}}</div>
+
 </body>
 </html>

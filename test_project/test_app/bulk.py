@@ -43,7 +43,7 @@ es.indices.create(
     }
 )
 
-file = "/home/jngmk/webtest/test_project/plantName.json"
+file = "/home/jngmk/webTest/test_project/plantName.json"
 with open(file, encoding="utf-8") as file:
     json_data = json.loads(file.read())
 
@@ -55,9 +55,5 @@ for i in json_data:
     if count == 1:
         print(body)
     count += 1
-
-f = open("./input.json", "w")
-f.write(body)
-f.close()
 
 es.bulk(body)
