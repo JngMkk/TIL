@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function getLoc() {
+            var userLoc = document.getElementById("userloc")
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(getPos, getErr)
+            } else {
+                userLoc.innerHTML = "지원되지 않는 브라우저입니다."
+            }
+        }
+        function getPos(pos) {
+            var userLoc = document.getElementById("userloc")
+            var condi = document.getElementById("condi")
+            var temp = document.getElementById("temp")
+            var humid = document.getElementById("humidity")
+            const lat = pos.coords.latitude
+            const lng = pos.coords.longitude
+
+            $.ajax({
+                url: "https://dapi.kakao.com/v2/local/geo/coord2address.json?x=" + lng + "&y=" + lat,
+                type: "GET",
+                headers: {
+                    "Authorization" : "KakaoAK 0a04a8468406a22d0281480d598e655e"
+                },
+                success: function(data) {
+                    var addrS = data.documents[0].address.address_name.split(" ")
+                    var addr = ""
+                    if (addrS[0] == "서울") {
+                        addr = "서울특별시"
+                    } else if (addrS[0] == "대구" || addrS[0] == "울산" || addrS[0] == "부산" || addrS[0] == "인천" || addrS[0] == "대전" || addrS[0] == "광주") {
+                        addr = addrS[0] + "광역시"
+                    } else {
+                        addr = addrS[1]
+                    }
+                    userLoc.innerHTML = addr
+                    $.ajax({
+                        url: "",
+                        type: "GET",
+                        success: function(data2) {
+                            for (var i=0; data2.length; i++) {
+                                if (data2[i].si == addr) {
+                                    condi.innerHTML = data2[i].condi
+                                    temp.innerHTML = data2[i].temp
+                                    humid.innerHTML = data2[i].humidity
+                                }
+                            }
+                        },
+                        errer: function(e) {
+                            console.log(e)
+                        }
+                    })
+                },
+                error: function(e) {
+                    console.log(e)
+                }
+            }
+        )}
+        function getErr(error) {
+            var userLoc = document.getElementById("userloc")
+            switch(error.code) {
+                case error.PERMISSION_DENIED:
+                    userLoc.innerHTML = "위치 정보 권한 없음"
+                    break
+                case error.POSITION_UNAVAILABLE:
+                    userLoc.innerHTML = "위치 정보를 나타낼 수 없음"
+                    break
+                case error.TIMEOUT:
+                    userLoc.innerHTML = "위치 정보 요청 시간 초과"
+                    break
+                case error.UNKNOWN_ERROR:
+                    userLoc.innerHTML = "알 수 없는 오류 발생"
+                    break
+            }
+        }
+        getLoc()
+    </script>
+</head>
+<body>
+    <h1>Hello, World!</h1>
+    <a href="plants/">검색</a>
+    <div id="userloc"></div>
+    <div id="condi"></div>
+    <div id="temp"></div>
+    <div id="humidity"></div>
+</body>
+</html>

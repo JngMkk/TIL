@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .plant_image{
+            width: 200px;
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+<body>
+    <div class="plant_image" style="background-image: url({{data.url}})"></div>
+    <!-- 이름 -->
+    <div class="plant_info">{{data.name}}</div>
+    <!-- 학명 -->
+    <div class="plant_info">{{data.botanynm}}</div>
+    <!-- 정보 -->
+    <div class="plant_info">{{data.info}}</div>
+    <!-- 물 주는 주기 -->
+    <div class="plant_info">{{data.watercycle}}</div>
+    <!-- 물주는 법 -->
+    <div class="plant_info">{{data.waterinfo}}</div>
+    <!-- 물주는 법2 -->
+    <div class="plant_info">{{data.waterexp}}</div>
+    <!-- 물주는 법3 -->
+    <div class="plant_info">{{data.waterexpinfo}}</div>
+    <!-- 햇빛 -->
+    <div class="plant_info">{{data.light}}</div>
+    <!-- 햇빛 2 -->
+    <div class="plant_info">{{data.lightinfo}}</div>
+    <!-- 햇빛 3 -->
+    <div class="plant_info">{{data.lightexp}}</div>
+    <!-- 햇빛 설명 -->
+    <div class="plant_info">{{data.lightexpinfo}}</div>
+    <!-- 습도 % -->
+    <div class="plant_info">{{data.humidity}}</div>
+    <!-- 습도 1 -->
+    <div class="plant_info">{{data.humidinfo}}</div>
+    <!-- 습도 2 -->
+    <div class="plant_info">{{data.humidexp}}</div>
+    <!-- 습도 설명 -->
+    <div class="plant_info">{{data.humidexpinfo}}</div>
+    <!-- 온도 -->
+    <div class="plant_info">{{data.tempexp}}</div>
+    <!-- 온도 설명 -->
+    <div class="plant_info">{{data.tempexpinfo}}</div>
+</body>
+</html>

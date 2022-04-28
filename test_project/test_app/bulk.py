@@ -27,6 +27,9 @@ es.indices.create(
         },
         "mappings": {
             "properties": {
+                "URL": {
+                    "type": "keyword",
+                },
                 "name": {
                     "type": "text",
                     "analyzer": "my_analyzer"
@@ -34,59 +37,14 @@ es.indices.create(
                 "botanyNm": {
                     "type": "text",
                     "analyzer": "english"
-                },
-                "info": {
-                    "type": "keyword"
-                },
-                "waterCycle": {
-                    "type": "keyword"
-                },
-                "waterInfo": {
-                    "type": "keyword"
-                },
-                "waterExp": {
-                    "type": "keyword"
-                },
-                "waterExpInfo": {
-                    "type": "keyword"
-                },
-                "light": {
-                    "type": "keyword"
-                },
-                "lightInfo": {
-                    "type": "keyword"
-                },
-                "lightExp": {
-                    "type": "keyword"
-                },
-                "lightExpInfo": {
-                    "type": "keyword"
-                },
-                "humidity": {
-                    "type": "keyword"
-                },
-                "humidInfo": {
-                    "type": "keyword"
-                },
-                "humidExp": {
-                    "type": "keyword"
-                },
-                "humidExpInfo": {
-                    "type": "keyword"
-                },
-                "tempExp": {
-                    "type": "keyword"
-                },
-                "tempExpInfo": {
-                    "type": "keyword"
                 }
             }
         }
     }
 )
 
-directory_path = "/home/jngmk/workspace/go/src/github.com/JngMkk/data/"
-with open(directory_path + "fuleaf.json", encoding="utf-8") as file:
+file = "/home/jngmk/webtest/test_project/plantName.json"
+with open(file, encoding="utf-8") as file:
     json_data = json.loads(file.read())
 
 body = ""

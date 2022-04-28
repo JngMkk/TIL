@@ -1,30 +1,34 @@
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status
-
+from django.shortcuts import render
+from .models import Plants
 from elasticsearch import Elasticsearch
 
+def search(request):
+    if request.GET.get("term"):
+        es = Elasticsearch(hosts="localhost", port=9200)
+        search_word = request.GET.get("term")
+        docs = es.search(index="dictionary",
+                body= {
+                    # "_source": ["URL", "name"],
+                    "_source": ["name"],
+                    "query": {
+                        "multi_match": {
+                            "query": search_word,
+                            "fields": ["name", "botanyNm"]
+                        }
+                    }
+                })
+        data = docs["hits"]["hits"]
+        result = []
+        for d in data:
+            # result.append([d["_id"], d["_source"]["URL"], d["_source"]["name"]])
+            result.append([d["_id"], d["_source"]["name"]])
+        return render(request, "test_app/search.html", {"result" : result})
+    else:
+        return render(request, 'test_app/search.html')
 
-class SearchView(APIView):
+def info(request):
+    _id = request.GET.get("id")
+    q = Plants.objects.get(plantid=int(_id))
+    return render(request, 'test_app/info.html', {"data": q})
 
-    def get(self, request):
-        es = Elasticsearch(hosts='localhost',port=9200)
 
-        # 검색어
-        search_word = request.query_params.get('search')
-
-        if not search_word:
-            return Response(status=status.HTTP_400_BAD_REQUEST, data={'message': 'search word param is missing'})
-        docs = es.search(index='dictionary',
-                         body={
-                             "query": {
-                                 "multi_match": {
-                                     "query": search_word,
-                                     "fields": ["name", "info"]
-                                 }
-                             }
-                         })
-
-        data_list = docs['hits']
-
-        return Response(data_list)

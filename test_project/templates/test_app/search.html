@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .plant_image{
+            width: 100px;
+            height: 100px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        a{
+            text-decoration: none;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+    <form action="/plants/" method="GET">
+        <input type="text" placeholder="식물 이름을 검색해주세요" name="term">
+        <input type="submit" value="검색">
+    </form>
+
+    <ul class="plant_items">
+        {% for r in result %}
+        <div class="plant_item">
+            <a href="/plants/info/?id={{r.0}}">
+                <!-- <div class="plant_image" style="background-image: url({{r.0}})"></div> -->
+                <div>
+                    <!-- <h3>{{r.1}}</h3> -->
+                    <h3>{{r.1}}</h3>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </ul>
+</body>
+</html>
