@@ -17,7 +17,6 @@
             }
         }
         function getPos(pos) {
-            const userLoc = document.getElementById("userloc")
             const lat = pos.coords.latitude
             const lng = pos.coords.longitude
 
@@ -31,19 +30,40 @@
                     var addrS = data.documents[0].address.address_name.split(" ")
                     if (addrS[0] == "서울") {
                         var addr = "서울특별시"
-                    } else if (addr[1].substr(-1) == "시" | addr[1].substr(-1) == "군") {
+                    } else if (addrS[1].substr(-1) == "시" | addrS[1].substr(-1) == "군") {
                         var addr = addrS[1]
                     } else {
                         var addr = addrS[0] + "광역시"
                     }
+                    const userLoc = document.getElementById("userloc")
                     userLoc.innerHTML = addr
-                    $.ajax({
-                        url: "/?loc=" + addr,
-                        type: "GET",
-                        errer: function(e) {
-                            console.log(e)
-                            }
-                        })
+                    if (addr) {
+                        const con = document.getElementById("condi")
+                        const tem = document.getElementById("temp")
+                        const humid = document.getElementById("humidity")
+                        const fore = document.getElementById("foreTemp")
+                        $.ajax({
+                            url: "/weather/?loc=" + addr,
+                            type: "GET",
+                            success: function(data) {
+                                con.innerHTML = data[0].condi
+                                tem.innerHTML = data[0].temp + "°C"
+                                humid.innerHTML = data[0].humidity + "%"
+                                for (i=0; i<24; i++) {
+                                    var sp = document.createElement("span")
+                                    var b1 = document.createElement("b")
+                                    var b2 = document.createElement("b")
+                                    b1.innerHTML = data[i].time
+                                    b2.innerHTML = data[i].temp
+                                    sp.appendChild(b1, b2)
+                                    fore.appendChild(sp)
+                                }
+                            },
+                            error: function(e) {
+                                console.log(e)
+                                }
+                            })
+                        }
                 },
                 error: function(e) {
                     console.log(e)
@@ -74,9 +94,10 @@
     <h1>Hello, World!</h1>
     <a href="plants/">검색</a>
     <div id="userloc"></div>
-    <div id="condi">{{weather.0.condi}}</div>
-    <div id="temp">{{weather.0.temp}}</div>
-    <div id="humidity">{{weather.0.humidity}}</div>
+    <div id="condi"></div>
+    <div id="temp"></div>
+    <div id="humidity"></div>
 
+    <div id="foreTemp"></div>
 </body>
 </html>

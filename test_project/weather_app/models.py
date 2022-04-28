@@ -12,3 +12,7 @@ class Weather(models.Model):
     rainratio = models.IntegerField(db_column='rainRatio', blank=True, null=True)  # Field name made lowercase.
     snowratio = models.IntegerField(db_column='snowRatio', blank=True, null=True)  # Field name made lowercase.
     uv = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'weather'

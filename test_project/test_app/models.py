@@ -1,7 +1,6 @@
 from django.db import models
 
 class Plants(models.Model):
-    plantid = models.AutoField(db_column='plantId', primary_key=True)  # Field name made lowercase.
     url = models.CharField(db_column='URL', max_length=255)  # Field name made lowercase.
     name = models.CharField(max_length=255)
     botanynm = models.CharField(db_column='botanyNm', max_length=255)  # Field name made lowercase.
